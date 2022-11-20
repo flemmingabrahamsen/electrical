@@ -1,0 +1,27 @@
+# Induction Machine
+
+## Nomenclature
+
+$R_s$: Stator resistance.  
+$\psi_{pm}$: Permament magnet flux linkage.  
+$\omega_m$: Angular frequency of shaft in electrical frame, i.e compensated for pole-pairs.  
+$L_d$: d-axis inductance.  
+$L_q$: q-axis inductance.  
+$T$: Torque.  
+$i_a$: current amplitude.  
+
+
+## Machine Equations
+
+
+$$
+\begin{aligned}
+v_d & = R_s i_d + L_d\frac{di_d}{dt} - j \omega_m L_q i_q  \\
+v_q & = R_s i_q + L_q\frac{di_q}{dt} + j \omega_m (L_d i_d + \psi_{pm})  \\
+T & =  (\psi_{pm} + (L_d-L_q) i_d)i_q  \\
+\end{aligned}
+$$
+## Maximum Torque Per Ampere (MTPA)
+
+
+

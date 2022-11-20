@@ -1,0 +1,147 @@
+# Induction Machine
+
+## Nomenclature
+
+$\underline{v}_s$: Stator voltage vector.  
+$\underline{v}_r$: Rotor voltage vector.  
+$R_s$: Stator resistance.  
+$R_r$: Rotor resistance.  
+$\underline{\psi}_s$: Stator flux linkage.  
+$\underline{\psi}_r$: Rotor flux linkage.  
+$\omega_c$: Angular frequency of reference frame.  
+$\omega_m$: Angular frequency of shaft in electrical frame, i.e compensated for pole-pairs.  
+$Ls$: Stator inductance.  
+$Lr$: Rotor inductance.  
+$Lm$: Magnetizing inductance.  
+$Lm$: Magnetizing inductance.  
+$L_{s\sigma}$: Stator leakage inductance.  
+$L_{r\sigma}$: Rotor leakage inductance.  
+
+
+## Machine Equations
+
+
+### Voltage Equations
+$$
+\begin{aligned}
+\underline{v}_s & = R_s \underline{i}_s + \frac{\underline{\psi}_s}{dt} + j \omega_c \psi_s  \\
+\underline{v}_r & = R_r \underline{i}_r + \frac{\underline{\psi}_r}{dt} + j (\omega_c-\omega_m) \psi_s \\
+\end{aligned}
+$$
+
+### Stator Equation
+
+The stator equation in the stator reference frame is:
+$$
+\begin{aligned}
+\underline{v}_s & = R_s \underline{i}_s + \frac{d\underline{\psi}_s}{dt}  \\
+\end{aligned}
+$$
+We want to express this in a general reference frame, where $\rho_s$ is the angle from the stator fixed frame to the general reference frame. With the superscripts denoting the reference frames, s for stator, g for general, we can write:
+$$
+\begin{aligned}
+\underline{v}^s_s & = \underline{v}^g_s e^{j\rho_s} \\
+\underline{i}^s_s & = \underline{i}^g_s e^{j\rho_s} \\
+\underline{\psi}^s_s & = \underline{\psi}^g_s e^{j\rho_s} \\
+\frac{d\underline{\psi}^s_s}{dt}  & = \frac{d (\underline{\psi}^g_s e^{j\rho_s} )}{dt}  = 
+\frac{d\underline{\psi}^g_s}{dt}  e^{j\rho_s} + \underline{\psi}^g_s j \omega_g e^{j\rho_s},
+\omega_g = \frac{d\rho_s}{dt} \\
+\end{aligned}
+$$
+By inserting these in the stator equation above, we get:
+
+
+$$
+\begin{aligned}
+\underline{v}^s_s & = R_s \underline{i}^s_s + \frac{d\underline{\psi}^s_s}{dt}  \\
+\underline{v}^g_s e^{j\rho_s} & = R_s \underline{i}^g_s e^{j\rho_s} + \frac{d\underline{\psi}^g_s}{dt}  e^{j\rho_s} + \underline{\psi}^g_s j \omega_g e^{j\rho_s}  \\
+\underline{v}^g_s  & = R_s \underline{i}^g_s  + \frac{d\underline{\psi}^g_s}{dt}   + j\underline{\psi}^g_s  \omega_g   \\
+\end{aligned}
+$$
+
+### Rotor Equation
+
+The rotor equation in the rotor reference frame is:
+$$
+\begin{aligned}
+\underline{v}_r & = R_r \underline{i}_r + \frac{d\underline{\psi}_r}{dt}  \\
+\end{aligned}
+$$
+We want to express this in a general reference frame, where $\rho_r$ is the angle from the rotor fixed frame to the general reference frame. With the superscripts denoting the reference frames, r for rotor, g for general, we can write:
+$$
+\begin{aligned}
+\underline{v}^r_r & = \underline{v}^g_r e^{j\rho_r} \\
+\underline{i}^r_r & = \underline{i}^g_r e^{j\rho_r} \\
+\underline{\psi}^r_r & = \underline{\psi}^g_r e^{j\rho_r} \\
+\frac{d\underline{\psi}^r_r}{dt}  & = \frac{d (\underline{\psi}^g_r e^{j\rho_r} )}{dt}  = 
+\frac{d\underline{\psi}^g_r}{dt}  e^{j\rho_r} + \underline{\psi}^g_r j (\omega_g-\omega_r) e^{j\rho_r},
+\omega_g-\omega_r = \frac{d\rho_r}{dt} \\
+\end{aligned}
+$$
+By inserting these in the rotor equation above, we get:
+
+
+$$
+\begin{aligned}
+\underline{v}^r_r & = R_r \underline{i}^r_r + \frac{d\underline{\psi}^r_r}{dt}  \\
+\underline{v}^g_r e^{j\rho_r} & = R_r \underline{i}^g_r e^{j\rho_r} + \frac{d\underline{\psi}^g_r}{dt}  e^{j\rho_r} + \underline{\psi}^g_r j (\omega_g-\omega_r) e^{j\rho_r}  \\
+\underline{v}^g_r  & = R_r \underline{i}^g_r  + \frac{d\underline{\psi}^g_r}{dt}   + j \underline{\psi}^g_r  (\omega_g-\omega_r)  \\
+\end{aligned}
+$$
+## Voltage equations in a rotating dq-reference frame
+
+$$
+\begin{aligned}
+\underline{v}_s  & = R_s \underline{i}_s  + \frac{d\underline{\psi}_s}{dt}   + j\underline{\psi}_s  \omega_{dq}   \\
+\underline{v}_r  & = R_r \underline{i}_r  + \frac{d\underline{\psi}_r}{dt}   + j\underline{\psi}_r  (\omega_{dq}-\omega_r)  \\
+\end{aligned}
+$$
+
+
+### Flux Equations
+
+$$
+\begin{bmatrix} \psi_s\\ \psi_r \end{bmatrix} = \begin{bmatrix} L_s & L_m\\ L_m & L_r \end{bmatrix} \begin{bmatrix} i_s\\ i_r \end{bmatrix}
+$$
+$$
+\begin{aligned}
+L_s & = L_m + L_{s\sigma} \\
+L_r & = L_m + L_{r\sigma} \\
+\end{aligned}
+$$
+
+## Torque Equations
+
+The electrical torque can be expressed in terms of cross-product as:
+$$
+T_e = - \frac{3}{2}N_{pp}L_m(\underline{i}_s  \times \underline{i}_r)
+$$
+## Rotor-flux Oriented Model
+
+For the rotor-flux Oriented Model, the d-axis is oriented with the rotor flux, so the rotor-flux has no q-axis component.
+
+The rotor magnitizing current $\underline{i}_{mr}$ is defined as:
+
+$$
+\underline{i}_{mr} = \frac{\underline{\psi}_r}{L_m}= \frac{L_m\underline{i}_s+L_r\underline{i}_r}{L_m}
+= \underline{i}_s+ \frac{L_r}{L_m}\underline{i}_r
+$$
+$$
+\underline{i}_r = \frac{L_m}{L_r} (\underline{i}_{mr} -  \underline{i}_s)
+$$
+The stator flux can be calculated as:
+$$
+\begin{aligned}
+\underline{\psi}_s
+& = L_s\underline{i}_s + L_m\underline{i}_r \\
+& = L_s\underline{i}_s + L_m \frac{L_m}{L_r} (\underline{i}_{mr} -  \underline{i}_s) \\
+& =  \frac{L^2_m}{L_r}\underline{i}_{mr}  + L_s\underline{i}_s - \frac{L^2_m}{L_r}  \underline{i}_s \\
+& =  \frac{L^2_m}{L_r}\underline{i}_{mr}  + L_s(1 - \frac{L^2_m}{L_s L_r} ) \underline{i}_s \\
+& =  \frac{L^2_m}{L_r}\underline{i}_{mr}  + \sigma L_s \underline{i}_s  \\
+\end{aligned}
+$$
+the leakage constant being defined as:$\sigma=1 - \frac{L^2_m}{L_s L_r}$
+
+
+
+
