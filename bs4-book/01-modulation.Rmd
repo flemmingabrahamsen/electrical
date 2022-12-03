@@ -3,7 +3,7 @@
 
 ## Vector definition
 
-Two-level modulation has six active vectors and two zero-vectors. Each vector is calculation from the generel voltage vector formula as here below. The volage vector subscript denotes phase a, b, c, 1 for a high voltage and 0 for a low voltage.
+Two-level modulation has six active vectors and two zero-vectors. Each vector is calculated from the general voltage vector formula as here below. The voltage vector subscript denotes phase a, b, c, 1 for a high voltage and 0 for a low voltage.
 
 $$
 \begin{aligned}
@@ -14,6 +14,8 @@ $$
 & = \frac{2}{3} V_d\\
 \end{aligned}
 $$
+Similarly, all the vectors are derived as:
+
 $$
 \begin{aligned}
 \underline{v}_{000} &  = 0\\
@@ -33,6 +35,61 @@ $$
 #knitr::include_graphics("modulation-sector.png")
 knitr::include_graphics("images/modulation/modulation-sector.png")
 ```
+
+
+$$
+\begin{aligned}
+\underline{v}_{ref} &  = d_1 \underline{v}_{100} + d_2 \underline{v}_{110}\\
+ &  = d_1 \frac{2}{3} V_d  + d_2 \frac{2}{3} V_d (\frac{1}{2}+j\frac{\sqrt{3}}{2})\\
+ &  = \frac{2}{3} V_d ( d_1   + d_2  (\frac{1}{2}+j\frac{\sqrt{3}}{2}))\\
+ &  = \frac{2}{3} V_d ( (d_1   + d_2  \frac{1}{2})+jd_2\frac{\sqrt{3}}{2})\\
+\end{aligned}
+$$
+Splitting into real and imaginary parts, we get from the imaginary part:
+
+$$
+\begin{aligned}
+ | \underline{v}_{ref}| \sin\theta  &  = \frac{2}{3} V_d d_2 \frac{\sqrt{3}}{2}\\
+\Rightarrow | \underline{v}_{ref}| \sin\theta  &  = \frac{2}{3} V_d d_2 \frac{\sqrt{3}}{2}\\
+\Rightarrow d_2  &  =  \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}} \sin\theta \\
+\end{aligned}
+$$
+And from the real part:
+$$
+\begin{aligned}
+| \underline{v}_{ref}| \cos\theta &  = \frac{2}{3} V_d ( d_1   + d_2  \frac{1}{2})\\
+\Rightarrow  d_1  &  =  \frac{3}{2} \frac{|\underline{v}_{ref}|}{V_d}   \cos\theta  - \frac{1}{2}d_2\\
+\Rightarrow  d_1  &  =  \frac{\sqrt{3}}{2} \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}}   \cos\theta  - \frac{1}{2}d_2\\
+\end{aligned}
+$$
+The modulation index is defined as $m_i=|\underline{v}_{ref}|/(V_d/\sqrt{3})$, so the duty-cycles can be formulated as:
+
+$$
+\begin{aligned}
+d_2  &  =  m_i \sin\theta \\
+d_1  &  =  \frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2\\
+\end{aligned}
+$$
+Instead of projecting on the real and imaginary axes, we can make a projection onto the axis perpendicular to $v_{110}$:
+
+$$
+\begin{aligned}
+d_1|\underline{v}_{110}| \frac{\sqrt{3}}{2}  &  =  |\underline{v}_{ref}|\sin(\frac{\pi}{3}-\theta)  \\
+\Rightarrow d_1 \frac{2}{3} V_d  \frac{\sqrt{3}}{2}  &  =  |\underline{v}_{ref}|\sin(\frac{\pi}{3}-\theta)\\
+\Rightarrow d_1   &  =  \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}}  \sin(\frac{\pi}{3}-\theta)\\
+\Rightarrow d_1   &  =  m_i  \sin(\frac{\pi}{3}-\theta)\\
+\end{aligned}
+$$
+
+This way the duty-cycles can be calculated as:
+$$
+\begin{aligned}
+d_1   &  =  m_i  \sin(\frac{\pi}{3}-\theta)\\
+d_2  &  =  m_i \sin\theta \\
+\end{aligned}
+$$
+
+
 
 
 
