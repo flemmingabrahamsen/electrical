@@ -53,7 +53,6 @@ for ii = 1:length(angle)
   endif
 end
 
-
 subplot(3,1,1);
 plot(angle,da);
 subplot(3,1,2);
