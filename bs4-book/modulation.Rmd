@@ -89,7 +89,45 @@ d_2  &  =  m_i \sin\theta \\
 \end{aligned}
 $$
 
+Furthermore, the zero-vector dutycycle is:
+$$
+d_0 = 1 - d_1 - d_2
+$$
 
 
+```{r, echo=FALSE, out.width="100%", fig.cap="A sector of the modulation hexagon."}
+#knitr::include_graphics("modulation-sector.png")
+knitr::include_graphics("images/modulation/pulses_svm.png")
+```
 
+The dutycycles for phases a, b and c are calculated as:
+
+$$
+\begin{aligned}
+\text{sector 1}&\\
+d_a  &  =  d_0/2 + d_2+d_1\\
+d_b  &  =  d_0/2 + d_2\\
+d_c  &  =  d_0/2\\
+\text{sector 2}&\\
+d_a  &  =  d_0/2 + d_1\\
+d_b  &  =  d_0/2 + d_1+d_2\\
+d_c  &  =  d_0/2\\
+\text{sector 3}&\\
+d_a  &  =  d_0/2 \\
+d_b  &  =  d_0/2 + d_2+d_1\\
+d_c  &  =  d_0/2 + d_2\\
+\text{sector 4}&\\
+d_a  &  =  d_0/2\\
+d_b  &  =  d_0/2 + d_1\\
+d_c  &  =  d_0/2 + d_1+d_2\\
+\text{sector 5}&\\
+d_a  &  =  d_0/2 + d_2\\
+d_b  &  =  d_0/2\\
+d_c  &  =  d_0/2 + d_2+d_1\\
+\text{sector 6}&\\
+d_a  &  =  d_0/2 + d_1+d_2\\
+d_b  &  =  d_0/2\\
+d_c  &  =  d_0/2 + d_1\\
+\end{aligned}
+$$
 

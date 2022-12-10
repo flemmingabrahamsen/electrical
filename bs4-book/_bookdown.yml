@@ -7,5 +7,5 @@ language:
     chapter_name: "Chapter "
 rmd_files: [
   "index.Rmd",
-  "01-modulation.Rmd"
+  "modulation.Rmd"
   ]
