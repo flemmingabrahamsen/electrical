@@ -1,9 +1,11 @@
 # Modulation
 
+The modulation described here is based on space-vectors.
 
-## Vector definition
 
-Two-level modulation has six active vectors and two zero-vectors. Each vector is calculated from the general voltage vector formula as here below. The voltage vector subscript denotes phase a, b, c, 1 for a high voltage and 0 for a low voltage.
+## Two-Level Space Vectors
+
+Two-level modulation has six active vectors and two zero-vectors. Each vector is calculated from the general voltage vector formula as here below. The voltage vector subscript denotes the switch level for phases a, b and c, where 1 means the voltage is clamped to high rail of the dc-link voltage and 0 means the voltage is clamped to the low rail.
 
 $$
 \begin{aligned}
@@ -39,10 +41,13 @@ $$
 
 ## Calculation of duty-cycles.
 
+It is possible realize a voltage vector anywhere inside the hexagon on the figure above. Any reference voltage will be located in one of the six sectors, and as it generally desired to avoid unnecessary switching, the reference vector will be realized with the two neighboring active vectors and zero-vectors by geometrical considerations.
+
 ```{r, echo=FALSE, out.width="75%", fig.cap="A sector of the modulation hexagon."}
 knitr::include_graphics("images/modulation/modulation-sector.png")
 ```
 
+The duty-cycles are calculated here, from sector 1 on the figure above.
 
 $$
 \begin{aligned}
@@ -100,17 +105,21 @@ Furthermore, the zero-vector dutycycle is:
 $$
 d_0 = 1 - d_1 - d_2
 $$
+
+## Space Vector Modulation (SVM).
+
+In space vector modulation the active vectors are placed in the middle and the zero-vectors are evenly placed in the beginning and the end. An example is shown here:
+
 ```{r, echo=FALSE, out.width="100%", fig.cap="Pwm pulses over one switching period for sector 1 with spacevector modulation."}
 knitr::include_graphics("images/modulation/switchperiod.png")
 ```
 
 
 ```{r, echo=FALSE, out.width="100%", fig.cap="Spacevector modulation pulses for all six sectors."}
-#knitr::include_graphics("modulation-sector.png")
 knitr::include_graphics("images/modulation/svm-pulses.png")
 ```
 
-The dutycycles for phases a, b and c are calculated as:
+The duty-cycles for phases a, b and c are calculated as:
 
 $$
 \begin{aligned}
@@ -140,4 +149,78 @@ d_b  &  =  d_0/2\\
 d_c  &  =  d_0/2 + d_1\\
 \end{aligned}
 $$
+
+```{r, echo=FALSE, out.width="100%", fig.cap="Spacevector modulation duty-cycle for phase a, b, and c, for modulation index = 1."}
+knitr::include_graphics("images/modulation/svm-dutycycle.png")
+```
+
+## Duty-cycle function expression.
+
+The duty-cycles are reformulated for sector 1, by inserting $d_0 = 1-d_1-d_2$ in the expression above:
+
+$$
+\begin{aligned}
+d_a  &  = \frac{1}{2} (1+ d_1+d_2)\\
+d_b  &  = \frac{1}{2} (1- d_1+d_2)\\
+d_c  &  = \frac{1}{2} (1- d_1-d_2)\\
+\end{aligned}
+$$
+
+For sector 1 we get:
+
+$$
+\begin{aligned}
+d_a  &  = \frac{1}{2} (1+ d_1+d_2)\\
+&  =  \frac{1}{2} (1+ (\frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2)+d_2) \\
+&  =  \frac{1}{2} (1+ \frac{\sqrt{3}}{2} m_i   \cos\theta  + \frac{1}{2} m_i \sin\theta ) \\
+&  =  \frac{1}{2} + \frac{1}{2} m_i( \frac{\sqrt{3}}{2}  \cos\theta  + \frac{1}{2} \sin\theta ) \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+d_b  &  = \frac{1}{2} (1- d_1+d_2)\\
+&  =  \frac{1}{2} (1- (\frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2)+d_2) \\
+&  =  \frac{1}{2} (1- \frac{\sqrt{3}}{2} m_i   \cos\theta  + \frac{3}{2} m_i \sin\theta ) \\
+&  =  \frac{1}{2} - \frac{1}{2} m_i( \frac{\sqrt{3}}{2}  \cos\theta  - \frac{3}{2} \sin\theta ) \\
+\end{aligned}
+$$
+
+
+$$
+\begin{aligned}
+d_c  &  = \frac{1}{2} (1- d_1-d_2)\\
+&  =  \frac{1}{2} (1- (\frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2)-d_2) \\
+&  =  \frac{1}{2} (1- \frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2} m_i \sin\theta ) \\
+&  =  \frac{1}{2} - \frac{1}{2} m_i( \frac{\sqrt{3}}{2}  \cos\theta  + \frac{1}{2} \sin\theta ) \\
+\end{aligned}
+$$
+
+## Calculation of duty-cycle from phase-voltage references.
+
+An alternative to calculate the duty-cycles from the space-vector, they can be calculated from the phase-voltage references.
+
+$$
+\begin{aligned}
+d_a  &  = \frac{2}{\sqrt{3}} \frac{V_d}{2} (v_a - v_{cm})\\
+d_b  &  = \frac{2}{\sqrt{3}} \frac{V_d}{2} (v_b - v_{cm})\\
+d_c  &  = \frac{2}{\sqrt{3}} \frac{V_d}{2} (v_c - v_{cm})\\
+\end{aligned}
+$$
+
+
+
+$$
+\begin{aligned}
+v_{cm}  &  = \frac{1}{2}  ( \text{min}(v_a, v_b, v_c) + \text{max}(v_a, v_b, v_c))\\
+\end{aligned}
+$$
+
+
+
+The modulation index is defined as $m_i=|\underline{v}_{ref}|/(V_d/\sqrt{3})$, so the duty-cycles can be formulated as:
+
+
+
+
 
