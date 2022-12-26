@@ -106,6 +106,9 @@ deg_60 = (0:1:60);
 rad_60 = deg_60*pi/180;
 vabc = [cos(rad_60-0*pi/3); cos(rad_60-2*pi/3); cos(rad_60-4*pi/3)];
 plot(deg_60,vabc);
+ylabel('ref. voltage');
+xlabel('angle [deg]');
+legend('phase a','phase b','phase c')
 
 ##v_svm_1 =  2/sqrt(3)*(vabc(1,:)-0.5*(max(vabc)+min(vabc)));
 ##plot(deg_60,v_svm_2);

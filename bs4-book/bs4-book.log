@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.12)  17 DEC 2022 22:36
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.12)  26 DEC 2022 19:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,41 +716,54 @@ Chapter 2.
 File: images/modulation/hexagon.png Graphic file (type bmp)
 <images/modulation/hexagon.png>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4024) has occurred while \output is active []
 
-[7]
+[7] [8]
 File: images/modulation/modulation-sector.png Graphic file (type bmp)
 <images/modulation/modulation-sector.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[8]
-Underfull \vbox (badness 2582) has occurred while \output is active []
-
 [9]
 File: images/modulation/switchperiod.png Graphic file (type bmp)
 <images/modulation/switchperiod.png>
 File: images/modulation/svm-pulses.png Graphic file (type bmp)
 <images/modulation/svm-pulses.png>
 
-LaTeX Warning: Float too large for page by 24.01334pt on input line 201.
+LaTeX Warning: Float too large for page by 24.01334pt on input line 212.
 
 [10]
-Overfull \vbox (1.872pt too high) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [11] [12]
+File: images/modulation/svm-dutycycle.png Graphic file (type bmp)
+<images/modulation/svm-dutycycle.png>
+[13] [14]
+Overfull \hbox (43.47452pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 2.5.  CALCULATION OF DUTY-CYCLE FROM PHASE-VOLTAGE REFERENCES. \TU/lmr/m/n/10 15
+ []
+
+[15]
+File: images/modulation/phase-ref-voltages-abc.png Graphic file (type bmp)
+<images/modulation/phase-ref-voltages-abc.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[16]
 No file bs4-book.bbl.
-(./bs4-book.aux)
+
+Overfull \hbox (43.47452pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 2.5.  CALCULATION OF DUTY-CYCLE FROM PHASE-VOLTAGE REFERENCES. \TU/lmr/m/n/10 17
+ []
+
+[17] (./bs4-book.aux)
 Package rerunfilecheck Info: File `bs4-book.out' has not changed.
-(rerunfilecheck)             Checksum: FFBB7E5EAFF49322AEDBBFC42996A5AA;508.
+(rerunfilecheck)             Checksum: 3334A072BF69063B2E76FAB1A38814F6;1324.
  ) 
 Here is how much of TeX's memory you used:
- 16974 strings out of 477643
- 315090 string characters out of 5839156
- 808267 words of memory out of 5000000
- 37893 multiletter control sequences out of 15000+600000
+ 17015 strings out of 477643
+ 316811 string characters out of 5839156
+ 811646 words of memory out of 5000000
+ 37932 multiletter control sequences out of 15000+600000
  475710 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,9n,121p,371b,381s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,9n,121p,392b,379s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on bs4-book.pdf (12 pages).
+Output written on bs4-book.pdf (17 pages).
