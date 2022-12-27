@@ -19,3 +19,15 @@ csl: chicago-fullnote-bibliography.csl
 
 This is a collection of technical notes centered around control of power electronics and drives.
 
+
+```{r eval=FALSE}
+bookdown::serve_book()
+```
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
