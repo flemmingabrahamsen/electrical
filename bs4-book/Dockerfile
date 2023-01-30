@@ -2,6 +2,12 @@ FROM btdi/bookdown:latest
 
 COPY . /opt/bs4-book
 
+RUN \
+  cd /opt/bs4-book \
+    && \
+  ./build_book.sh \
+    && \
+  echo "compiled bookdown ebook"
 
 #  FROM r-base:4.2.2
 #  
