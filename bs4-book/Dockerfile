@@ -1,12 +1,101 @@
-# Pull a base image
-FROM ubuntu:20.04
+FROM btdi/bookdown:latest
 
-# Copy everything (minus anything specified in .dockerignore) into the image
 COPY . /opt/bs4-book
 
-# To make installs not ask questions about timezones
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/New_York
+
+#  FROM r-base:4.2.2
+#  
+#  COPY . /opt/bs4-book
+#  
+#  RUN apt-get update \ 
+#    && apt-get install -y\
+#      pandoc \
+#      texlive \
+#      texlive-latex-extra \
+#      texinfo \
+#      imagemagick \
+#    && rm -rf /var/lib/apt/lists/*
+#  
+#  RUN Rscript -e 'install.packages("bookdown")'
+# 
+#################################################
+
+# FROM rocker/rstudio:latest
+# 
+# COPY . /opt/bs4-book
+# # 
+# # RUN apt-get update \ 
+# #   && apt-get install -y\
+# #     pandoc \
+# #     texlive \
+# #     texlive-latex-extra \
+# #     texinfo \
+# #     imagemagick \
+# #   && rm -rf /var/lib/apt/lists/*
+#  
+#  RUN Rscript -e 'install.packages("bookdown")'
+
+####################################################
+
+
+# FROM r-base:4.2.2
+# 
+# COPY . /opt/bs4-book
+# 
+# RUN apt-get update \ 
+#   && apt-get install -y\
+# #    pandoc \
+# #    texlive \
+# #    texlive-latex-extra \
+# #    texinfo \
+# #    imagemagick \
+#   && rm -rf /var/lib/apt/lists/*
+# 
+# RUN Rscript -e "install.packages('tinytex')" &&\
+#     Rscript -e "tinytex::install_tinytex()"
+# 
+# RUN Rscript -e 'install.packages("bookdown")'
+# 
+# ### install pandoc
+# RUN apt install --yes pandoc pandoc-citeproc pandoc-citeproc-preamble
+
+
+# include(jammy)
+# 
+# ### install some other tools that may be useful
+# RUN apt install --yes git wget curl unzip rsync
+# 
+# ### install R
+# RUN DEBIAN_FRONTEND=noninteractive \
+#         apt install --yes r-base
+# 
+# ### install TinyTex
+# RUN Rscript -e "install.packages('tinytex')" &&\
+#     Rscript -e "tinytex::install_tinytex()"
+# 
+# ### install bookdown
+# RUN Rscript -e "install.packages('bookdown')"
+# 
+# ### install LaTeX package 'koma-script'
+# RUN Rscript -e "tinytex::tlmgr_install('koma-script')"
+# 
+# ### install pandoc
+# RUN apt install --yes pandoc pandoc-citeproc pandoc-citeproc-preamble
+
+
+
+##################################################
+
+
+# # Pull a base image
+# FROM ubuntu:20.04
+# 
+# # Copy everything (minus anything specified in .dockerignore) into the image
+# COPY . /opt/bs4-book
+# 
+# # To make installs not ask questions about timezones
+# ARG DEBIAN_FRONTEND=noninteractive
+# ENV TZ=Europe/Copenhagen
 
 # ##############################
 # # install base dependencies
