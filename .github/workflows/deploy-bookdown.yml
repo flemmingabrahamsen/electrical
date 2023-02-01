@@ -15,7 +15,7 @@ jobs:
       - name: docker build
         run:
         |
-          docker build . --file Dockerfile --tag example
+          docker build . --file ./bs4-book/Dockerfile --tag example
           docker container create --name pages_build example:latest
           docker cp pages_build:/opt/bs4-book/_book ./_book
       - name: deploy to github pages
