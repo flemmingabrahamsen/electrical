@@ -1,6 +1,6 @@
 FROM btdi/bookdown:latest
 
-COPY . /opt/bs4-book
+COPY ./bs4-book /opt/bs4-book
 
 RUN \
   cd /opt/bs4-book \
