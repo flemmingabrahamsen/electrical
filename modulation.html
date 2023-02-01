@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Modulation | Power-Electronic Control Handbook</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Modulation | Power-Electronic Control Handbook" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Modulation | Power-Electronic Control Handbook" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file." />
+  
+
+<meta name="author" content="Flemming Abrahamsen" />
+
+
+<meta name="date" content="2023-02-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="modulation.html"><a href="modulation.html"><i class="fa fa-check"></i><b>2</b> Modulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="modulation.html"><a href="modulation.html#two-level-space-vectors"><i class="fa fa-check"></i><b>2.1</b> Two-Level Space Vectors</a></li>
+<li class="chapter" data-level="2.2" data-path="modulation.html"><a href="modulation.html#calculation-of-duty-cycles."><i class="fa fa-check"></i><b>2.2</b> Calculation of duty-cycles.</a></li>
+<li class="chapter" data-level="2.3" data-path="modulation.html"><a href="modulation.html#space-vector-modulation-svm."><i class="fa fa-check"></i><b>2.3</b> Space Vector Modulation (SVM).</a></li>
+<li class="chapter" data-level="2.4" data-path="modulation.html"><a href="modulation.html#duty-cycle-function-expression."><i class="fa fa-check"></i><b>2.4</b> Duty-cycle function expression.</a></li>
+<li class="chapter" data-level="2.5" data-path="modulation.html"><a href="modulation.html#calculation-of-duty-cycle-from-phase-voltage-references."><i class="fa fa-check"></i><b>2.5</b> Calculation of duty-cycle from phase-voltage references.</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Power-Electronic Control Handbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modulation" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 2</span> Modulation<a href="modulation.html#modulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The modulation described here is based on space-vectors.</p>
+<div id="two-level-space-vectors" class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.1</span> Two-Level Space Vectors<a href="modulation.html#two-level-space-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Two-level modulation has six active vectors and two zero-vectors. Each vector is calculated from the general voltage vector formula as here below. The voltage vector subscript denotes the switch level for phases a, b and c, where 1 means the voltage is clamped to high rail of the dc-link voltage and 0 means the voltage is clamped to the low rail.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\underline{v}_{100} 
+&amp; = \frac{2}{3} \left( \frac{V_d}{2} - \frac{V_d}{2} e^{j \frac{2 \pi}{3}}- \frac{V_d}{2} e^{j \frac{4 \pi}{3}} \right)\\
+&amp; = \frac{2}{3} \frac{V_d}{2} \left( 1-  (- \frac{1}{2}+j\frac{\sqrt{3}}{2}) - (- \frac{1}{2}-j\frac{\sqrt{3}}{2}) \right)\\
+&amp; = \frac{2}{3} \frac{V_d}{2} 2\\
+&amp; = \frac{2}{3} V_d\\
+\end{aligned}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="images/modulation/hexagon.png" alt="Hexagon with the six active vectors and two zero vector." width="100%" />
+<p class="caption">
+Figure 2.1: Hexagon with the six active vectors and two zero vector.
+</p>
+</div>
+<p>Similarly, all the vectors are derived as:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\underline{v}_{000} &amp;  = 0\\
+\underline{v}_{100} &amp;  = \frac{2}{3} V_d\\
+\underline{v}_{110} &amp;  = \frac{2}{3} V_d (\frac{1}{2}+j\frac{\sqrt{3}}{2})\\
+\underline{v}_{010} &amp;  = \frac{2}{3} V_d (-\frac{1}{2}+j\frac{\sqrt{3}}{2})\\
+\underline{v}_{011} &amp;  = -\frac{2}{3} V_d\\
+\underline{v}_{001} &amp;  = \frac{2}{3} V_d (-\frac{1}{2}-j\frac{\sqrt{3}}{2})\\
+\underline{v}_{101} &amp;  = \frac{2}{3} V_d (\frac{1}{2}-j\frac{\sqrt{3}}{2})\\
+\underline{v}_{111} &amp;  = 0\\
+\end{aligned}
+\]</span></p>
+</div>
+<div id="calculation-of-duty-cycles." class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.2</span> Calculation of duty-cycles.<a href="modulation.html#calculation-of-duty-cycles." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is possible realize a voltage vector anywhere inside the hexagon on the figure above. Any reference voltage will be located in one of the six sectors, and as it generally desired to avoid unnecessary switching, the reference vector will be realized with the two neighboring active vectors and zero-vectors by geometrical considerations.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/modulation/modulation-sector.png" alt="A sector of the modulation hexagon." width="75%" />
+<p class="caption">
+Figure 2.2: A sector of the modulation hexagon.
+</p>
+</div>
+<p>The duty-cycles are calculated here, from sector 1 on the figure above.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\underline{v}_{ref} &amp;  = d_1 \underline{v}_{100} + d_2 \underline{v}_{110}\\
+ &amp;  = d_1 \frac{2}{3} V_d  + d_2 \frac{2}{3} V_d (\frac{1}{2}+j\frac{\sqrt{3}}{2})\\
+ &amp;  = \frac{2}{3} V_d ( d_1   + d_2  (\frac{1}{2}+j\frac{\sqrt{3}}{2}))\\
+ &amp;  = \frac{2}{3} V_d ( (d_1   + d_2  \frac{1}{2})+jd_2\frac{\sqrt{3}}{2})\\
+\end{aligned}
+\]</span>
+Splitting into real and imaginary parts, we get from the imaginary part:</p>
+<p><span class="math display">\[
+\begin{aligned}
+ | \underline{v}_{ref}| \sin\theta  &amp;  = \frac{2}{3} V_d d_2 \frac{\sqrt{3}}{2}\\
+\Rightarrow | \underline{v}_{ref}| \sin\theta  &amp;  = \frac{2}{3} V_d d_2 \frac{\sqrt{3}}{2}\\
+\Rightarrow d_2  &amp;  =  \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}} \sin\theta \\
+\end{aligned}
+\]</span>
+And from the real part:
+<span class="math display">\[
+\begin{aligned}
+| \underline{v}_{ref}| \cos\theta &amp;  = \frac{2}{3} V_d ( d_1   + d_2  \frac{1}{2})\\
+\Rightarrow  d_1  &amp;  =  \frac{3}{2} \frac{|\underline{v}_{ref}|}{V_d}   \cos\theta  - \frac{1}{2}d_2\\
+\Rightarrow  d_1  &amp;  =  \frac{\sqrt{3}}{2} \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}}   \cos\theta  - \frac{1}{2}d_2\\
+\end{aligned}
+\]</span>
+The modulation index is defined as <span class="math inline">\(m_i=|\underline{v}_{ref}|/(V_d/\sqrt{3})\)</span>, so the duty-cycles can be formulated as:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_2  &amp;  =  m_i \sin\theta \\
+d_1  &amp;  =  \frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2\\
+\end{aligned}
+\]</span>
+Instead of projecting on the real and imaginary axes, we can make a projection onto the axis perpendicular to <span class="math inline">\(v_{110}\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_1|\underline{v}_{110}| \frac{\sqrt{3}}{2}  &amp;  =  |\underline{v}_{ref}|\sin(\frac{\pi}{3}-\theta)  \\
+\Rightarrow d_1 \frac{2}{3} V_d  \frac{\sqrt{3}}{2}  &amp;  =  |\underline{v}_{ref}|\sin(\frac{\pi}{3}-\theta)\\
+\Rightarrow d_1   &amp;  =  \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}}  \sin(\frac{\pi}{3}-\theta)\\
+\Rightarrow d_1   &amp;  =  m_i  \sin(\frac{\pi}{3}-\theta)\\
+\end{aligned}
+\]</span></p>
+<p>This way the duty-cycles can be calculated as:
+<span class="math display">\[
+\begin{aligned}
+d_1   &amp;  =  m_i  \sin(\frac{\pi}{3}-\theta)\\
+d_2  &amp;  =  m_i \sin\theta \\
+\end{aligned}
+\]</span></p>
+<p>Furthermore, the zero-vector dutycycle is:
+<span class="math display">\[
+d_0 = 1 - d_1 - d_2
+\]</span></p>
+</div>
+<div id="space-vector-modulation-svm." class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.3</span> Space Vector Modulation (SVM).<a href="modulation.html#space-vector-modulation-svm." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In space vector modulation the active vectors are placed in the middle and the zero-vectors are evenly placed in the beginning and the end. An example is shown here:</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="images/modulation/switchperiod.png" alt="Pwm pulses over one switching period for sector 1 with spacevector modulation." width="100%" />
+<p class="caption">
+Figure 2.3: Pwm pulses over one switching period for sector 1 with spacevector modulation.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="images/modulation/svm-pulses.png" alt="Spacevector modulation pulses for all six sectors." width="100%" />
+<p class="caption">
+Figure 2.4: Spacevector modulation pulses for all six sectors.
+</p>
+</div>
+<p>The duty-cycles for phases a, b and c are calculated as:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{sector 1}&amp;\\
+d_a  &amp;  =  d_0/2 + d_2+d_1\\
+d_b  &amp;  =  d_0/2 + d_2\\
+d_c  &amp;  =  d_0/2\\
+\text{sector 2}&amp;\\
+d_a  &amp;  =  d_0/2 + d_1\\
+d_b  &amp;  =  d_0/2 + d_1+d_2\\
+d_c  &amp;  =  d_0/2\\
+\text{sector 3}&amp;\\
+d_a  &amp;  =  d_0/2 \\
+d_b  &amp;  =  d_0/2 + d_2+d_1\\
+d_c  &amp;  =  d_0/2 + d_2\\
+\text{sector 4}&amp;\\
+d_a  &amp;  =  d_0/2\\
+d_b  &amp;  =  d_0/2 + d_1\\
+d_c  &amp;  =  d_0/2 + d_1+d_2\\
+\text{sector 5}&amp;\\
+d_a  &amp;  =  d_0/2 + d_2\\
+d_b  &amp;  =  d_0/2\\
+d_c  &amp;  =  d_0/2 + d_2+d_1\\
+\text{sector 6}&amp;\\
+d_a  &amp;  =  d_0/2 + d_1+d_2\\
+d_b  &amp;  =  d_0/2\\
+d_c  &amp;  =  d_0/2 + d_1\\
+\end{aligned}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/modulation/svm-dutycycle.png" alt="Spacevector modulation duty-cycle for phase a, b, and c, for modulation index = 1." width="100%" />
+<p class="caption">
+Figure 2.5: Spacevector modulation duty-cycle for phase a, b, and c, for modulation index = 1.
+</p>
+</div>
+</div>
+<div id="duty-cycle-function-expression." class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.4</span> Duty-cycle function expression.<a href="modulation.html#duty-cycle-function-expression." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The duty-cycles are reformulated for sector 1, by inserting <span class="math inline">\(d_0 = 1-d_1-d_2\)</span> in the expression above:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_a  &amp;  = \frac{1}{2} (1+ d_1+d_2)\\
+d_b  &amp;  = \frac{1}{2} (1- d_1+d_2)\\
+d_c  &amp;  = \frac{1}{2} (1- d_1-d_2)\\
+\end{aligned}
+\]</span></p>
+<p>For sector 1 we get:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_a  &amp;  = \frac{1}{2} (1+ d_1+d_2)\\
+&amp;  =  \frac{1}{2} (1+ (\frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2)+d_2) \\
+&amp;  =  \frac{1}{2} (1+ \frac{\sqrt{3}}{2} m_i   \cos\theta  + \frac{1}{2} m_i \sin\theta ) \\
+&amp;  =  \frac{1}{2} + \frac{1}{2} m_i( \frac{\sqrt{3}}{2}  \cos\theta  + \frac{1}{2} \sin\theta ) \\
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+d_b  &amp;  = \frac{1}{2} (1- d_1+d_2)\\
+&amp;  =  \frac{1}{2} (1- (\frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2)+d_2) \\
+&amp;  =  \frac{1}{2} (1- \frac{\sqrt{3}}{2} m_i   \cos\theta  + \frac{3}{2} m_i \sin\theta ) \\
+&amp;  =  \frac{1}{2} - \frac{1}{2} m_i( \frac{\sqrt{3}}{2}  \cos\theta  - \frac{3}{2} \sin\theta ) \\
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+d_c  &amp;  = \frac{1}{2} (1- d_1-d_2)\\
+&amp;  =  \frac{1}{2} (1- (\frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2}d_2)-d_2) \\
+&amp;  =  \frac{1}{2} (1- \frac{\sqrt{3}}{2} m_i   \cos\theta  - \frac{1}{2} m_i \sin\theta ) \\
+&amp;  =  \frac{1}{2} - \frac{1}{2} m_i( \frac{\sqrt{3}}{2}  \cos\theta  + \frac{1}{2} \sin\theta ) \\
+\end{aligned}
+\]</span></p>
+</div>
+<div id="calculation-of-duty-cycle-from-phase-voltage-references." class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.5</span> Calculation of duty-cycle from phase-voltage references.<a href="modulation.html#calculation-of-duty-cycle-from-phase-voltage-references." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As an alternative to calculate the duty-cycles from the space-vector, they can be calculated from the phase-voltage references directly.</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_a  &amp; = \frac{1}{2} \left( \frac{(v_{ref,a} - v_{cm})}{V_d/2} +1 \right) = \frac{1}{2} +\frac{1}{V_d}  (v_{ref,a} - v_{cm}) \\
+d_b  &amp; = \frac{1}{2} \left( \frac{(v_{ref,b} - v_{cm})}{V_d/2} +1 \right) = \frac{1}{2} +\frac{1}{V_d}  (v_{ref,b} - v_{cm}) \\
+d_c  &amp; = \frac{1}{2} \left( \frac{(v_{ref,c} - v_{cm})}{V_d/2} +1 \right) = \frac{1}{2} +\frac{1}{V_d}  (v_{ref,c} - v_{cm}) \\
+\end{aligned}
+\]</span>
+where:
+<span class="math inline">\(v_{ref,a}\)</span>: reference voltage, phase a, phase-zero voltage.<br />
+<span class="math inline">\(v_{ref,b}\)</span>: reference voltage, phase b, phase-zero voltage.<br />
+<span class="math inline">\(v_{ref,c}\)</span>: reference voltage, phase c, phase-zero voltage.<br />
+<span class="math inline">\(v_{cm}\)</span>: common-mode voltage.<br />
+<span class="math inline">\(V_d\)</span>: Dc-link voltage.<br />
+<span class="math inline">\(d_a\)</span>: duty-cycle, phase a, range 0-1.<br />
+<span class="math inline">\(d_b\)</span>: duty-cycle, phase b, range 0-1.<br />
+<span class="math inline">\(d_c\)</span>: duty-cycle, phase c, range 0-1.</p>
+<p>The common-mode voltage can have any shape, and space-vector modulation is achieved with this common-mode signal, which is the mean value of the max and min phase voltage references:</p>
+<p><span class="math display">\[
+\begin{aligned}
+v_{cm}  &amp;  = \frac{1}{2}  ( \text{min}(v_a, v_b, v_c) + \text{max}(v_a, v_b, v_c))\\
+\end{aligned}
+\]</span></p>
+<p>We can now show that this does give the same result as the previously derived expressions. As an example of this, we calculate the duty-cycle for phase a in sector 1. From the figure below we can see that phase a is the highest and phase c the lowest.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="images/modulation/phase-ref-voltages-abc.png" alt="Voltage references for phase a, b, and c." width="75%" />
+<p class="caption">
+Figure 2.6: Voltage references for phase a, b, and c.
+</p>
+</div>
+<p><span class="math display">\[
+\begin{aligned}
+v_a-v_{cm}  &amp; = |\underline{v}_{ref}| \left( \cos{\theta} - \frac{1}{2}(\cos{\theta}  + \cos{(\theta - 4\pi/3)})  \right)\\
+&amp; = |\underline{v}_{ref}| \left( \cos{\theta} - \frac{1}{2}(\cos{\theta}  + \cos{(4\pi/3)}\cos{\theta}+\sin{( 4\pi/3)}\sin{\theta})  \right)\\
+&amp; = |\underline{v}_{ref}| \left( \cos{\theta} - \frac{1}{2}(\cos{\theta}  - \frac{1}{2}\cos{\theta} - \frac{\sqrt{3}}{2}\sin{\theta})  \right)\\
+&amp; = |\underline{v}_{ref}| ( \frac{3}{4} \cos{\theta}  + \frac{\sqrt{3}}{4}\sin{\theta}  )\\
+\end{aligned}
+\]</span></p>
+<p>Now the duty-cycle can be derived as:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_a  &amp; = \frac{1}{2} +\frac{1}{V_d}  (v_{ref,a} - v_{cm}) \\
+  &amp; = \frac{1}{2} +\frac{1}{V_d}  |\underline{v}_{ref}| ( \frac{3}{4} \cos{\theta}  + \frac{\sqrt{3}}{4}\sin{\theta}  ) \\
+  &amp; = \frac{1}{2} + \frac{1}{2} \frac{|\underline{v}_{ref}|}{V_d/\sqrt{3}} ( \frac{\sqrt{3}}{2} \cos{\theta}  + \frac{1}{2}\sin{\theta}  ) \\
+&amp; = \frac{1}{2} +  \frac{1}{2} m_i  ( \frac{\sqrt{3}}{2} \cos{\theta}  + \frac{1}{2}\sin{\theta}  ) \\
+\end{aligned}
+\]</span>
+In the similar way, the expression can be derived for the other phases and other sectors.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
