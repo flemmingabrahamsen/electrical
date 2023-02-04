@@ -1,7 +1,7 @@
 --- 
 title: "Power-Electronic Control Handbook"
 author: "Flemming Abrahamsen"
-date: "2023-02-01"
+date: "2023-02-04"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
