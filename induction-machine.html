@@ -29,7 +29,7 @@ set in the _output.yml file." />
 <meta name="author" content="Flemming Abrahamsen" />
 
 
-<meta name="date" content="2023-02-04" />
+<meta name="date" content="2023-02-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -84,18 +84,16 @@ set in the _output.yml file." />
 </ul></li>
 <li class="chapter" data-level="3" data-path="induction-machine.html"><a href="induction-machine.html"><i class="fa fa-check"></i><b>3</b> Induction Machine</a><ul>
 <li class="chapter" data-level="3.1" data-path="induction-machine.html"><a href="induction-machine.html#nomenclature"><i class="fa fa-check"></i><b>3.1</b> Nomenclature</a></li>
-<li class="chapter" data-level="3.2" data-path="induction-machine.html"><a href="induction-machine.html#machine-equations"><i class="fa fa-check"></i><b>3.2</b> Machine Equations</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="induction-machine.html"><a href="induction-machine.html#voltage-equations"><i class="fa fa-check"></i><b>3.2.1</b> Voltage Equations</a></li>
-<li class="chapter" data-level="3.2.2" data-path="induction-machine.html"><a href="induction-machine.html#stator-equation"><i class="fa fa-check"></i><b>3.2.2</b> Stator Equation</a></li>
-<li class="chapter" data-level="3.2.3" data-path="induction-machine.html"><a href="induction-machine.html#rotor-equation"><i class="fa fa-check"></i><b>3.2.3</b> Rotor Equation</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="induction-machine.html"><a href="induction-machine.html#voltage-equations-in-a-rotating-dq-reference-frame"><i class="fa fa-check"></i><b>3.3</b> Voltage equations in a rotating dq-reference frame</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="induction-machine.html"><a href="induction-machine.html#flux-equations"><i class="fa fa-check"></i><b>3.3.1</b> Flux Equations</a></li>
+<li class="chapter" data-level="3.2" data-path="induction-machine.html"><a href="induction-machine.html#introduction"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.3" data-path="induction-machine.html"><a href="induction-machine.html#general-machine-model-in-a-rotating-refence-frame"><i class="fa fa-check"></i><b>3.3</b> General Machine Model in a Rotating Refence Frame</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="induction-machine.html"><a href="induction-machine.html#stator-equation"><i class="fa fa-check"></i><b>3.3.1</b> Stator Equation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="induction-machine.html"><a href="induction-machine.html#rotor-equation"><i class="fa fa-check"></i><b>3.3.2</b> Rotor Equation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="induction-machine.html"><a href="induction-machine.html#torque-equations"><i class="fa fa-check"></i><b>3.4</b> Torque Equations</a></li>
 <li class="chapter" data-level="3.5" data-path="induction-machine.html"><a href="induction-machine.html#rotor-flux-oriented-model"><i class="fa fa-check"></i><b>3.5</b> Rotor-flux Oriented Model</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="induction-machine.html"><a href="induction-machine.html#rotor-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.1</b> Rotor voltage equation (rotor-flux oriented)</a></li>
-<li class="chapter" data-level="3.5.2" data-path="induction-machine.html"><a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.2</b> stator voltage equation (rotor-flux oriented)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="induction-machine.html"><a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.2</b> Stator voltage equation (rotor-flux oriented)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="induction-machine.html"><a href="induction-machine.html#torque-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.3</b> Torque equation (rotor-flux oriented)</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -129,36 +127,59 @@ set in the _output.yml file." />
 <span class="math inline">\(\underline{\psi}_r\)</span>: Rotor flux linkage.<br />
 <span class="math inline">\(\omega_c\)</span>: Angular frequency of reference frame.<br />
 <span class="math inline">\(\omega_m\)</span>: Angular frequency of shaft in electrical frame, i.e compensated for pole-pairs.<br />
-<span class="math inline">\(L_s\)</span>: Stator inductance.<br />
-<span class="math inline">\(L_r\)</span>: Rotor inductance.<br />
 <span class="math inline">\(L_m\)</span>: Magnetizing inductance.<br />
 <span class="math inline">\(L_m\)</span>: Magnetizing inductance.<br />
 <span class="math inline">\(L_{s\sigma}\)</span>: Stator leakage inductance.<br />
 <span class="math inline">\(L_{r\sigma}\)</span>: Rotor leakage inductance.<br />
+<span class="math inline">\(L_s\)</span>: Stator inductance. <span class="math inline">\(L_s = L_m + L_{s\sigma}\)</span><br />
+<span class="math inline">\(L_r\)</span>: Rotor inductance. <span class="math inline">\(L_r = L_m + L_{r\sigma}\)</span><br />
 <span class="math inline">\(1-\frac{L^2_m}{L_sL_r}\)</span>: total leakage coefficient.<br />
+<span class="math inline">\(ms\)</span>: magnetizing-stator super/subscript, stator flux oriented reference frame.<br />
+<span class="math inline">\(mr\)</span>: magnetizing-rotor super/subscript, rotor flux oriented reference frame.<br />
+<span class="math inline">\(g\)</span>: super/subscript, general reference frame.<br />
+<span class="math inline">\(\tau_{em}\)</span>: electro-magnetic torque.<br />
+<span class="math inline">\(N_{pp}\)</span>: pole-pair number.<br />
 </p>
 </div>
-<div id="machine-equations" class="section level2 hasAnchor">
-<h2><span class="header-section-number">3.2</span> Machine Equations<a href="induction-machine.html#machine-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="voltage-equations" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.2.1</span> Voltage Equations<a href="induction-machine.html#voltage-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-\begin{aligned}
-\underline{v}_s &amp; = R_s \underline{i}_s + \frac{d\underline{\psi}_s}{dt} + j \omega_c \psi_s  \\
-\underline{v}_r &amp; = R_r \underline{i}_r + \frac{d\underline{\psi}_r}{dt} + j (\omega_c-\omega_m) \psi_s \\
-\end{aligned}
-\]</span></p>
+<div id="introduction" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.2</span> Introduction<a href="induction-machine.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The general dynamic machine model in a rotating reference frame is first presented. Then it is shown how it is derived from the stationary reference frame equations.</p>
+<p>The rotor-flux oriented reference frame equations are derived. This particular model is often used for vector-oriented control from the stator side.</p>
 </div>
+<div id="general-machine-model-in-a-rotating-refence-frame" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.3</span> General Machine Model in a Rotating Refence Frame<a href="induction-machine.html#general-machine-model-in-a-rotating-refence-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In short, the dynamics of the inductions machine is described by this dynamic vector model:</p>
+<p><span class="math display" id="eq:genDqMdl">\[
+\begin{aligned}
+\underline{v}_s &amp; = R_s \underline{i}_s + \frac{d\underline{\psi}_s}{dt} + j \omega_g \underline{\psi}_s  \\
+\underline{v}_r &amp; = R_r \underline{i}_r + \frac{d\underline{\psi}_r}{dt} + j (\omega_g-\omega_m) \underline{\psi}_r \\
+\underline{\psi}_s &amp; = L_s \underline{i}_s + L_m \underline{i}_r\\
+\underline{\psi}_r &amp; = L_m \underline{i}_s + L_r \underline{i}_r\\
+\tau_{em} &amp;= - \frac{3}{2}N_{pp}L_m(\underline{i}_s  \times \underline{i}_r)
+\end{aligned}
+\tag{3.1}
+\]</span></p>
+<p>This model is with motor sign, in a general reference frame g.</p>
+<p>In this notation all quantities are seen from the same side of the machine. So, when seen from the stator, the rotor current in not the physical rotor current, but the rotor current as seen from the stator. The same goes for flux, voltage and impedance. So we don’t use a apostrophe to note that rotor quantities are transferred values, as it is sometimes done.</p>
+<p>This is not a special issue for a squirrel cage machine, where we do not have easy access to rotor quantities anyway, by we practically always look the the machine from the stator. But for the doubly-fed induction machine, where we have access to both the stator and the rotor circuit, special care must be taken to transfer values from one side to the other.</p>
+<!-- 
+### Flux Equations
+
+$$
+\begin{bmatrix} \psi_s\\ \psi_r \end{bmatrix} = \begin{bmatrix} L_s & L_m\\ L_m & L_r \end{bmatrix} \begin{bmatrix} i_s\\ i_r \end{bmatrix}
+$$
+-->
 <div id="stator-equation" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.2.2</span> Stator Equation<a href="induction-machine.html#stator-equation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">3.3.1</span> Stator Equation<a href="induction-machine.html#stator-equation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The stator equation in the stator reference frame is:
-<span class="math display">\[
+<span class="math display" id="eq:statorVoltStat">\[
 \begin{aligned}
 \underline{v}_s &amp; = R_s \underline{i}_s + \frac{d\underline{\psi}_s}{dt}  \\
 \end{aligned}
+\tag{3.2}
 \]</span>
 We want to express this in a general reference frame, where <span class="math inline">\(\rho_s\)</span> is the angle from the stator fixed frame to the general reference frame. With the superscripts denoting the reference frames, s for stator, g for general, we can write:
-<span class="math display">\[
+<span class="math display" id="eq:statorVoltStat1">\[
 \begin{aligned}
 \underline{v}^s_s &amp; = \underline{v}^g_s e^{j\rho_s} \\
 \underline{i}^s_s &amp; = \underline{i}^g_s e^{j\rho_s} \\
@@ -167,26 +188,30 @@ We want to express this in a general reference frame, where <span class="math in
 \frac{d\underline{\psi}^g_s}{dt}  e^{j\rho_s} + \underline{\psi}^g_s j \omega_g e^{j\rho_s},
 \omega_g = \frac{d\rho_s}{dt} \\
 \end{aligned}
+\tag{3.3}
 \]</span>
 By inserting these in the stator equation above, we get:</p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:statorVoltStat2">\[
 \begin{aligned}
 \underline{v}^s_s &amp; = R_s \underline{i}^s_s + \frac{d\underline{\psi}^s_s}{dt}  \\
 \underline{v}^g_s e^{j\rho_s} &amp; = R_s \underline{i}^g_s e^{j\rho_s} + \frac{d\underline{\psi}^g_s}{dt}  e^{j\rho_s} + \underline{\psi}^g_s j \omega_g e^{j\rho_s}  \\
 \underline{v}^g_s  &amp; = R_s \underline{i}^g_s  + \frac{d\underline{\psi}^g_s}{dt}   + j\underline{\psi}^g_s  \omega_g   \\
 \end{aligned}
-\]</span></p>
+\tag{3.4}
+\]</span>
+this is the general stator equation, see <a href="induction-machine.html#eq:genDqMdl">(3.1)</a></p>
 </div>
 <div id="rotor-equation" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.2.3</span> Rotor Equation<a href="induction-machine.html#rotor-equation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">3.3.2</span> Rotor Equation<a href="induction-machine.html#rotor-equation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The rotor equation in the rotor reference frame is:
-<span class="math display">\[
+<span class="math display" id="eq:rotorVoltStat1">\[
 \begin{aligned}
 \underline{v}_r &amp; = R_r \underline{i}_r + \frac{d\underline{\psi}_r}{dt}  \\
 \end{aligned}
+\tag{3.5}
 \]</span>
 We want to express this in a general reference frame, where <span class="math inline">\(\rho_r\)</span> is the angle from the rotor fixed frame to the general reference frame. With the superscripts denoting the reference frames, r for rotor, g for general, we can write:
-<span class="math display">\[
+<span class="math display" id="eq:rotorVoltStat2">\[
 \begin{aligned}
 \underline{v}^r_r &amp; = \underline{v}^g_r e^{j\rho_r} \\
 \underline{i}^r_r &amp; = \underline{i}^g_r e^{j\rho_r} \\
@@ -195,57 +220,49 @@ We want to express this in a general reference frame, where <span class="math in
 \frac{d\underline{\psi}^g_r}{dt}  e^{j\rho_r} + \underline{\psi}^g_r j (\omega_g-\omega_r) e^{j\rho_r},
 \omega_g-\omega_r = \frac{d\rho_r}{dt} \\
 \end{aligned}
+\tag{3.6}
 \]</span>
 By inserting these in the rotor equation above, we get:</p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorVoltStat3">\[
 \begin{aligned}
 \underline{v}^r_r &amp; = R_r \underline{i}^r_r + \frac{d\underline{\psi}^r_r}{dt}  \\
 \underline{v}^g_r e^{j\rho_r} &amp; = R_r \underline{i}^g_r e^{j\rho_r} + \frac{d\underline{\psi}^g_r}{dt}  e^{j\rho_r} + \underline{\psi}^g_r j (\omega_g-\omega_r) e^{j\rho_r}  \\
 \underline{v}^g_r  &amp; = R_r \underline{i}^g_r  + \frac{d\underline{\psi}^g_r}{dt}   + j \underline{\psi}^g_r  (\omega_g-\omega_r)  \\
 \end{aligned}
+\tag{3.7}
 \]</span></p>
-</div>
-</div>
-<div id="voltage-equations-in-a-rotating-dq-reference-frame" class="section level2 hasAnchor">
-<h2><span class="header-section-number">3.3</span> Voltage equations in a rotating dq-reference frame<a href="induction-machine.html#voltage-equations-in-a-rotating-dq-reference-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display">\[
-\begin{aligned}
-\underline{v}_s  &amp; = R_s \underline{i}_s  + \frac{d\underline{\psi}_s}{dt}   + j\underline{\psi}_s  \omega_{dq}   \\
-\underline{v}_r  &amp; = R_r \underline{i}_r  + \frac{d\underline{\psi}_r}{dt}   + j\underline{\psi}_r  (\omega_{dq}-\omega_r)  \\
-\end{aligned}
-\]</span></p>
-<div id="flux-equations" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.3.1</span> Flux Equations<a href="induction-machine.html#flux-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
-\begin{bmatrix} \psi_s\\ \psi_r \end{bmatrix} = \begin{bmatrix} L_s &amp; L_m\\ L_m &amp; L_r \end{bmatrix} \begin{bmatrix} i_s\\ i_r \end{bmatrix}
-\]</span> <span class="math display">\[
-\begin{aligned}
-L_s &amp; = L_m + L_{s\sigma} \\
-L_r &amp; = L_m + L_{r\sigma} \\
-\end{aligned}
-\]</span></p>
+<p>this is the general rotor equation, see <a href="induction-machine.html#eq:genDqMdl">(3.1)</a></p>
 </div>
 </div>
 <div id="torque-equations" class="section level2 hasAnchor">
 <h2><span class="header-section-number">3.4</span> Torque Equations<a href="induction-machine.html#torque-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The electrical torque can be expressed in terms of cross-product as:
-<span class="math display">\[
-T_e = - \frac{3}{2}N_{pp}L_m(\underline{i}_s  \times \underline{i}_r)
+<span class="math display" id="eq:torque1">\[
+\begin{aligned}
+\tau_{em} &amp;= - \frac{3}{2}N_{pp}L_m(\underline{i}_s  \times \underline{i}_r) \\
+&amp;= - \frac{3}{2}N_{pp}L_m(i_{sd}i_{rq} -  i_{sq}i_{rd}) \\
+&amp;= - \frac{3}{2}N_{pp}L_m Im(\underline{i}^*_s  \cdot \underline{i}_r) \\
+\end{aligned}
+\tag{3.8}
 \]</span></p>
+<p>The last line contains the imaginary part of the complex-conjugate stator current and the rotor current.
+The torque can be calculated in various other ways, to be elaborated.</p>
 </div>
 <div id="rotor-flux-oriented-model" class="section level2 hasAnchor">
 <h2><span class="header-section-number">3.5</span> Rotor-flux Oriented Model<a href="induction-machine.html#rotor-flux-oriented-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For the rotor-flux Oriented Model, the d-axis is oriented with the rotor flux, so the rotor-flux has no q-axis component.</p>
+<p>For the rotor-flux oriented Model, the d-axis is oriented with the rotor flux, so the rotor-flux has no q-axis component.</p>
 <p>The rotor magnetizing current <span class="math inline">\(\underline{i}_{mr}\)</span> is defined as:</p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorFluxFlux1">\[
 \underline{i}_{mr} = \frac{\underline{\psi}_r}{L_m}= \frac{L_m\underline{i}_s+L_r\underline{i}_r}{L_m}
 = \underline{i}_s+ \frac{L_r}{L_m}\underline{i}_r
+\tag{3.9}
 \]</span></p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorFluxFlux2">\[
 \underline{i}_r = \frac{L_m}{L_r} (\underline{i}_{mr} -  \underline{i}_s)
+\tag{3.10}
 \]</span>
 The stator flux can be calculated as:
-<span class="math display">\[
+<span class="math display" id="eq:rotorFluxFlux3">\[
 \begin{aligned}
 \underline{\psi}_s
 &amp; = L_s\underline{i}_s + L_m\underline{i}_r \\
@@ -254,44 +271,61 @@ The stator flux can be calculated as:
 &amp; =  \frac{L^2_m}{L_r}\underline{i}_{mr}  + L_s(1 - \frac{L^2_m}{L_s L_r} ) \underline{i}_s \\
 &amp; =  \frac{L^2_m}{L_r}\underline{i}_{mr}  + \sigma L_s \underline{i}_s  \\
 \end{aligned}
+\tag{3.11}
 \]</span></p>
 <p>the leakage constant being defined as: <span class="math inline">\(\sigma=1 - \frac{L^2_m}{L_s L_r}\)</span></p>
 <div id="rotor-voltage-equation-rotor-flux-oriented" class="section level3 hasAnchor">
 <h3><span class="header-section-number">3.5.1</span> Rotor voltage equation (rotor-flux oriented)<a href="induction-machine.html#rotor-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorFluxRotVolt1">\[
 \begin{aligned}
 \underline{v}^{mr}_r  &amp; = R_r \underline{i}^{mr}_r  + \frac{d\underline{\psi}^{mr}_r}{dt} + j (\omega_{mr}-\omega_r) \underline{\psi}^{mr}_r    \\
 &amp; = R_r  \frac{L_m}{L_r} (\underline{i}_{mr} -  \underline{i}_s) + \frac{d ( L_m \underline{i}_{mr}) }{dt} + j (\omega_{mr}-\omega_r) L_m \underline{i}_{mr} \\
 &amp; =  -\underline{i}_s R_r  \frac{L_m}{L_r}  + L_m \frac{d  \underline{i}_{mr} }{dt} + R_r  \frac{L_m}{L_r} \underline{i}_{mr}  + j (\omega_{mr}-\omega_r) L_m \underline{i}_{mr} \\
 \end{aligned}
+\tag{3.12}
 \]</span></p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorFluxRotVolt2">\[
 \begin{aligned}
 \frac{L_r}{R_r L_m} \underline{v}^{mr}_r  &amp; =  -\underline{i}^{mr}_s   + \frac{L_r}{R_r} \frac{d  \underline{i}_{mr} }{dt} + \underline{i}_{mr}  + j (\omega_{mr}-\omega_r) \frac{L_r}{R_r} \underline{i}_{mr} \\
 \frac{L_r}{R_r L_m} \underline{v}^{mr}_r +\underline{i}^{mr}_s  &amp; =  \frac{L_r}{R_r} \frac{d  \underline{i}_{mr} }{dt} + \underline{i}_{mr}  + j (\omega_{mr}-\omega_r) \frac{L_r}{R_r} \underline{i}_{mr} \\
 \end{aligned}
+\tag{3.13}
 \]</span></p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorFluxRotVolt3">\[
 \begin{aligned}
 \frac{L_r}{R_r L_m} v_{rd} +i_{sd}  &amp; =  \frac{L_r}{R_r} \frac{d  i_{mr} }{dt} + i_{mr} \\
 \frac{L_r}{R_r L_m} v_{rq} +i_{sq}  &amp; =  (\omega_{mr}-\omega_r) \frac{L_r}{R_r} i_{mr} \\
 \end{aligned}
+\tag{3.14}
 \]</span></p>
 </div>
 <div id="stator-voltage-equation-rotor-flux-oriented" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.5.2</span> stator voltage equation (rotor-flux oriented)<a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
+<h3><span class="header-section-number">3.5.2</span> Stator voltage equation (rotor-flux oriented)<a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display" id="eq:rotorFluxStaVolt1">\[
 \begin{aligned}
 \underline{v}^{mr}_s &amp; = R_s \underline{i}^{mr}_s  + \frac{d\underline{\psi}^{mr}_s}{dt}   + j\omega_{mr}  \underline{\psi}^{mr}_s  \\
  &amp; = R_s \underline{i}^{mr}_s  + \frac{d}{dt}(\frac{L^2_m}{L_r}\underline{i}^{mr}_{mr}  + \sigma L_s \underline{i}_s)   + j\omega_{mr}  (\frac{L^2_m}{L_r}\underline{i}^{mr}_{mr}  + \sigma L_s \underline{i}_s)  \\
  &amp; = R_s \underline{i}^{mr}_s  + \frac{d}{dt}( (1-\sigma)L_s i_{mr}  + \sigma L_s \underline{i}_s)   + j\omega_{mr}  ((1-\sigma)L_s i_{mr}  + \sigma L_s \underline{i}_s)  \\
 \end{aligned}
+\tag{3.15}
 \]</span></p>
-<p><span class="math display">\[
+<p><span class="math display" id="eq:rotorFluxStaVolt2">\[
 \begin{aligned}
 v_{sd} &amp; = R_s i_{sd}  + \sigma L_s \frac{d i_{sd}}{dt} + (1-\sigma)L_s \frac{d i_{mr}}{dt} - \omega_{mr}     \sigma L_s i_{sq}  \\
 v_{sq} &amp; = R_s i_{sq}  + \sigma L_s \frac{d i_{sq}}{dt} + \omega_{mr}  ((1-\sigma)L_s i_{mr}  + \sigma L_s i_{sd})  \\
 \end{aligned}
+\tag{3.16}
+\]</span></p>
+</div>
+<div id="torque-equation-rotor-flux-oriented" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.3</span> Torque equation (rotor-flux oriented)<a href="induction-machine.html#torque-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The electrical torque can be expressed in terms of cross-product as:
+<span class="math display" id="eq:rotorFluxTorque1">\[
+\begin{aligned}
+\tau_{em} &amp;= - \frac{3}{2}N_{pp}L_m(i_{sd}i_{rq} -  i_{sq}i_{rd}) \\
+&amp;=  \frac{3}{2}N_{pp}L_m i_{rd}  i_{sq} \\
+\end{aligned}
+\tag{3.17}
 \]</span></p>
 
 </div>
