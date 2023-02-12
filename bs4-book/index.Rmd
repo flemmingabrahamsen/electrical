@@ -18,7 +18,6 @@ csl: chicago-fullnote-bibliography.csl
 # Preface
 
 This is a collection of technical notes centered around control of power electronics and drives.
-test.
 
 <!--
 ```{r eval=FALSE}
