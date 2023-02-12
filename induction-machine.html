@@ -29,7 +29,7 @@ set in the _output.yml file." />
 <meta name="author" content="Flemming Abrahamsen" />
 
 
-<meta name="date" content="2023-02-11" />
+<meta name="date" content="2023-02-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file." />
   
   
 <link rel="prev" href="modulation.html"/>
-
+<link rel="next" href="pm-machine.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -85,16 +85,21 @@ set in the _output.yml file." />
 <li class="chapter" data-level="3" data-path="induction-machine.html"><a href="induction-machine.html"><i class="fa fa-check"></i><b>3</b> Induction Machine</a><ul>
 <li class="chapter" data-level="3.1" data-path="induction-machine.html"><a href="induction-machine.html#nomenclature"><i class="fa fa-check"></i><b>3.1</b> Nomenclature</a></li>
 <li class="chapter" data-level="3.2" data-path="induction-machine.html"><a href="induction-machine.html#introduction"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
-<li class="chapter" data-level="3.3" data-path="induction-machine.html"><a href="induction-machine.html#general-machine-model-in-a-rotating-refence-frame"><i class="fa fa-check"></i><b>3.3</b> General Machine Model in a Rotating Refence Frame</a><ul>
+<li class="chapter" data-level="3.3" data-path="induction-machine.html"><a href="induction-machine.html#general-machine-model"><i class="fa fa-check"></i><b>3.3</b> General Machine Model</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="induction-machine.html"><a href="induction-machine.html#stator-equation"><i class="fa fa-check"></i><b>3.3.1</b> Stator Equation</a></li>
 <li class="chapter" data-level="3.3.2" data-path="induction-machine.html"><a href="induction-machine.html#rotor-equation"><i class="fa fa-check"></i><b>3.3.2</b> Rotor Equation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="induction-machine.html"><a href="induction-machine.html#torque-equations"><i class="fa fa-check"></i><b>3.3.3</b> Torque Equations</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="induction-machine.html"><a href="induction-machine.html#torque-equations"><i class="fa fa-check"></i><b>3.4</b> Torque Equations</a></li>
-<li class="chapter" data-level="3.5" data-path="induction-machine.html"><a href="induction-machine.html#rotor-flux-oriented-model"><i class="fa fa-check"></i><b>3.5</b> Rotor-flux Oriented Model</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="induction-machine.html"><a href="induction-machine.html#rotor-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.1</b> Rotor voltage equation (rotor-flux oriented)</a></li>
-<li class="chapter" data-level="3.5.2" data-path="induction-machine.html"><a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.2</b> Stator voltage equation (rotor-flux oriented)</a></li>
-<li class="chapter" data-level="3.5.3" data-path="induction-machine.html"><a href="induction-machine.html#torque-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.5.3</b> Torque equation (rotor-flux oriented)</a></li>
+<li class="chapter" data-level="3.4" data-path="induction-machine.html"><a href="induction-machine.html#rotor-flux-oriented-model"><i class="fa fa-check"></i><b>3.4</b> Rotor-flux Oriented Model</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="induction-machine.html"><a href="induction-machine.html#rotor-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.4.1</b> Rotor voltage equation (rotor-flux oriented)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="induction-machine.html"><a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.4.2</b> Stator voltage equation (rotor-flux oriented)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="induction-machine.html"><a href="induction-machine.html#torque-equation-rotor-flux-oriented"><i class="fa fa-check"></i><b>3.4.3</b> Torque equation (rotor-flux oriented)</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pm-machine.html"><a href="pm-machine.html"><i class="fa fa-check"></i><b>4</b> PM Machine</a><ul>
+<li class="chapter" data-level="4.1" data-path="pm-machine.html"><a href="pm-machine.html#nomenclature-1"><i class="fa fa-check"></i><b>4.1</b> Nomenclature</a></li>
+<li class="chapter" data-level="4.2" data-path="pm-machine.html"><a href="pm-machine.html#machine-equations"><i class="fa fa-check"></i><b>4.2</b> Machine Equations</a></li>
+<li class="chapter" data-level="4.3" data-path="pm-machine.html"><a href="pm-machine.html#maximum-torque-per-ampere-mtpa"><i class="fa fa-check"></i><b>4.3</b> Maximum Torque Per Ampere (MTPA)</a></li>
 </ul></li>
 </ul>
 
@@ -146,8 +151,8 @@ set in the _output.yml file." />
 <p>The general dynamic machine model in a rotating reference frame is first presented. Then it is shown how it is derived from the stationary reference frame equations.</p>
 <p>The rotor-flux oriented reference frame equations are derived. This particular model is often used for vector-oriented control from the stator side.</p>
 </div>
-<div id="general-machine-model-in-a-rotating-refence-frame" class="section level2 hasAnchor">
-<h2><span class="header-section-number">3.3</span> General Machine Model in a Rotating Refence Frame<a href="induction-machine.html#general-machine-model-in-a-rotating-refence-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="general-machine-model" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.3</span> General Machine Model<a href="induction-machine.html#general-machine-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In short, the dynamics of the inductions machine is described by this dynamic vector model:</p>
 <p><span class="math display" id="eq:genDqMdl">\[
 \begin{aligned}
@@ -233,9 +238,8 @@ By inserting these in the rotor equation above, we get:</p>
 \]</span></p>
 <p>this is the general rotor equation, see <a href="induction-machine.html#eq:genDqMdl">(3.1)</a></p>
 </div>
-</div>
-<div id="torque-equations" class="section level2 hasAnchor">
-<h2><span class="header-section-number">3.4</span> Torque Equations<a href="induction-machine.html#torque-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="torque-equations" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.3.3</span> Torque Equations<a href="induction-machine.html#torque-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The electrical torque can be expressed in terms of cross-product as:
 <span class="math display" id="eq:torque1">\[
 \begin{aligned}
@@ -248,8 +252,9 @@ By inserting these in the rotor equation above, we get:</p>
 <p>The last line contains the imaginary part of the complex-conjugate stator current and the rotor current.
 The torque can be calculated in various other ways, to be elaborated.</p>
 </div>
+</div>
 <div id="rotor-flux-oriented-model" class="section level2 hasAnchor">
-<h2><span class="header-section-number">3.5</span> Rotor-flux Oriented Model<a href="induction-machine.html#rotor-flux-oriented-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">3.4</span> Rotor-flux Oriented Model<a href="induction-machine.html#rotor-flux-oriented-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the rotor-flux oriented Model, the d-axis is oriented with the rotor flux, so the rotor-flux has no q-axis component.</p>
 <p>The rotor magnetizing current <span class="math inline">\(\underline{i}_{mr}\)</span> is defined as:</p>
 <p><span class="math display" id="eq:rotorFluxFlux1">\[
@@ -275,7 +280,7 @@ The stator flux can be calculated as:
 \]</span></p>
 <p>the leakage constant being defined as: <span class="math inline">\(\sigma=1 - \frac{L^2_m}{L_s L_r}\)</span></p>
 <div id="rotor-voltage-equation-rotor-flux-oriented" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.5.1</span> Rotor voltage equation (rotor-flux oriented)<a href="induction-machine.html#rotor-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">3.4.1</span> Rotor voltage equation (rotor-flux oriented)<a href="induction-machine.html#rotor-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display" id="eq:rotorFluxRotVolt1">\[
 \begin{aligned}
 \underline{v}^{mr}_r  &amp; = R_r \underline{i}^{mr}_r  + \frac{d\underline{\psi}^{mr}_r}{dt} + j (\omega_{mr}-\omega_r) \underline{\psi}^{mr}_r    \\
@@ -300,7 +305,7 @@ The stator flux can be calculated as:
 \]</span></p>
 </div>
 <div id="stator-voltage-equation-rotor-flux-oriented" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.5.2</span> Stator voltage equation (rotor-flux oriented)<a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">3.4.2</span> Stator voltage equation (rotor-flux oriented)<a href="induction-machine.html#stator-voltage-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display" id="eq:rotorFluxStaVolt1">\[
 \begin{aligned}
 \underline{v}^{mr}_s &amp; = R_s \underline{i}^{mr}_s  + \frac{d\underline{\psi}^{mr}_s}{dt}   + j\omega_{mr}  \underline{\psi}^{mr}_s  \\
@@ -318,7 +323,7 @@ v_{sq} &amp; = R_s i_{sq}  + \sigma L_s \frac{d i_{sq}}{dt} + \omega_{mr}  ((1-\
 \]</span></p>
 </div>
 <div id="torque-equation-rotor-flux-oriented" class="section level3 hasAnchor">
-<h3><span class="header-section-number">3.5.3</span> Torque equation (rotor-flux oriented)<a href="induction-machine.html#torque-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">3.4.3</span> Torque equation (rotor-flux oriented)<a href="induction-machine.html#torque-equation-rotor-flux-oriented" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The electrical torque can be expressed in terms of cross-product as:
 <span class="math display" id="eq:rotorFluxTorque1">\[
 \begin{aligned}
@@ -336,8 +341,8 @@ v_{sq} &amp; = R_s i_{sq}  + \sigma L_s \frac{d i_{sq}}{dt} + \omega_{mr}  ((1-\
           </div>
         </div>
       </div>
-<a href="modulation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="modulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pm-machine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

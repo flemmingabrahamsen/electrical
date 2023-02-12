@@ -1,7 +1,7 @@
 --- 
 title: "Power-Electronic Control Handbook"
 author: "Flemming Abrahamsen"
-date: "2023-02-11"
+date: "2023-02-12"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -18,7 +18,6 @@ csl: chicago-fullnote-bibliography.csl
 # Preface
 
 This is a collection of technical notes centered around control of power electronics and drives.
-test.
 
 <!--
 

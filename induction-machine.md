@@ -34,7 +34,7 @@ The rotor-flux oriented reference frame equations are derived. This particular m
 
 
 
-## General Machine Model in a Rotating Refence Frame
+## General Machine Model
 
 In short, the dynamics of the inductions machine is described by this dynamic vector model:
 
@@ -140,7 +140,7 @@ this is the general rotor equation, see \@ref(eq:genDqMdl)
 
 
 
-## Torque Equations
+### Torque Equations
 
 The electrical torque can be expressed in terms of cross-product as:
 $$
