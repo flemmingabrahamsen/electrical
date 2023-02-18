@@ -73,7 +73,7 @@ $$
 \end{aligned}
 (\#eq:mtpa4)
 $$
-The current is now given as:
+The MTPA d-current is now given as:
 
 $$
 \begin{aligned}
@@ -81,6 +81,12 @@ i_d &= \frac{-\psi_{pm} - \sqrt{\psi_{pm}^2 - 8 (L_d-L_q)^2 |\underline{i}|^2}}{
 &= \frac{-\psi_{pm} }{4 (L_d-L_q)} -   \sqrt{\frac{\psi_{pm}^2}{16 (L_d-L_q)^2} - \frac{1}{2} |\underline{i}|^2}\\
 \end{aligned}
 (\#eq:mtpa5)
+$$
+And and q-current is calculated as:
+
+$$
+i_q = \sqrt{|\underline{i}|^2 - i^2_d }
+(\#eq:mtpa6)
 $$
 
 
