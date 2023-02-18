@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 PM Machine | Power-Electronic Control Handbook</title>
+  <title>Chapter 2 Transformations | Power-Electronic Control Handbook</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::bs4_book,
 set in the _output.yml file." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 PM Machine | Power-Electronic Control Handbook" />
+  <meta property="og:title" content="Chapter 2 Transformations | Power-Electronic Control Handbook" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 PM Machine | Power-Electronic Control Handbook" />
+  <meta name="twitter:title" content="Chapter 2 Transformations | Power-Electronic Control Handbook" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::bs4_book,
@@ -36,8 +36,8 @@ set in the _output.yml file." />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="induction-machine.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="modulation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -122,86 +122,59 @@ set in the _output.yml file." />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pm-machine" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 5</span> PM Machine<a href="pm-machine.html#pm-machine" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="nomenclature-1" class="section level2 hasAnchor">
-<h2><span class="header-section-number">5.1</span> Nomenclature<a href="pm-machine.html#nomenclature-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<!-- 
--->
-<p><span class="math inline">\(R_s\)</span>: Stator resistance.<br />
-<span class="math inline">\(\psi_{pm}\)</span>: Permament magnet flux linkage.<br />
-<span class="math inline">\(\omega_m\)</span>: Angular frequency of shaft in electrical frame, i.e compensated for pole-pairs.<br />
-<span class="math inline">\(L_d\)</span>: d-axis inductance.<br />
-<span class="math inline">\(L_q\)</span>: q-axis inductance.<br />
-<span class="math inline">\(\tau_{em}\)</span>: Electro-magnetic torque.<br />
-<span class="math inline">\(N_{pp}\)</span>: Pole-pair number.</p>
-</div>
-<div id="machine-equations" class="section level2 hasAnchor">
-<h2><span class="header-section-number">5.2</span> Machine Equations<a href="pm-machine.html#machine-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display" id="eq:pmsmMdl1">\[
+<div id="transformations" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 2</span> Transformations<a href="transformations.html#transformations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="vector-definition" class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.1</span> Vector definition<a href="transformations.html#vector-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display" id="eq:trans1">\[
 \begin{aligned}
-v_d &amp; = R_s i_d + L_d\frac{di_d}{dt} - j \omega_m L_q i_q  \\
-v_q &amp; = R_s i_q + L_q\frac{di_q}{dt} + j \omega_m (L_d i_d + \psi_{pm})  \\
-\tau_{em} &amp; =  (\psi_{pm} + (L_d-L_q) i_d)i_q  \\
+\underline{v} 
+&amp; = \frac{2}{3} \left( v_a + v_b e^{j \frac{2 \pi}{3}}+ v_c e^{j \frac{4 \pi}{3}} \right)\\
+&amp; = \frac{2}{3} \left( v_a + v_b (- \frac{1}{2}+j\frac{\sqrt{3}}{2}) + v_c (- \frac{1}{2}-j\frac{\sqrt{3}}{2}) \right)\\
+&amp; = \left(\frac{2}{3} v_a - \frac{1}{3}  (v_b+v_c) \right) + j \left( \frac{1}{\sqrt{3}} (v_b-v_c) \right)   \\
+&amp; = \frac{2}{3} \left( v_a - \frac{1}{2}  (v_b+v_c) \right) + j \frac{2}{3} \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)   \\
+&amp; = v_\alpha + j v_\beta   \\
 \end{aligned}
-\tag{5.1}
+\tag{2.1}
+\]</span>
+### Vector amplitude</p>
+<p><span class="math display" id="eq:trans1a">\[
+|\underline{v}| = \sqrt{v_\alpha^2 +  v_\beta^2}
+\tag{2.2}
 \]</span></p>
 </div>
-<div id="maximum-torque-per-ampere-mtpa" class="section level2 hasAnchor">
-<h2><span class="header-section-number">5.3</span> Maximum Torque Per Ampere (MTPA)<a href="pm-machine.html#maximum-torque-per-ampere-mtpa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>MTPA is a commonly used control strategy by which the current is controlled to produce the maximum torque for at given current amplitude. It is shown here how the control equations are derived. This is done from the torque equation:</p>
-<p><span class="math display" id="eq:mtpa1">\[
+<div id="abc-to-alpha-beta" class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.2</span> abc to alpha-beta<a href="transformations.html#abc-to-alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>System with a zero-component:</p>
+<p><span class="math display" id="eq:trans3">\[
+\begin{bmatrix} \alpha\\ \beta \\ 0 \end{bmatrix}
+= \begin{bmatrix} \frac{2}{3} &amp; -\frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{3}} \\ \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \end{bmatrix}
+\begin{bmatrix} a\\ b \\ c \end{bmatrix}
+= \frac{2}{3} \begin{bmatrix} 1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \\ 0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{1}{2} &amp; \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}
+\begin{bmatrix} a\\ b \\ c \end{bmatrix}
+\tag{2.3}
+\]</span></p>
+<p><span class="math display" id="eq:trans1">\[
 \begin{aligned}
-T_{em} &amp; =  (\psi_{pm} + (L_d-L_q) i_d)i_q  \\
+\alpha &amp;= \frac{2}{3}(a - \frac{1}{2}(b+c)) \\
+\beta &amp;= \frac{1}{\sqrt{3}}(b-c) \\
+0 &amp;= \frac{1}{3}(a+b+c)
 \end{aligned}
-\tag{5.2}
-\]</span>
-The current amplitude is:
-<span class="math display" id="eq:mtpa2">\[
-|\underline{i}| = \sqrt{i^2_d + i^2_q} \Rightarrow  i_q =  (|\underline{i}|^2 - i^2_d)^{1/2} 
-\tag{5.3}
-\]</span>
-Inserting this in the torque equations, we get:</p>
-<p><span class="math display" id="eq:mtpa3">\[
-\begin{aligned}
-T_{em} &amp; =  (\psi_{pm} + (L_d-L_q) i_d)(|\underline{i}|^2 - i^2_d)^{1/2}  \\
- &amp; =  \psi_{pm}(|\underline{i}|^2 - i^2_d)^{1/2} + (L_d-L_q) i_d(|\underline{i}|^2 - i^2_d)^{1/2}  \\
-\end{aligned}
-\tag{5.4}
-\]</span>
-This equation describes, for for at given current amplitude, how the torque varies as a function of <span class="math inline">\(i_d\)</span>. By differentiating, we can find the <span class="math inline">\(i_d\)</span>, which gives the maximum torque for the given current amplitude <span class="math inline">\(|\underline{i}|\)</span>.</p>
-<p><span class="math display" id="eq:mtpa3">\[
-\begin{aligned}
-\frac{\partial T_{em}}{\partial i_d} &amp; =  \psi_{pm}\frac{1}{2} (|\underline{i}|^2 - i^2_d)^{-1/2} (-2i_d) + 
-(L_d-L_q) \left(  (|\underline{i}|^2 - i^2_d)^{1/2}   + i_d \frac{1}{2} (|\underline{i}|^2 - i^2_d)^{-1/2} (-2i_d)  \right)  \\
- &amp; =  -\psi_{pm} i_d (|\underline{i}|^2 - i^2_d)^{-1/2}  + 
-(L_d-L_q) \left(  (|\underline{i}|^2 - i^2_d)^{1/2}   - i_d^2  (|\underline{i}|^2 - i^2_d)^{-1/2}   \right)  \\
-\end{aligned}
-\tag{5.4}
-\]</span>
-We can now set the differential equal to zero:</p>
-<p><span class="math display" id="eq:mtpa4">\[
-\begin{aligned}
-\frac{\partial T_{em}}{\partial i_d} &amp; =  0  \\
--\psi_{pm} i_d (|\underline{i}|^2 - i^2_d)^{-1/2}  + (L_d-L_q) \left(  (|\underline{i}|^2 - i^2_d)^{1/2}   - i_d^2  (|\underline{i}|^2 - i^2_d)^{-1/2}   \right) &amp; = 0 \\
--\psi_{pm} i_d   + (L_d-L_q) \left(  |\underline{i}|^2 - i^2_d   - i_d ^2    \right) &amp; = 0 \\
--\psi_{pm} i_d   + (L_d-L_q) (  |\underline{i}|^2 - 2i^2_d     ) &amp; = 0 \\
- 2 (L_d-L_q)i^2_d  +\psi_{pm} i_d   - (L_d-L_q)  |\underline{i}|^2  &amp; = 0 \\
-\end{aligned}
-\tag{5.5}
-\]</span>
-The MTPA d-current is now given as:</p>
-<p><span class="math display" id="eq:mtpa5">\[
-\begin{aligned}
-i_d &amp;= \frac{-\psi_{pm} - \sqrt{\psi_{pm}^2 - 8 (L_d-L_q)^2 |\underline{i}|^2}}{4 (L_d-L_q)} \\
-&amp;= \frac{-\psi_{pm} }{4 (L_d-L_q)} -   \sqrt{\frac{\psi_{pm}^2}{16 (L_d-L_q)^2} - \frac{1}{2} |\underline{i}|^2}\\
-\end{aligned}
-\tag{5.6}
-\]</span>
-And and q-current is calculated as:</p>
-<p><span class="math display" id="eq:mtpa6">\[
-i_q = \sqrt{|\underline{i}|^2 - i^2_d }
-\tag{5.7}
+\tag{2.1}
+\]</span></p>
+<p><span class="math display" id="eq:trans2">\[
+\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
+= \begin{bmatrix} \frac{2}{3} &amp; -\frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{3}} \end{bmatrix}
+\begin{bmatrix} a\\ b \\ c \end{bmatrix}
+= \frac{2}{3} \begin{bmatrix} 1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \\ 0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2} \end{bmatrix}
+\begin{bmatrix} a\\ b \\ c \end{bmatrix}
+\tag{2.4}
+\]</span></p>
+<p><span class="math display" id="eq:trans4">\[
+\begin{bmatrix} a\\ b \\ c \end{bmatrix}
+= \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ -\frac{1}{2} &amp; \frac{\sqrt{3}}{2} &amp; 1 \\ -\frac{1}{2} &amp; -\frac{\sqrt{3}}{2} &amp; 1 \end{bmatrix}
+\begin{bmatrix} \alpha\\ \beta \\ 0 \end{bmatrix}
+\tag{2.5}
 \]</span></p>
 
 </div>
@@ -211,8 +184,8 @@ i_q = \sqrt{|\underline{i}|^2 - i^2_d }
           </div>
         </div>
       </div>
-<a href="induction-machine.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
