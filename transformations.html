@@ -29,7 +29,7 @@ set in the _output.yml file." />
 <meta name="author" content="Flemming Abrahamsen" />
 
 
-<meta name="date" content="2023-02-18" />
+<meta name="date" content="2023-02-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -76,7 +76,10 @@ set in the _output.yml file." />
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
 <li class="chapter" data-level="2" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>2</b> Transformations</a><ul>
-<li class="chapter" data-level="2.1" data-path="transformations.html"><a href="transformations.html#vector-definition"><i class="fa fa-check"></i><b>2.1</b> Vector definition</a></li>
+<li class="chapter" data-level="2.1" data-path="transformations.html"><a href="transformations.html#vector-definition"><i class="fa fa-check"></i><b>2.1</b> Vector definition</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="transformations.html"><a href="transformations.html#vector-amplitude-from-alpha-beta"><i class="fa fa-check"></i><b>2.1.1</b> Vector amplitude from alpha-beta</a></li>
+<li class="chapter" data-level="2.1.2" data-path="transformations.html"><a href="transformations.html#vector-amplitude-from-abc"><i class="fa fa-check"></i><b>2.1.2</b> Vector amplitude from abc</a></li>
+</ul></li>
 <li class="chapter" data-level="2.2" data-path="transformations.html"><a href="transformations.html#abc-to-alpha-beta"><i class="fa fa-check"></i><b>2.2</b> abc to alpha-beta</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="modulation.html"><a href="modulation.html"><i class="fa fa-check"></i><b>3</b> Modulation</a><ul>
@@ -136,12 +139,27 @@ set in the _output.yml file." />
 &amp; = v_\alpha + j v_\beta   \\
 \end{aligned}
 \tag{2.1}
-\]</span>
-### Vector amplitude</p>
-<p><span class="math display" id="eq:trans1a">\[
+\]</span></p>
+<div id="vector-amplitude-from-alpha-beta" class="section level3 hasAnchor">
+<h3><span class="header-section-number">2.1.1</span> Vector amplitude from alpha-beta<a href="transformations.html#vector-amplitude-from-alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display" id="eq:amplAB">\[
 |\underline{v}| = \sqrt{v_\alpha^2 +  v_\beta^2}
 \tag{2.2}
 \]</span></p>
+</div>
+<div id="vector-amplitude-from-abc" class="section level3 hasAnchor">
+<h3><span class="header-section-number">2.1.2</span> Vector amplitude from abc<a href="transformations.html#vector-amplitude-from-abc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display" id="eq:amplAbc">\[
+\begin{aligned}
+|\underline{v}| &amp;= \sqrt{v_\alpha^2 +  v_\beta^2}  \\
+&amp; =  \sqrt{\left(\frac{2}{3}( v_a - \frac{1}{2}  (v_b+v_c)) \right)^2 + \left(\frac{2}{3} (\frac{\sqrt{3}}{2} (v_b-v_c) )\right)^2 }  \\
+&amp; = \frac{2}{3} \sqrt{\left( v_a - \frac{1}{2}  (v_b+v_c) \right)^2 + \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)^2 }  \\
+&amp; = \frac{2}{3} \sqrt{ v_a^2 + \frac{1}{4}(v_b^2+v_c^2+2v_b v_c)-v_a(v_b+v_c)  + \frac{3}{4} (v_b^2+v_c^2-2v_bv_c)  } \\
+&amp; = \frac{2}{3} \sqrt{ v_a^2 + v_b^2 + v_c^2 -v_a v_b -v_b v_c  -v_c v_a } \\
+\end{aligned}
+\tag{2.3}
+\]</span></p>
+</div>
 </div>
 <div id="abc-to-alpha-beta" class="section level2 hasAnchor">
 <h2><span class="header-section-number">2.2</span> abc to alpha-beta<a href="transformations.html#abc-to-alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -152,7 +170,7 @@ set in the _output.yml file." />
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
 = \frac{2}{3} \begin{bmatrix} 1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \\ 0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{1}{2} &amp; \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\tag{2.3}
+\tag{2.4}
 \]</span></p>
 <p><span class="math display" id="eq:trans1">\[
 \begin{aligned}
@@ -168,13 +186,13 @@ set in the _output.yml file." />
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
 = \frac{2}{3} \begin{bmatrix} 1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \\ 0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2} \end{bmatrix}
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\tag{2.4}
+\tag{2.5}
 \]</span></p>
 <p><span class="math display" id="eq:trans4">\[
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
 = \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ -\frac{1}{2} &amp; \frac{\sqrt{3}}{2} &amp; 1 \\ -\frac{1}{2} &amp; -\frac{\sqrt{3}}{2} &amp; 1 \end{bmatrix}
 \begin{bmatrix} \alpha\\ \beta \\ 0 \end{bmatrix}
-\tag{2.5}
+\tag{2.6}
 \]</span></p>
 
 </div>

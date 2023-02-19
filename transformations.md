@@ -14,12 +14,29 @@ $$
 \end{aligned}
 (\#eq:trans1)
 $$
-### Vector amplitude
+
+### Vector amplitude from alpha-beta
 
 $$
 |\underline{v}| = \sqrt{v_\alpha^2 +  v_\beta^2}
-(\#eq:trans1a)
+(\#eq:amplAB)
 $$
+
+
+### Vector amplitude from abc
+
+$$
+\begin{aligned}
+|\underline{v}| &= \sqrt{v_\alpha^2 +  v_\beta^2}  \\
+& =  \sqrt{\left(\frac{2}{3}( v_a - \frac{1}{2}  (v_b+v_c)) \right)^2 + \left(\frac{2}{3} (\frac{\sqrt{3}}{2} (v_b-v_c) )\right)^2 }  \\
+& = \frac{2}{3} \sqrt{\left( v_a - \frac{1}{2}  (v_b+v_c) \right)^2 + \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)^2 }  \\
+& = \frac{2}{3} \sqrt{ v_a^2 + \frac{1}{4}(v_b^2+v_c^2+2v_b v_c)-v_a(v_b+v_c)  + \frac{3}{4} (v_b^2+v_c^2-2v_bv_c)  } \\
+& = \frac{2}{3} \sqrt{ v_a^2 + v_b^2 + v_c^2 -v_a v_b -v_b v_c  -v_c v_a } \\
+\end{aligned}
+(\#eq:amplAbc)
+$$
+
+
 
 ## abc to alpha-beta
 
