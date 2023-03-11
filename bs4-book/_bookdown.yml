@@ -9,6 +9,7 @@ rmd_files: [
   "index.Rmd",
   "transformations.Rmd",
   "modulation.Rmd",
+  "filters.Rmd",
   "induction-machine.Rmd",
   "pmsm.Rmd",
   ]
