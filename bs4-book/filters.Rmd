@@ -63,20 +63,6 @@ knitr::include_graphics("images/filters/hpf_2nd.png")
 
 
 
-
-### Band-pass filter
-
-The transfer function of a band-pass filter is:
-$$
-G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
-(\#eq:bpf)
-$$
-
-```{r, echo=FALSE, out.width="80%", fig.cap="Bode-plot example of a band-pass filter."}
-knitr::include_graphics("images/filters/bpf.png")
-```
-
-
 ### Band-pass filter
 
 The transfer function of a band-pass filter is:
