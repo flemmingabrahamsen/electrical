@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 PM Machine | Power-Electronic Control Handbook</title>
+  <title>Chapter 4 Filters | Power-Electronic Control Handbook</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::bs4_book,
 set in the _output.yml file." />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 PM Machine | Power-Electronic Control Handbook" />
+  <meta property="og:title" content="Chapter 4 Filters | Power-Electronic Control Handbook" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 PM Machine | Power-Electronic Control Handbook" />
+  <meta name="twitter:title" content="Chapter 4 Filters | Power-Electronic Control Handbook" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::bs4_book,
@@ -36,8 +36,8 @@ set in the _output.yml file." />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="induction-machine.html"/>
-
+<link rel="prev" href="modulation.html"/>
+<link rel="next" href="induction-machine.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -154,88 +154,139 @@ set in the _output.yml file." />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pm-machine" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 6</span> PM Machine<a href="pm-machine.html#pm-machine" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="nomenclature-2" class="section level2 hasAnchor">
-<h2><span class="header-section-number">6.1</span> Nomenclature<a href="pm-machine.html#nomenclature-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<!-- 
+<div id="filters" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 4</span> Filters<a href="filters.html#filters" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter gives an overview of the most used filters.</p>
+<div id="nomenclature" class="section level2 hasAnchor">
+<h2><span class="header-section-number">4.1</span> Nomenclature<a href="filters.html#nomenclature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>s: Laplace operator.
+<span class="math inline">\(\tau\)</span>: time-constant.
+<span class="math inline">\(\omega_c\)</span>: Filter cut-off frequency (rad/s).</p>
+</div>
+<div id="analog-filters" class="section level2 hasAnchor">
+<h2><span class="header-section-number">4.2</span> Analog Filters<a href="filters.html#analog-filters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="low-pass-filter-1st-order" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.1</span> Low-pass filter 1st order<a href="filters.html#low-pass-filter-1st-order" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+The transfer function of a 1st order low-pass filter is:
+<span class="math display" id="eq:lpf1">\[
+G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_c}{s + \omega_c}
+\tag{4.1}
+\]</span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="images/filters/lpf_1st.png" alt="Bode-plot example of 1st order low-pass filter." width="80%" />
+<p class="caption">
+Figure 3.1: Bode-plot example of 1st order low-pass filter.
+</p>
+</div>
+</div>
+<div id="high-pass-filter-1st-order" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.2</span> High-pass filter 1st order<a href="filters.html#high-pass-filter-1st-order" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+The transfer function of a 1st order high-pass filter is:
+<span class="math display" id="eq:hpf1">\[
+G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_c}
+\tag{4.2}
+\]</span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/filters/hpf_1st.png" alt="Bode-plot example of 1st order high-pass filter." width="80%" />
+<p class="caption">
+Figure 3.2: Bode-plot example of 1st order high-pass filter.
+</p>
+</div>
+</div>
+<div id="low-pass-filter-2nd-order" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.3</span> Low-pass filter 2nd order<a href="filters.html#low-pass-filter-2nd-order" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The transfer function of a 2nd order low-pass filter is:
+<span class="math display" id="eq:lpf2">\[
+G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_c^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+\tag{4.3}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="images/filters/lpf_2nd.png" alt="Bode-plot example of 2nd order low-pass filter." width="80%" />
+<p class="caption">
+Figure 3.3: Bode-plot example of 2nd order low-pass filter.
+</p>
+</div>
+</div>
+<div id="high-pass-filter-2nd-order" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.4</span> High-pass filter 2nd order<a href="filters.html#high-pass-filter-2nd-order" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The transfer function of a 2nd order high-pass filter is:
+<span class="math display" id="eq:hpf2">\[
+G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+\tag{4.4}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="images/filters/hpf_2nd.png" alt="Bode-plot example of 2nd order high-pass filter." width="80%" />
+<p class="caption">
+Figure 3.4: Bode-plot example of 2nd order high-pass filter.
+</p>
+</div>
+</div>
+<div id="band-pass-filter" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.5</span> Band-pass filter<a href="filters.html#band-pass-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The transfer function of a band-pass filter is:
+<span class="math display" id="eq:bpf">\[
+G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+\tag{4.5}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/filters/bpf.png" alt="Bode-plot example of a band-pass filter." width="80%" />
+<p class="caption">
+Figure 3.5: Bode-plot example of a band-pass filter.
+</p>
+</div>
+</div>
+<div id="band-pass-filter-1" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.6</span> Band-pass filter<a href="filters.html#band-pass-filter-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The transfer function of a band-pass filter is:
+<span class="math display" id="eq:bpf">\[
+G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+\tag{4.5}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="images/filters/bpf.png" alt="Bode-plot example of a band-pass filter." width="80%" />
+<p class="caption">
+Figure 3.6: Bode-plot example of a band-pass filter.
+</p>
+</div>
+</div>
+<div id="band-stop-filter" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.7</span> Band-stop filter<a href="filters.html#band-stop-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The transfer function of a band-stop filter (notch filter) is:
+<span class="math display" id="eq:bsf1">\[
+G_{bsf}(s) = \frac{(\tau s)^2 + 2\zeta_n \tau s + 1}{(\tau s)^2 + 2\zeta_d \tau s + 1} 
+=\frac{s^2 + 2\zeta_n \omega_c s + \omega_c^2}{s^2 + 2\zeta_d \omega_c s + \omega_c^2}
+\tag{4.6}
+\]</span>
+where <span class="math inline">\(\zeta_n\)</span> and <span class="math inline">\(\zeta_d\)</span> denote the nominator and denominator damping-factors.</p>
+<p>The gain at the notch-frequency is:
+<span class="math display" id="eq:bsf2">\[
+G_{bsf}(j\omega_c) = \frac{\zeta_n }{\zeta_d }
+\tag{4.7}
+\]</span>
+We can choose to reformulate the transfer-function as:
+<span class="math display" id="eq:bsf1">\[
+G_{bsf}(s) = \frac{(\tau s)^2 + 2K_{damp}\zeta \tau s + 1}{(\tau s)^2 + 2\zeta \tau s + 1} 
+=\frac{s^2 + 2K_{damp}\zeta \omega_c s + \omega_c^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+\tag{4.6}
+\]</span>
+where <span class="math inline">\(K_{damp}\)</span> is a damping factor. For example, if we want 100 times (40 dB) damping at the notch-frequency, we set <span class="math inline">\(K_{damp} = 0.01\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="images/filters/bsf.png" alt="Bode-plot example of a band-stop filter." width="80%" />
+<p class="caption">
+Figure 4.1: Bode-plot example of a band-stop filter.
+</p>
+</div>
+<!--
+$$
+\begin{aligned}
+v_\alpha &=   v_a\\
+v_\beta &=  \frac{1}{\sqrt{3}} (v_b-v_c) \\
+\end{aligned}
+(\#eq:abcAB2)
+$$
 -->
-<p><span class="math inline">\(R_s\)</span>: Stator resistance.<br />
-<span class="math inline">\(\psi_{pm}\)</span>: Permament magnet flux linkage.<br />
-<span class="math inline">\(\omega_m\)</span>: Angular frequency of shaft in electrical frame, i.e compensated for pole-pairs.<br />
-<span class="math inline">\(L_d\)</span>: d-axis inductance.<br />
-<span class="math inline">\(L_q\)</span>: q-axis inductance.<br />
-<span class="math inline">\(\tau_{em}\)</span>: Electro-magnetic torque.<br />
-<span class="math inline">\(N_{pp}\)</span>: Pole-pair number.</p>
-</div>
-<div id="machine-equations" class="section level2 hasAnchor">
-<h2><span class="header-section-number">6.2</span> Machine Equations<a href="pm-machine.html#machine-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display" id="eq:pmsmMdl1">\[
-\begin{aligned}
-v_d &amp; = R_s i_d + L_d\frac{di_d}{dt} - j \omega_m L_q i_q  \\
-v_q &amp; = R_s i_q + L_q\frac{di_q}{dt} + j \omega_m (L_d i_d + \psi_{pm})  \\
-\tau_{em} &amp; =  (\psi_{pm} + (L_d-L_q) i_d)i_q  \\
-\end{aligned}
-\tag{6.1}
-\]</span></p>
-</div>
-<div id="maximum-torque-per-ampere-mtpa" class="section level2 hasAnchor">
-<h2><span class="header-section-number">6.3</span> Maximum Torque Per Ampere (MTPA)<a href="pm-machine.html#maximum-torque-per-ampere-mtpa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>MTPA is a commonly used control strategy by which the current is controlled to produce the maximum torque for at given current amplitude. It is shown here how the control equations are derived. This is done from the torque equation:</p>
-<p><span class="math display" id="eq:mtpa1">\[
-\begin{aligned}
-T_{em} &amp; =  (\psi_{pm} + (L_d-L_q) i_d)i_q  \\
-\end{aligned}
-\tag{6.2}
-\]</span>
-The current amplitude is:
-<span class="math display" id="eq:mtpa2">\[
-|\underline{i}| = \sqrt{i^2_d + i^2_q} \Rightarrow  i_q =  (|\underline{i}|^2 - i^2_d)^{1/2} 
-\tag{6.3}
-\]</span>
-Inserting this in the torque equations, we get:</p>
-<p><span class="math display" id="eq:mtpa3">\[
-\begin{aligned}
-T_{em} &amp; =  (\psi_{pm} + (L_d-L_q) i_d)(|\underline{i}|^2 - i^2_d)^{1/2}  \\
- &amp; =  \psi_{pm}(|\underline{i}|^2 - i^2_d)^{1/2} + (L_d-L_q) i_d(|\underline{i}|^2 - i^2_d)^{1/2}  \\
-\end{aligned}
-\tag{6.4}
-\]</span>
-This equation describes, for for at given current amplitude, how the torque varies as a function of <span class="math inline">\(i_d\)</span>. By differentiating, we can find the <span class="math inline">\(i_d\)</span>, which gives the maximum torque for the given current amplitude <span class="math inline">\(|\underline{i}|\)</span>.</p>
-<p><span class="math display" id="eq:mtpa3">\[
-\begin{aligned}
-\frac{\partial T_{em}}{\partial i_d} &amp; =  \psi_{pm}\frac{1}{2} (|\underline{i}|^2 - i^2_d)^{-1/2} (-2i_d) + 
-(L_d-L_q) \left(  (|\underline{i}|^2 - i^2_d)^{1/2}   + i_d \frac{1}{2} (|\underline{i}|^2 - i^2_d)^{-1/2} (-2i_d)  \right)  \\
- &amp; =  -\psi_{pm} i_d (|\underline{i}|^2 - i^2_d)^{-1/2}  + 
-(L_d-L_q) \left(  (|\underline{i}|^2 - i^2_d)^{1/2}   - i_d^2  (|\underline{i}|^2 - i^2_d)^{-1/2}   \right)  \\
-\end{aligned}
-\tag{6.4}
-\]</span>
-We can now set the differential equal to zero:</p>
-<p><span class="math display" id="eq:mtpa4">\[
-\begin{aligned}
-\frac{\partial T_{em}}{\partial i_d} &amp; =  0  \\
--\psi_{pm} i_d (|\underline{i}|^2 - i^2_d)^{-1/2}  + (L_d-L_q) \left(  (|\underline{i}|^2 - i^2_d)^{1/2}   - i_d^2  (|\underline{i}|^2 - i^2_d)^{-1/2}   \right) &amp; = 0 \\
--\psi_{pm} i_d   + (L_d-L_q) \left(  |\underline{i}|^2 - i^2_d   - i_d ^2    \right) &amp; = 0 \\
--\psi_{pm} i_d   + (L_d-L_q) (  |\underline{i}|^2 - 2i^2_d     ) &amp; = 0 \\
- 2 (L_d-L_q)i^2_d  +\psi_{pm} i_d   - (L_d-L_q)  |\underline{i}|^2  &amp; = 0 \\
-\end{aligned}
-\tag{6.5}
-\]</span>
-The MTPA d-current is now given as:</p>
-<p><span class="math display" id="eq:mtpa5">\[
-\begin{aligned}
-i_d &amp;= \frac{-\psi_{pm} - \sqrt{\psi_{pm}^2 - 8 (L_d-L_q)^2 |\underline{i}|^2}}{4 (L_d-L_q)} \\
-&amp;= \frac{-\psi_{pm} }{4 (L_d-L_q)} -   \sqrt{\frac{\psi_{pm}^2}{16 (L_d-L_q)^2} - \frac{1}{2} |\underline{i}|^2}\\
-\end{aligned}
-\tag{6.6}
-\]</span>
-And and q-current is calculated as:</p>
-<p><span class="math display" id="eq:mtpa6">\[
-i_q = \sqrt{|\underline{i}|^2 - i^2_d }
-\tag{6.7}
-\]</span></p>
 
+</div>
 </div>
 </div>
             </section>
@@ -243,8 +294,8 @@ i_q = \sqrt{|\underline{i}|^2 - i^2_d }
           </div>
         </div>
       </div>
-<a href="induction-machine.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="modulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="induction-machine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
