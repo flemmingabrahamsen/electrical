@@ -63,7 +63,6 @@ $$
 
 
 
-
 ### Band-pass filter
 
 The transfer function of a band-pass filter is:
@@ -74,19 +73,6 @@ $$
 
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{images/filters/bpf} \caption{Bode-plot example of a band-pass filter.}(\#fig:unnamed-chunk-5)
-\end{figure}
-
-
-### Band-pass filter
-
-The transfer function of a band-pass filter is:
-$$
-G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
-(\#eq:bpf)
-$$
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/bpf} \caption{Bode-plot example of a band-pass filter.}(\#fig:unnamed-chunk-6)
 \end{figure}
 
 
@@ -114,7 +100,7 @@ $$
 where $K_{damp}$ is a damping factor. For example, if we want 100 times (40 dB) damping  at the notch-frequency, we set $K_{damp} = 0.01$.
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/bsf} \caption{Bode-plot example of a band-stop filter.}(\#fig:unnamed-chunk-7)
+\includegraphics[width=0.8\linewidth]{images/filters/bsf} \caption{Bode-plot example of a band-stop filter.}(\#fig:unnamed-chunk-6)
 \end{figure}
 
 

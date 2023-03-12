@@ -114,8 +114,7 @@ set in the _output.yml file." />
 <li class="chapter" data-level="4.2.3" data-path="filters.html"><a href="filters.html#low-pass-filter-2nd-order"><i class="fa fa-check"></i><b>4.2.3</b> Low-pass filter 2nd order</a></li>
 <li class="chapter" data-level="4.2.4" data-path="filters.html"><a href="filters.html#high-pass-filter-2nd-order"><i class="fa fa-check"></i><b>4.2.4</b> High-pass filter 2nd order</a></li>
 <li class="chapter" data-level="4.2.5" data-path="filters.html"><a href="filters.html#band-pass-filter"><i class="fa fa-check"></i><b>4.2.5</b> Band-pass filter</a></li>
-<li class="chapter" data-level="4.2.6" data-path="filters.html"><a href="filters.html#band-pass-filter-1"><i class="fa fa-check"></i><b>4.2.6</b> Band-pass filter</a></li>
-<li class="chapter" data-level="4.2.7" data-path="filters.html"><a href="filters.html#band-stop-filter"><i class="fa fa-check"></i><b>4.2.7</b> Band-stop filter</a></li>
+<li class="chapter" data-level="4.2.6" data-path="filters.html"><a href="filters.html#band-stop-filter"><i class="fa fa-check"></i><b>4.2.6</b> Band-stop filter</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="induction-machine.html"><a href="induction-machine.html"><i class="fa fa-check"></i><b>5</b> Induction Machine</a><ul>
@@ -235,22 +234,8 @@ Figure 3.5: Bode-plot example of a band-pass filter.
 </p>
 </div>
 </div>
-<div id="band-pass-filter-1" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.2.6</span> Band-pass filter<a href="filters.html#band-pass-filter-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The transfer function of a band-pass filter is:
-<span class="math display" id="eq:bpf">\[
-G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
-\tag{4.5}
-\]</span></p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="images/filters/bpf.png" alt="Bode-plot example of a band-pass filter." width="80%" />
-<p class="caption">
-Figure 3.6: Bode-plot example of a band-pass filter.
-</p>
-</div>
-</div>
 <div id="band-stop-filter" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.2.7</span> Band-stop filter<a href="filters.html#band-stop-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.2.6</span> Band-stop filter<a href="filters.html#band-stop-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The transfer function of a band-stop filter (notch filter) is:
 <span class="math display" id="eq:bsf1">\[
 G_{bsf}(s) = \frac{(\tau s)^2 + 2\zeta_n \tau s + 1}{(\tau s)^2 + 2\zeta_d \tau s + 1} 
@@ -270,10 +255,10 @@ G_{bsf}(s) = \frac{(\tau s)^2 + 2K_{damp}\zeta \tau s + 1}{(\tau s)^2 + 2\zeta \
 \tag{4.6}
 \]</span>
 where <span class="math inline">\(K_{damp}\)</span> is a damping factor. For example, if we want 100 times (40 dB) damping at the notch-frequency, we set <span class="math inline">\(K_{damp} = 0.01\)</span>.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="images/filters/bsf.png" alt="Bode-plot example of a band-stop filter." width="80%" />
 <p class="caption">
-Figure 4.1: Bode-plot example of a band-stop filter.
+Figure 3.6: Bode-plot example of a band-stop filter.
 </p>
 </div>
 <!--
