@@ -71,7 +71,7 @@
 
 \title{Power-Electronic Control Handbook}
 \author{Flemming Abrahamsen}
-\date{2023-03-12}
+\date{2023-03-25}
 
 \begin{document}
 \maketitle
@@ -592,13 +592,13 @@ In the similar way, the expression can be derived for the other phases and other
 \hypertarget{filters}{%
 \chapter{Filters}\label{filters}}
 
-This chapter gives an overview of the most used filters.
+This chapter gives an overview of the most used basic filters, such as low-pass, high-pass, band-pass, band-stop, and integrator.
 
 \hypertarget{nomenclature}{%
 \section{Nomenclature}\label{nomenclature}}
 
-s: Laplace operator.
-\(\tau\): time-constant.
+s: Laplace operator.\\
+\(\tau\): time-constant.\\
 \(\omega_c\): Filter cut-off frequency (rad/s).
 
 \hypertarget{analog-filters}{%
@@ -696,6 +696,24 @@ where \(K_{damp}\) is a damping factor. For example, if we want 100 times (40 dB
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{images/filters/bsf} \caption{Bode-plot example of a band-stop filter.}\label{fig:unnamed-chunk-6}
 \end{figure}
+
+\hypertarget{integrator-with-finite-dc-gain}{%
+\subsection{Integrator with Finite dc-gain}\label{integrator-with-finite-dc-gain}}
+
+An integrator may be used in control schemes, for example to calculate flux by integrating voltage. This may practically be done by combining the integrator with a high-pass filter to avoid an infinite dc-gain, which can cause problems with measurement offset etc.
+
+The transfer function is:
+
+\[
+G(s) =  \frac{\tau s}{(\tau s + 1)s} = \frac{\tau}{\tau s + 1}
+\label{eq:int1}
+\]
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{images/filters/integrator} \caption{Bode-plot example of an integrator with finite dc-gain.}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+This implementation will not completely remove a dc-offset, but as in this example, with a -20 dB dc-gain, an offset on the input is reduced with a factor 10 on the output. So if any dc-offset should be completely removed, then one more high-pass filter must be added.
 
 \hypertarget{induction-machine}{%
 \chapter{Induction Machine}\label{induction-machine}}

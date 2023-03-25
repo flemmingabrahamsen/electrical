@@ -29,7 +29,7 @@ set in the _output.yml file." />
 <meta name="author" content="Flemming Abrahamsen" />
 
 
-<meta name="date" content="2023-03-12" />
+<meta name="date" content="2023-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -115,6 +115,7 @@ set in the _output.yml file." />
 <li class="chapter" data-level="4.2.4" data-path="filters.html"><a href="filters.html#high-pass-filter-2nd-order"><i class="fa fa-check"></i><b>4.2.4</b> High-pass filter 2nd order</a></li>
 <li class="chapter" data-level="4.2.5" data-path="filters.html"><a href="filters.html#band-pass-filter"><i class="fa fa-check"></i><b>4.2.5</b> Band-pass filter</a></li>
 <li class="chapter" data-level="4.2.6" data-path="filters.html"><a href="filters.html#band-stop-filter"><i class="fa fa-check"></i><b>4.2.6</b> Band-stop filter</a></li>
+<li class="chapter" data-level="4.2.7" data-path="filters.html"><a href="filters.html#integrator-with-finite-dc-gain"><i class="fa fa-check"></i><b>4.2.7</b> Integrator with Finite dc-gain</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="induction-machine.html"><a href="induction-machine.html"><i class="fa fa-check"></i><b>5</b> Induction Machine</a><ul>
@@ -155,11 +156,11 @@ set in the _output.yml file." />
             <section class="normal" id="section-">
 <div id="filters" class="section level1 hasAnchor">
 <h1><span class="header-section-number">Chapter 4</span> Filters<a href="filters.html#filters" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter gives an overview of the most used filters.</p>
+<p>This chapter gives an overview of the most used basic filters, such as low-pass, high-pass, band-pass, band-stop, and integrator.</p>
 <div id="nomenclature" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.1</span> Nomenclature<a href="filters.html#nomenclature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>s: Laplace operator.
-<span class="math inline">\(\tau\)</span>: time-constant.
+<p>s: Laplace operator.<br />
+<span class="math inline">\(\tau\)</span>: time-constant.<br />
 <span class="math inline">\(\omega_c\)</span>: Filter cut-off frequency (rad/s).</p>
 </div>
 <div id="analog-filters" class="section level2 hasAnchor">
@@ -261,6 +262,22 @@ where <span class="math inline">\(K_{damp}\)</span> is a damping factor. For exa
 Figure 3.6: Bode-plot example of a band-stop filter.
 </p>
 </div>
+</div>
+<div id="integrator-with-finite-dc-gain" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.2.7</span> Integrator with Finite dc-gain<a href="filters.html#integrator-with-finite-dc-gain" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An integrator may be used in control schemes, for example to calculate flux by integrating voltage. This may practically be done by combining the integrator with a high-pass filter to avoid an infinite dc-gain, which can cause problems with measurement offset etc.</p>
+<p>The transfer function is:</p>
+<p><span class="math display" id="eq:int1">\[
+G(s) =  \frac{\tau s}{(\tau s + 1)s} = \frac{\tau}{\tau s + 1}
+\tag{4.8}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="images/filters/integrator.png" alt="Bode-plot example of an integrator with finite dc-gain." width="80%" />
+<p class="caption">
+Figure 4.1: Bode-plot example of an integrator with finite dc-gain.
+</p>
+</div>
+<p>This implementation will not completely remove a dc-offset, but as in this example, with a -20 dB dc-gain, an offset on the input is reduced with a factor 10 on the output. So if any dc-offset should be completely removed, then one more high-pass filter must be added.</p>
 <!--
 $$
 \begin{aligned}
