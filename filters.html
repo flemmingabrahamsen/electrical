@@ -117,6 +117,9 @@ set in the _output.yml file." />
 <li class="chapter" data-level="4.2.6" data-path="filters.html"><a href="filters.html#band-stop-filter"><i class="fa fa-check"></i><b>4.2.6</b> Band-stop filter</a></li>
 <li class="chapter" data-level="4.2.7" data-path="filters.html"><a href="filters.html#integrator-with-finite-dc-gain"><i class="fa fa-check"></i><b>4.2.7</b> Integrator with Finite dc-gain</a></li>
 </ul></li>
+<li class="chapter" data-level="4.3" data-path="filters.html"><a href="filters.html#digital-filters"><i class="fa fa-check"></i><b>4.3</b> Digital Filters</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="filters.html"><a href="filters.html#low-pass-filter-1st-order-1"><i class="fa fa-check"></i><b>4.3.1</b> Low-pass filter 1st order</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="induction-machine.html"><a href="induction-machine.html"><i class="fa fa-check"></i><b>5</b> Induction Machine</a><ul>
 <li class="chapter" data-level="5.1" data-path="induction-machine.html"><a href="induction-machine.html#nomenclature-1"><i class="fa fa-check"></i><b>5.1</b> Nomenclature</a></li>
@@ -278,6 +281,50 @@ Figure 4.1: Bode-plot example of an integrator with finite dc-gain.
 </p>
 </div>
 <p>This implementation will not completely remove a dc-offset, but as in this example, with a -20 dB dc-gain, an offset on the input is reduced with a factor 10 on the output. So if any dc-offset should be completely removed, then one more high-pass filter must be added.</p>
+</div>
+</div>
+<div id="digital-filters" class="section level2 hasAnchor">
+<h2><span class="header-section-number">4.3</span> Digital Filters<a href="filters.html#digital-filters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="low-pass-filter-1st-order-1" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.3.1</span> Low-pass filter 1st order<a href="filters.html#low-pass-filter-1st-order-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the forward Euler discretization:</p>
+<p><span class="math display" id="eq:dlpf1">\[
+\begin{aligned}
+G(s) &amp;=  \frac{\omega_c}{s + \omega_c}, s=\frac{z-1}{T} \\
+G(z) &amp;=  \frac{\omega_c}{\frac{z-1}{T} + \omega_c} = \frac{\omega_c T}{z- (1 - \omega_c T)} 
+= \frac{\omega_c T z^{-1}}{1- (1 - \omega_c T)z^{-1}} \\
+y(k) &amp;=   (1 - \omega_c T)y(k-1)   + \omega_c T u(k-1) \\
+\end{aligned}
+\tag{4.9}
+\]</span></p>
+<p>An practical alternative to this is to the newest input sample, instead of using the old one. We call it here the modified forward Euler method:</p>
+<p><span class="math display" id="eq:dlpf2">\[
+\begin{aligned}
+y(k) &amp;= (1 - \omega_c T)y(k-1)   + \omega_c T u(k) \\
+G(z) &amp;=  \frac{\omega_c T z}{z- (1 - \omega_c T)} = \frac{\omega_c T }{1- (1 - \omega_c T)z^{-1}} \\
+\end{aligned}
+\tag{4.10}
+\]</span></p>
+<p>Bilinear transformation:</p>
+<p><span class="math display" id="eq:dlpf3">\[
+\begin{aligned}
+G(s) &amp;=  \frac{\omega_c}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1} \\
+G(z) &amp;=  \frac{\omega_c}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
+= \frac{ \frac{\omega_cT}{2}(z+1)}{ (z-1)+ \frac{\omega_cT}{2} (z+1)} 
+= \frac{ \frac{\omega_cT}{2}(z+1)}{  (1+\frac{\omega_cT}{2}) z - (1-\frac{\omega_cT}{2})}  \\
+ &amp;=   \frac{ \omega_cT(z+1)}{  (2+\omega_cT) z - (2-\omega_cT)} 
+ =  \frac{ \frac{\omega_cT}{2+\omega_cT}(z+1)}{   z - \frac{2-\omega_cT}{2+\omega_cT}}  \\
+y(k) &amp;=   \left( \frac{2-\omega_cT}{2+\omega_cT} \right) y(k-1)   + \left( \frac{\omega_cT}{2+\omega_cT} \right)  (u(k)+u(k-1)) \\
+\end{aligned}
+\tag{4.11}
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="images/filters/lpf_1st_disc.png" alt="Bode-plot example of discrete 1st order low-pass filters, shown up to the nyquist-frequency." width="80%" />
+<p class="caption">
+Figure 4.2: Bode-plot example of discrete 1st order low-pass filters, shown up to the nyquist-frequency.
+</p>
+</div>
+<p>We see that only the bilinear discretization yields the correct phase at high-frequencies. However, as this is a low-pass filter where typically the important signal is in the pass-region, the simpler forward Euler discretizations are in most cases ok to use.</p>
 <!--
 $$
 \begin{aligned}

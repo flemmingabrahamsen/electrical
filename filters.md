@@ -122,6 +122,55 @@ $$
 This implementation will not completely remove a dc-offset, but as in this example, with a -20 dB dc-gain, an offset on the input is reduced with a factor 10 on the output. So if any dc-offset should be completely removed, then one more high-pass filter must be added.
 
 
+## Digital Filters
+
+
+### Low-pass filter 1st order
+
+Using the forward Euler discretization:
+
+$$
+\begin{aligned}
+G(s) &=  \frac{\omega_c}{s + \omega_c}, s=\frac{z-1}{T} \\
+G(z) &=  \frac{\omega_c}{\frac{z-1}{T} + \omega_c} = \frac{\omega_c T}{z- (1 - \omega_c T)} 
+= \frac{\omega_c T z^{-1}}{1- (1 - \omega_c T)z^{-1}} \\
+y(k) &=   (1 - \omega_c T)y(k-1)   + \omega_c T u(k-1) \\
+\end{aligned}
+(\#eq:dlpf1)
+$$
+
+An practical alternative to this is to the newest input sample, instead of using the old one. We call it here the modified forward Euler method:
+
+$$
+\begin{aligned}
+y(k) &= (1 - \omega_c T)y(k-1)   + \omega_c T u(k) \\
+G(z) &=  \frac{\omega_c T z}{z- (1 - \omega_c T)} = \frac{\omega_c T }{1- (1 - \omega_c T)z^{-1}} \\
+\end{aligned}
+(\#eq:dlpf2)
+$$
+
+
+Bilinear transformation:
+
+$$
+\begin{aligned}
+G(s) &=  \frac{\omega_c}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1} \\
+G(z) &=  \frac{\omega_c}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
+= \frac{ \frac{\omega_cT}{2}(z+1)}{ (z-1)+ \frac{\omega_cT}{2} (z+1)} 
+= \frac{ \frac{\omega_cT}{2}(z+1)}{  (1+\frac{\omega_cT}{2}) z - (1-\frac{\omega_cT}{2})}  \\
+ &=   \frac{ \omega_cT(z+1)}{  (2+\omega_cT) z - (2-\omega_cT)} 
+ =  \frac{ \frac{\omega_cT}{2+\omega_cT}(z+1)}{   z - \frac{2-\omega_cT}{2+\omega_cT}}  \\
+y(k) &=   \left( \frac{2-\omega_cT}{2+\omega_cT} \right) y(k-1)   + \left( \frac{\omega_cT}{2+\omega_cT} \right)  (u(k)+u(k-1)) \\
+\end{aligned}
+(\#eq:dlpf3)
+$$
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{images/filters/lpf_1st_disc} \caption{Bode-plot example of discrete 1st order low-pass filters, shown up to the nyquist-frequency.}(\#fig:unnamed-chunk-8)
+\end{figure}
+
+We see that only the bilinear discretization yields the correct phase at high-frequencies. However, as this is a low-pass filter where typically the important signal is in the pass-region, the simpler forward Euler discretizations are in most cases ok to use.
+
 
 <!--
 $$
