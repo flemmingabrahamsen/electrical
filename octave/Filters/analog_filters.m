@@ -12,6 +12,11 @@ tau = 1/10^cutoff;
 wc = 1/tau;
 omega_arr = logspace(cutoff-2, cutoff+2, 2000);
 
+omega_max = 10^(cutoff+2);
+Ts = 0.5*(2*pi)/omega_max;
+#Ts = tau/100;
+
+
 
 ## lpf 1
 
@@ -175,6 +180,37 @@ ylabel('Phase [deg]')
 grid on;
 #print -dpng integrator.png
 
+
+## discrete lpf 1
+
+figure(8);
+lpf1_d_forward = tf([wc*Ts],[1 -(1-wc*Ts)],Ts);
+lpf1_d_used = tf([wc*Ts 0],[1 -(1-wc*Ts)],Ts);
+lpf1_d_bilin = tf((wc*Ts)/(2+wc*Ts)*[1 1],[1 -(2-wc*Ts)/(2+wc*Ts)],Ts);
+
+[magn, phase] = bode(lpf1, omega_arr);
+[magn_d_forward, phase_d_forward] = bode(lpf1_d_forward, omega_arr);
+[magn_d_used, phase_d_used] = bode(lpf1_d_used, omega_arr);
+[magn_d_bilin, phase_d_bilin] = bode(lpf1_d_bilin, omega_arr);
+
+subplot(2,1,1)
+semilogx(omega_arr, 20*log10(magn_d_forward(:)),omega_arr, 20*log10(magn_d_used(:)),omega_arr, 20*log10(magn_d_bilin(:)))
+#semilogx(omega_arr, 20*log10(magn_d_bilin(:)))
+
+set(gca,'FontSize',12,'Fontname','arial');
+title('1st order discrete low-pass filters, tau=0.1 s')
+ylabel('Magnitude [dB]')
+grid on;
+ylim([-50 10]);
+subplot(2,1,2)
+semilogx(omega_arr,phase_d_forward(:), omega_arr,phase_d_used(:), omega_arr,phase_d_bilin(:))
+#semilogx(omega_arr,phase_d_bilin(:))
+set(gca,'FontSize',12,'Fontname','arial');
+xlabel('frequency [rad/s]')
+ylabel('Phase [deg]')
+grid on;
+legend('Forward Euler','Forward Euler Modified','Bilinear','location', 'southwest');
+#print -dpng lpf_1st_disc.png
 
 
 
