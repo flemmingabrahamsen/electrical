@@ -1,11 +1,11 @@
 # Filters
 
-This chapter gives an overview of the most used filters.
+This chapter gives an overview of the most used basic filters, such as low-pass, high-pass, band-pass, band-stop, and integrator.
 
 ## Nomenclature
-s: Laplace operator.
-$\tau$: time-constant.
-$\omega_c$: Filter cut-off frequency (rad/s).
+s: Laplace operator.  
+$\tau$: time-constant.  
+$\omega_c$: Filter cut-off frequency (rad/s).  
 
 
 ## Analog Filters
@@ -102,6 +102,24 @@ where $K_{damp}$ is a damping factor. For example, if we want 100 times (40 dB) 
 ```{r, echo=FALSE, out.width="80%", fig.cap="Bode-plot example of a band-stop filter."}
 knitr::include_graphics("images/filters/bsf.png")
 ```
+
+
+### Integrator with Finite dc-gain
+
+An integrator may be used in control schemes, for example to calculate flux by integrating voltage. This may practically be done by combining the integrator with a high-pass filter to avoid an infinite dc-gain, which can cause problems with measurement offset etc.
+
+The transfer function is:
+
+$$
+G(s) =  \frac{\tau s}{(\tau s + 1)s} = \frac{\tau}{\tau s + 1}
+(\#eq:int1)
+$$
+
+```{r, echo=FALSE, out.width="80%", fig.cap="Bode-plot example of an integrator with finite dc-gain."}
+knitr::include_graphics("images/filters/integrator.png")
+```
+
+This implementation will not completely remove a dc-offset, but as in this example, with a -20 dB dc-gain, an offset on the input is reduced with a factor 10 on the output. So if any dc-offset should be completely removed, then one more high-pass filter must be added.
 
 
 

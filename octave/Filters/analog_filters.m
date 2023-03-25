@@ -153,5 +153,28 @@ grid on;
 
 
 
+## integrator 1
+
+figure(7);
+
+integrator = tau/(tau*s + 1);
+[magn, phase] = bode(integrator, omega_arr);
+
+subplot(2,1,1)
+semilogx(omega_arr, 20*log10(magn(:)))
+set(gca,'FontSize',12,'Fontname','arial');
+title('Integrator with finite dc-gain, tau=0.1 s')
+ylabel('Magnitude [dB]')
+grid on;
+ylim([-70 -10]);
+subplot(2,1,2)
+semilogx(omega_arr,phase(:))
+set(gca,'FontSize',12,'Fontname','arial');
+xlabel('frequency [rad/s]')
+ylabel('Phase [deg]')
+grid on;
+#print -dpng integrator.png
+
+
 
 
