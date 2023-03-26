@@ -18,7 +18,7 @@ G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_c}{s + \omega_c}
 (\#eq:lpf1)
 $$
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/lpf_1st} \caption{Bode-plot example of 1st order low-pass filter.}(\#fig:unnamed-chunk-1)
+\includegraphics[width=1\linewidth]{images/filters/lpf_1st} \caption{Bode-plot example of 1st order low-pass filter.}(\#fig:unnamed-chunk-1)
 \end{figure}
 
 
@@ -30,7 +30,7 @@ G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_c}
 (\#eq:hpf1)
 $$
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/hpf_1st} \caption{Bode-plot example of 1st order high-pass filter.}(\#fig:unnamed-chunk-2)
+\includegraphics[width=1\linewidth]{images/filters/hpf_1st} \caption{Bode-plot example of 1st order high-pass filter.}(\#fig:unnamed-chunk-2)
 \end{figure}
 
 
@@ -44,7 +44,7 @@ G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_c^2}{s^2 + 2\zet
 $$
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/lpf_2nd} \caption{Bode-plot example of 2nd order low-pass filter.}(\#fig:unnamed-chunk-3)
+\includegraphics[width=1\linewidth]{images/filters/lpf_2nd} \caption{Bode-plot example of 2nd order low-pass filter.}(\#fig:unnamed-chunk-3)
 \end{figure}
 
 
@@ -58,7 +58,7 @@ G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\z
 $$
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/hpf_2nd} \caption{Bode-plot example of 2nd order high-pass filter.}(\#fig:unnamed-chunk-4)
+\includegraphics[width=1\linewidth]{images/filters/hpf_2nd} \caption{Bode-plot example of 2nd order high-pass filter.}(\#fig:unnamed-chunk-4)
 \end{figure}
 
 
@@ -72,7 +72,7 @@ G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zet
 $$
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/bpf} \caption{Bode-plot example of a band-pass filter.}(\#fig:unnamed-chunk-5)
+\includegraphics[width=1\linewidth]{images/filters/bpf} \caption{Bode-plot example of a band-pass filter.}(\#fig:unnamed-chunk-5)
 \end{figure}
 
 
@@ -100,7 +100,7 @@ $$
 where $K_{damp}$ is a damping factor. For example, if we want 100 times (40 dB) damping  at the notch-frequency, we set $K_{damp} = 0.01$.
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/bsf} \caption{Bode-plot example of a band-stop filter.}(\#fig:unnamed-chunk-6)
+\includegraphics[width=1\linewidth]{images/filters/bsf} \caption{Bode-plot example of a band-stop filter.}(\#fig:unnamed-chunk-6)
 \end{figure}
 
 
@@ -116,7 +116,7 @@ G(s) =  \frac{\tau s}{(\tau s + 1)s} = \frac{\tau}{\tau s + 1}
 $$
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/integrator} \caption{Bode-plot example of an integrator with finite dc-gain.}(\#fig:unnamed-chunk-7)
+\includegraphics[width=1\linewidth]{images/filters/integrator} \caption{Bode-plot example of an integrator with finite dc-gain.}(\#fig:unnamed-chunk-7)
 \end{figure}
 
 This implementation will not completely remove a dc-offset, but as in this example, with a -20 dB dc-gain, an offset on the input is reduced with a factor 10 on the output. So if any dc-offset should be completely removed, then one more high-pass filter must be added.
@@ -166,10 +166,126 @@ y(k) &=   \left( \frac{2-\omega_cT}{2+\omega_cT} \right) y(k-1)   + \left( \frac
 $$
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{images/filters/lpf_1st_disc} \caption{Bode-plot example of discrete 1st order low-pass filters, shown up to the nyquist-frequency.}(\#fig:unnamed-chunk-8)
+\includegraphics[width=1\linewidth]{images/filters/lpf_1st_disc} \caption{Bode-plot example of discrete 1st order low-pass filters, shown up to the nyquist-frequency.}(\#fig:unnamed-chunk-8)
 \end{figure}
 
 We see that only the bilinear discretization yields the correct phase at high-frequencies. However, as this is a low-pass filter where typically the important signal is in the pass-region, the simpler forward Euler discretizations are in most cases ok to use.
+
+
+### High-pass filter 1st order
+
+
+
+The 1st order high-pass filter is discretized by forward Euler is:
+$$
+\begin{aligned}
+G(s) &=  \frac{s}{s + \omega_c}, s=\frac{z-1}{T}  \\
+&=  \frac{\frac{z-1}{T}}{\frac{z-1}{T} + \omega_c} =\frac{z-1}{z-(1- \omega_c T)} 
+=\frac{1-z^{-1}}{1-(1- \omega_c T)z^{-1}}  \\
+y(k) &=   (1 - \omega_c T)y(k-1)   +  u(k)-u(k-1) \\
+\end{aligned}
+(\#eq:dhpf1)
+$$
+
+The 1st order high-pass filter is discretized by bilinear methos is:
+$$
+\begin{aligned}
+G(s) &=  \frac{s}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1}  \\
+&=  \frac{\frac{2}{T} \frac{z-1}{z+1}}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
+=\frac{z-1}{z-1 + \frac{\omega_c T}{2}(z+1) } \\
+&=\frac{z-1}{(1+\frac{\omega_c T}{2}) z - (1-\frac{\omega_c T}{2}) }
+= \frac{2(z-1)}{(2+\omega_c T) z - (2-\omega_c T) }   \\
+&= \frac{ \frac{2}{2+\omega_c T} (z-1)}{ z - \frac{2-\omega_c T}{2+\omega_c T} }  
+= \frac{ \frac{2}{2+\omega_c T} (1-z^{-1})}{ 1 - \frac{2-\omega_c T}{2+\omega_c T}z^{-1} }  \\
+y(k) &=   \frac{2-\omega_c T}{2+\omega_c T}y(k-1)   + \frac{2}{2+\omega_c T}  (u(k)-u(k-1)) \\
+\end{aligned}
+(\#eq:dhpf2)
+$$
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/filters/hpf_1st_disc} \caption{Bode-plot example of discrete 1st order high-pass filters, shown up to the nyquist-frequency.}(\#fig:unnamed-chunk-9)
+\end{figure}
+
+
+
+### Band-pass filter
+
+For a band-pass filter it is important with an accurate phase and pass-frequency, and therefore it is discretized with the bilinear method, and with prewarping to hit the correct frequency:
+
+$$
+\begin{aligned}
+G_{bpf}(s) &=  \frac{2\zeta \omega_0 s}{s^2 + 2\zeta \omega_0 s + \omega_0^2}, s=\frac{\omega_0}{\tan(\omega_0 T/2)} \frac{z-1}{z+1} =\frac{\omega_0}{K} \frac{z-1}{z+1} \\
+K &= \tan(\omega_0 T/2) \\
+G_{bpf}(z) &=  \frac{2\zeta \omega_0 (\frac{\omega_0}{K} \frac{z-1}{z+1})}{(\frac{\omega_0}{K} \frac{z-1}{z+1})^2 + 2\zeta \omega_0 (\frac{\omega_0}{K} \frac{z-1}{z+1}) + \omega_0^2} \\
+&=  \frac{2\zeta K  (z-1)(z+1)}{ (z-1)^2 + 2\zeta K (z-1)(z+1) + K^2(z+1)^2} \\
+&=  \frac{2\zeta K  (z^2-1)}{ z^2-2z+1 + 2\zeta K (z^2-1) + K^2(z^2+2z+1)} \\
+&=  \frac{2\zeta K  (z^2-1)}{ (K^2+2\zeta K+1)z^2 +  2(K^2-1)z + (K^2-2\zeta K+1)  } \\
+&=  \frac{ \frac{2\zeta K}{K^2+2\zeta K+1}  (1-z^{-2})}{ 1 +  \frac{2(K^2-1)}{K^2+2\zeta K+1}z^{-1} + \frac{K^2-2\zeta K+1}{K^2+2\zeta K+1}z^{-2}  } \\
+\end{aligned}
+(\#eq:dbpf1)
+$$
+
+$$
+\begin{aligned}
+G_{bsf}(z) &= \frac{b_0+b_1z^{-1}+b_2z^{-2}}{1+a_1z^{-1}+a_2z^{-2}} \\
+K &= \tan(\omega_0 T/2) \\
+divisor &= K^2+2\zeta K+1\\
+b_0 &=  2\zeta K/divisor\\
+b_1 &=  0\\
+b_2 &=  2\zeta K/divisor\\
+a_1 &=  2(K^2-1)/divisor\\
+a_2 &=  (K^2-2\zeta K+1)/divisor\\
+y(k) &= -a_1y(k-1) -a_2 y(k-2) + b_0u(k)+ b_1u(k-1)+ b_2u(k-2) \\
+\end{aligned}
+(\#eq:dbpf2)
+$$
+
+From the figure below we see that the discrete filter fit well with the analog filter, except near the Nyquist-frequency, where the phase diverges.
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/filters/bpf_disc} \caption{Bode-plot example of discrete band-pass filter, shown up to the nyquist-frequency.}(\#fig:unnamed-chunk-10)
+\end{figure}
+
+
+
+### Band-stop filter
+
+For a band-pass filter, like for the band-pass filter above, it is important with an accurate phase and pass-frequency, and therefore it is discretized with the bilinear method, and with prewarping to hit the correct frequency:
+
+$$
+\begin{aligned}
+G_{bsf}(s) &=  \frac{s^2 + 2K_ {damp}\zeta \omega_0 s + \omega_0^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
+, s=\frac{\omega_0}{\tan(\omega_0 T/2)} \frac{z-1}{z+1} =\frac{\omega_0}{K} \frac{z-1}{z+1} \\
+K &= \tan(\omega_0 T/2) \\
+G_{bsf}(z) &=  \frac{(\frac{\omega_0}{K} \frac{z-1}{z+1})^2 + 2K_ {damp}\zeta \omega_0 (\frac{\omega_0}{K} \frac{z-1}{z+1}) + \omega_0^2}{(\frac{\omega_0}{K} \frac{z-1}{z+1})^2 + 2\zeta \omega_0 (\frac{\omega_0}{K} \frac{z-1}{z+1}) + \omega_0^2} \\
+&=  \frac{ (z-1)^2 + 2K_ {damp}\zeta K (z-1)(z+1) + K^2(z+1)^2}{ (z-1)^2 + 2\zeta K (z-1)(z+1) + K^2(z+1)^2} \\
+&=  \frac{z^2-2z+1 + 2K_ {damp}\zeta K (z^2-1) + K^2(z^2+2z+1)}{ z^2-2z+1 + 2\zeta K (z^2-1) + K^2(z^2+2z+1)} \\
+&=  \frac{ (K^2+2K_ {damp}\zeta K+1)z^2 +  2(K^2-1)z + (K^2-2K_ {damp}\zeta K+1)}{ (K^2+2\zeta K+1)z^2 +  2(K^2-1)z + (K^2-2\zeta K+1)  } \\
+&=  \frac{  \frac{K^2+2K_ {damp}\zeta K+1}{K^2+2\zeta K+1} +  \frac{2(K^2-1)}{K^2+2\zeta K+1}z^{-1} + \frac{K^2-2K_ {damp}\zeta K+1}{K^2+2\zeta K+1}z^{-2} }{ 1 +  \frac{2(K^2-1)}{K^2+2\zeta K+1}z^{-1} + \frac{K^2-2\zeta K+1}{K^2+2\zeta K+1}z^{-2}  } \\
+\end{aligned}
+(\#eq:dbsf1)
+$$
+
+
+$$
+\begin{aligned}
+G_{bsf}(z) &= \frac{b_0+b_1z^{-1}+b_2z^{-2}}{1+a_1z^{-1}+a_2z^{-2}} \\
+K &= \tan(\omega_0 T/2) \\
+divisor &= K^2+2\zeta K+1\\
+b_0 &=  (K^2+2K_ {damp}\zeta K+1)/divisor\\
+b_1 &=  2(K^2-1)/divisor\\
+b_2 &=  (K^2-2K_ {damp}\zeta K+1)/divisor\\
+a_1 &=  2(K^2-1)/divisor\\
+a_2 &=  (K^2-2\zeta K+1)/divisor\\
+y(k) &= -a_1y(k-1) -a_2 y(k-2) + b_0u(k)+ b_1u(k-1)+ b_2u(k-2) \\
+\end{aligned}
+(\#eq:dbsf2)
+$$
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/filters/bsf_disc} \caption{Bode-plot example of discrete stop-pass filter, shown up to the nyquist-frequency.}(\#fig:unnamed-chunk-11)
+\end{figure}
 
 
 <!--
