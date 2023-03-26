@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "bs4-book"
+		},
+		{
+			"path": "octave"
+		},
+		{
+			"path": "dockerfiles"
+		}
+	],
+	"settings": {}
+}

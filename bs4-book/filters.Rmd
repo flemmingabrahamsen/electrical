@@ -172,6 +172,27 @@ knitr::include_graphics("images/filters/lpf_1st_disc.png")
 We see that only the bilinear discretization yields the correct phase at high-frequencies. However, as this is a low-pass filter where typically the important signal is in the pass-region, the simpler forward Euler discretizations are in most cases ok to use.
 
 
+### High-pass filter 1st order
+
+
+
+The 1st order high-pass filter is discretized by forward Euler is:
+$$
+\begin{aligned}
+G(s) &=  \frac{s}{s + \omega_c}, s=\frac{z-1}{T}  \\
+&=  \frac{\frac{z-1}{T}}{\frac{z-1}{T} + \omega_c} =\frac{z-1}{z-(1- \omega_c T)} 
+=\frac{1-z^{-1}}{1-(1- \omega_c T)z^{-1}}  \\
+\end{aligned}
+(\#eq:dhpf1)
+$$
+<!--
+```{r, echo=FALSE, out.width="80%", fig.cap="Bode-plot example of 1st order high-pass filter."}
+knitr::include_graphics("images/filters/hpf_1st.png")
+```
+-->
+
+
+
 <!--
 $$
 \begin{aligned}
