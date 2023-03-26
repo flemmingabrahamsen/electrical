@@ -219,17 +219,15 @@ legend('Forward Euler','Forward Euler Modified','Bilinear','location', 'southwes
 
 figure(9);
 hpf1_d_forward = tf([1 -1],[1 -(1-wc*Ts)],Ts);
-#lpf1_d_used = tf([wc*Ts 0],[1 -(1-wc*Ts)],Ts);
-#lpf1_d_bilin = tf((wc*Ts)/(2+wc*Ts)*[1 1],[1 -(2-wc*Ts)/(2+wc*Ts)],Ts);
+#hpf1_d_bilin = tf([1 -1],[(1+wc*Ts/2) -(1-wc*Ts/2)],Ts);
+hpf1_d_bilin = tf((2/(2+wc*Ts))*[1 -1],[1 -(2-wc*Ts)/(2+wc*Ts)],Ts);
 
 [magn, phase] = bode(hpf1, omega_arr);
 [magn_d_hpf1_forward, phase_d_hpf1_forward] = bode(hpf1_d_forward, omega_arr);
-#[magn_d_used, phase_d_used] = bode(lpf1_d_used, omega_arr);
-#[magn_d_bilin, phase_d_bilin] = bode(lpf1_d_bilin, omega_arr);
+[magn_d_hpf1_bilin, phase_d_hpf1_bilin] = bode(hpf1_d_bilin, omega_arr);
 
 subplot(2,1,1)
-semilogx(omega_arr, 20*log10(magn_d_hpf1_forward(:)))
-#semilogx(omega_arr, 20*log10(magn_d_bilin(:)))
+semilogx(omega_arr, 20*log10(magn_d_hpf1_forward(:)), omega_arr, 20*log10(magn_d_hpf1_bilin(:)))
 
 set(gca,'FontSize',12,'Fontname','arial');
 title('1st order discrete high-pass filters, tau=0.1 s')
@@ -237,15 +235,42 @@ ylabel('Magnitude [dB]')
 grid on;
 #ylim([-50 10]);
 subplot(2,1,2)
-semilogx(omega_arr,phase_d_hpf1_forward(:))
-#semilogx(omega_arr,phase_d_bilin(:))
+semilogx(omega_arr,phase_d_hpf1_forward(:), omega_arr,phase_d_hpf1_bilin(:))
 set(gca,'FontSize',12,'Fontname','arial');
 xlabel('frequency [rad/s]')
 ylabel('Phase [deg]')
 grid on;
-#legend('Forward Euler','Forward Euler Modified','Bilinear','location', 'southwest');
-#print -dpng lpf_1st_disc.png
+legend('Forward Euler','Bilinear','location', 'northeast');
+#print -dpng hpf_1st_disc.png
 
+
+
+## discrete bpf
+
+figure(10);
+K = tan(wc*Ts/2);
+zeta = 0.7;
+bpf_d_bilin = tf(2*zeta*K*[1 0 -1],[(K^2+2*zeta*K+1) 2*(K^2-1) (K^2-2*zeta*K+1)],Ts);
+
+[magn, phase] = bode(bpf, omega_arr);
+[magn_d_bpf_bilin, phase_d_bpf_bilin] = bode(bpf_d_bilin, omega_arr);
+
+subplot(2,1,1)
+semilogx(omega_arr, 20*log10(magn(:)), omega_arr, 20*log10(magn_d_bpf_bilin(:)))
+
+set(gca,'FontSize',12,'Fontname','arial');
+title('discrete band-pass filter, tau=0.1 s')
+ylabel('Magnitude [dB]')
+grid on;
+ylim([-100 10]);
+subplot(2,1,2)
+semilogx(omega_arr,phase(:), omega_arr,phase_d_bpf_bilin(:))
+set(gca,'FontSize',12,'Fontname','arial');
+xlabel('frequency [rad/s]')
+ylabel('Phase [deg]')
+grid on;
+legend('Analog','Bilinear','location', 'northeast');
+#print -dpng bpf_disc.png
 
 
 
