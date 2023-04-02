@@ -71,7 +71,7 @@
 
 \title{Power-Electronic Control Handbook}
 \author{Flemming Abrahamsen}
-\date{2023-03-26}
+\date{2023-04-02}
 
 \begin{document}
 \maketitle
@@ -83,7 +83,7 @@
 \hypertarget{preface}{%
 \chapter{Preface}\label{preface}}
 
-This is a collection of technical notes centered around control of power electronics and drives.
+This is a collection of technical notes centered around control of power electronics and drives, and power systems engineering.
 
 \hypertarget{transformations}{%
 \chapter{Transformations}\label{transformations}}
@@ -599,7 +599,7 @@ This chapter gives an overview of the most used basic filters, such as low-pass,
 
 s: Laplace operator.\\
 \(\tau\): time-constant.\\
-\(\omega_c\): Filter cut-off frequency (rad/s).
+\(\omega_0\): Filter cut-off frequency (rad/s).
 
 \hypertarget{analog-filters}{%
 \section{Analog Filters}\label{analog-filters}}
@@ -609,7 +609,7 @@ s: Laplace operator.\\
 
 The transfer function of a 1st order low-pass filter is:
 \[
-G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_c}{s + \omega_c}
+G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_0}{s + \omega_0}
 \label{eq:lpf1}
 \]
 
@@ -622,7 +622,7 @@ G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_c}{s + \omega_c}
 
 The transfer function of a 1st order high-pass filter is:
 \[
-G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_c}
+G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_0}
 \label{eq:hpf1}
 \]
 
@@ -635,7 +635,7 @@ G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_c}
 
 The transfer function of a 2nd order low-pass filter is:
 \[
-G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_c^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_0^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 \label{eq:lpf2}
 \]
 
@@ -648,7 +648,7 @@ G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_c^2}{s^2 + 2\zet
 
 The transfer function of a 2nd order high-pass filter is:
 \[
-G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 \label{eq:hpf2}
 \]
 
@@ -661,7 +661,7 @@ G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\z
 
 The transfer function of a band-pass filter is:
 \[
-G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_0 s}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 \label{eq:bpf}
 \]
 
@@ -675,20 +675,20 @@ G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zet
 The transfer function of a band-stop filter (notch filter) is:
 \[
 G_{bsf}(s) = \frac{(\tau s)^2 + 2\zeta_n \tau s + 1}{(\tau s)^2 + 2\zeta_d \tau s + 1} 
-=\frac{s^2 + 2\zeta_n \omega_c s + \omega_c^2}{s^2 + 2\zeta_d \omega_c s + \omega_c^2}
+=\frac{s^2 + 2\zeta_n \omega_0 s + \omega_0^2}{s^2 + 2\zeta_d \omega_0 s + \omega_0^2}
 \label{eq:bsf1}
 \]
 where \(\zeta_n\) and \(\zeta_d\) denote the nominator and denominator damping-factors.
 
 The gain at the notch-frequency is:
 \[
-G_{bsf}(j\omega_c) = \frac{\zeta_n }{\zeta_d }
+G_{bsf}(j\omega_0) = \frac{\zeta_n }{\zeta_d }
 \label{eq:bsf2}
 \]
 We can choose to reformulate the transfer-function as:
 \[
 G_{bsf}(s) = \frac{(\tau s)^2 + 2K_{damp}\zeta \tau s + 1}{(\tau s)^2 + 2\zeta \tau s + 1} 
-=\frac{s^2 + 2K_{damp}\zeta \omega_c s + \omega_c^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+=\frac{s^2 + 2K_{damp}\zeta \omega_0 s + \omega_0^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 \label{eq:bsf1}
 \]
 where \(K_{damp}\) is a damping factor. For example, if we want 100 times (40 dB) damping at the notch-frequency, we set \(K_{damp} = 0.01\).
@@ -725,10 +725,10 @@ Using the forward Euler discretization:
 
 \[
 \begin{aligned}
-G(s) &=  \frac{\omega_c}{s + \omega_c}, s=\frac{z-1}{T} \\
-G(z) &=  \frac{\omega_c}{\frac{z-1}{T} + \omega_c} = \frac{\omega_c T}{z- (1 - \omega_c T)} 
-= \frac{\omega_c T z^{-1}}{1- (1 - \omega_c T)z^{-1}} \\
-y(k) &=   (1 - \omega_c T)y(k-1)   + \omega_c T u(k-1) \\
+G(s) &=  \frac{\omega_0}{s + \omega_0}, s=\frac{z-1}{T} \\
+G(z) &=  \frac{\omega_0}{\frac{z-1}{T} + \omega_0} = \frac{\omega_0 T}{z- (1 - \omega_0 T)} 
+= \frac{\omega_0 T z^{-1}}{1- (1 - \omega_0 T)z^{-1}} \\
+y(k) &=   (1 - \omega_0 T)y(k-1)   + \omega_0 T u(k-1) \\
 \end{aligned}
 \label{eq:dlpf1}
 \]
@@ -737,8 +737,8 @@ An practical alternative to this is to the newest input sample, instead of using
 
 \[
 \begin{aligned}
-y(k) &= (1 - \omega_c T)y(k-1)   + \omega_c T u(k) \\
-G(z) &=  \frac{\omega_c T z}{z- (1 - \omega_c T)} = \frac{\omega_c T }{1- (1 - \omega_c T)z^{-1}} \\
+y(k) &= (1 - \omega_0 T)y(k-1)   + \omega_0 T u(k) \\
+G(z) &=  \frac{\omega_0 T z}{z- (1 - \omega_0 T)} = \frac{\omega_0 T }{1- (1 - \omega_0 T)z^{-1}} \\
 \end{aligned}
 \label{eq:dlpf2}
 \]
@@ -747,13 +747,13 @@ Bilinear transformation:
 
 \[
 \begin{aligned}
-G(s) &=  \frac{\omega_c}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1} \\
-G(z) &=  \frac{\omega_c}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
-= \frac{ \frac{\omega_cT}{2}(z+1)}{ (z-1)+ \frac{\omega_cT}{2} (z+1)} 
-= \frac{ \frac{\omega_cT}{2}(z+1)}{  (1+\frac{\omega_cT}{2}) z - (1-\frac{\omega_cT}{2})}  \\
- &=   \frac{ \omega_cT(z+1)}{  (2+\omega_cT) z - (2-\omega_cT)} 
- =  \frac{ \frac{\omega_cT}{2+\omega_cT}(z+1)}{   z - \frac{2-\omega_cT}{2+\omega_cT}}  \\
-y(k) &=   \left( \frac{2-\omega_cT}{2+\omega_cT} \right) y(k-1)   + \left( \frac{\omega_cT}{2+\omega_cT} \right)  (u(k)+u(k-1)) \\
+G(s) &=  \frac{\omega_0}{s + \omega_0}, s=\frac{2}{T} \frac{z-1}{z+1} \\
+G(z) &=  \frac{\omega_0}{\frac{2}{T} \frac{z-1}{z+1} + \omega_0}
+= \frac{ \frac{\omega_0T}{2}(z+1)}{ (z-1)+ \frac{\omega_0T}{2} (z+1)} 
+= \frac{ \frac{\omega_0T}{2}(z+1)}{  (1+\frac{\omega_0T}{2}) z - (1-\frac{\omega_0T}{2})}  \\
+ &=   \frac{ \omega_0T(z+1)}{  (2+\omega_0T) z - (2-\omega_0T)} 
+ =  \frac{ \frac{\omega_0T}{2+\omega_0T}(z+1)}{   z - \frac{2-\omega_0T}{2+\omega_0T}}  \\
+y(k) &=   \left( \frac{2-\omega_0T}{2+\omega_0T} \right) y(k-1)   + \left( \frac{\omega_0T}{2+\omega_0T} \right)  (u(k)+u(k-1)) \\
 \end{aligned}
 \label{eq:dlpf3}
 \]
@@ -770,10 +770,10 @@ We see that only the bilinear discretization yields the correct phase at high-fr
 The 1st order high-pass filter is discretized by forward Euler is:
 \[
 \begin{aligned}
-G(s) &=  \frac{s}{s + \omega_c}, s=\frac{z-1}{T}  \\
-&=  \frac{\frac{z-1}{T}}{\frac{z-1}{T} + \omega_c} =\frac{z-1}{z-(1- \omega_c T)} 
-=\frac{1-z^{-1}}{1-(1- \omega_c T)z^{-1}}  \\
-y(k) &=   (1 - \omega_c T)y(k-1)   +  u(k)-u(k-1) \\
+G(s) &=  \frac{s}{s + \omega_0}, s=\frac{z-1}{T}  \\
+&=  \frac{\frac{z-1}{T}}{\frac{z-1}{T} + \omega_0} =\frac{z-1}{z-(1- \omega_0 T)} 
+=\frac{1-z^{-1}}{1-(1- \omega_0 T)z^{-1}}  \\
+y(k) &=   (1 - \omega_0 T)y(k-1)   +  u(k)-u(k-1) \\
 \end{aligned}
 \label{eq:dhpf1}
 \]
@@ -781,14 +781,14 @@ y(k) &=   (1 - \omega_c T)y(k-1)   +  u(k)-u(k-1) \\
 The 1st order high-pass filter is discretized by bilinear methos is:
 \[
 \begin{aligned}
-G(s) &=  \frac{s}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1}  \\
-&=  \frac{\frac{2}{T} \frac{z-1}{z+1}}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
-=\frac{z-1}{z-1 + \frac{\omega_c T}{2}(z+1) } \\
-&=\frac{z-1}{(1+\frac{\omega_c T}{2}) z - (1-\frac{\omega_c T}{2}) }
-= \frac{2(z-1)}{(2+\omega_c T) z - (2-\omega_c T) }   \\
-&= \frac{ \frac{2}{2+\omega_c T} (z-1)}{ z - \frac{2-\omega_c T}{2+\omega_c T} }  
-= \frac{ \frac{2}{2+\omega_c T} (1-z^{-1})}{ 1 - \frac{2-\omega_c T}{2+\omega_c T}z^{-1} }  \\
-y(k) &=   \frac{2-\omega_c T}{2+\omega_c T}y(k-1)   + \frac{2}{2+\omega_c T}  (u(k)-u(k-1)) \\
+G(s) &=  \frac{s}{s + \omega_0}, s=\frac{2}{T} \frac{z-1}{z+1}  \\
+&=  \frac{\frac{2}{T} \frac{z-1}{z+1}}{\frac{2}{T} \frac{z-1}{z+1} + \omega_0}
+=\frac{z-1}{z-1 + \frac{\omega_0 T}{2}(z+1) } \\
+&=\frac{z-1}{(1+\frac{\omega_0 T}{2}) z - (1-\frac{\omega_0 T}{2}) }
+= \frac{2(z-1)}{(2+\omega_0 T) z - (2-\omega_0 T) }   \\
+&= \frac{ \frac{2}{2+\omega_0 T} (z-1)}{ z - \frac{2-\omega_0 T}{2+\omega_0 T} }  
+= \frac{ \frac{2}{2+\omega_0 T} (1-z^{-1})}{ 1 - \frac{2-\omega_0 T}{2+\omega_0 T}z^{-1} }  \\
+y(k) &=   \frac{2-\omega_0 T}{2+\omega_0 T}y(k-1)   + \frac{2}{2+\omega_0 T}  (u(k)-u(k-1)) \\
 \end{aligned}
 \label{eq:dhpf2}
 \]
@@ -1196,6 +1196,102 @@ And and q-current is calculated as:
 i_q = \sqrt{|\underline{i}|^2 - i^2_d }
 \label{eq:mtpa6}
 \]
+
+\hypertarget{power-systems-voltage-stability}{%
+\chapter{Power Systems Voltage Stability}\label{power-systems-voltage-stability}}
+
+This section shows P-V and Q-V curves for a simple ideal reactive transmissions system.
+
+\hypertarget{nomenclature-3}{%
+\section{Nomenclature}\label{nomenclature-3}}
+
+\(\underline{E}\): Supply Voltage.\\
+\(\underline{V}\): Consumer Voltage.\\
+\(\delta\): load angle, from \(\underline{V}\) to \(\underline{E}\).
+
+\hypertarget{transmissions-system}{%
+\section{Transmissions system}\label{transmissions-system}}
+
+The power to the load can be calculated as
+
+\[
+\begin{aligned}
+S &= P +j Q = \underline{V} \underline{I}^* = V \underline{I}^* \\
+&= V \left( \frac{E \angle\delta-V}{jX} \right)^*  \\
+&= V \left( \frac{ E \cos \delta - V + jE \sin  \delta }{jX} \right)^*  \\
+&= V \left( \frac{  E \sin  \delta }{X} -j \frac{ E \cos \delta - V  \delta }{X} \right)^*  \\
+&=  \frac{  VE \sin  \delta }{X} +j \frac{ VE \cos \delta - V^2  }{X}   \\
+\end{aligned}
+\label{eq:PV1}
+\]
+So the active and reactive powers are calculated given by:
+
+\[
+\begin{aligned}
+P &=  \frac{  VE \sin  \delta }{X}   \\
+Q &=  \frac{ VE \cos \delta  }{X} - \frac{V^2  }{X}   \\
+\end{aligned}
+\label{eq:PV2}
+\]
+
+We can now eliminate the power angle, and find the correlation between powers and voltages:
+
+\[
+\begin{aligned}
+&  \sin^2\delta + \cos^2\delta = 1 \\
+\Rightarrow &   \left( \frac{PX}{VE} \right)^2 + \left( \frac{QX+V^2}{VE} \right)^2 = 1 \\
+\Rightarrow &   \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} + \frac{V^2}{E^2} \right)^2 = \frac{V^2}{E^2} \\
+\Rightarrow & \left( \frac{V^2}{E^2} \right)^2+ \left(2\frac{QX}{E^2} -1 \right) \left(  \frac{V^2}{E^2} \right) + \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} \right)^2 = 0 \\
+\end{aligned}
+\label{eq:PV2}
+\]
+This can be solved as 2nd order equation:
+\[
+\begin{aligned}
+\Rightarrow & \left( \frac{V^2}{E^2} \right)^2+ \left(2\frac{QX}{E^2} -1 \right) \left(  \frac{V^2}{E^2} \right) + \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} \right)^2 = 0 \\
+\Rightarrow & \frac{V^2}{E^2}  = \frac{-\left(2\frac{QX}{E^2} -1 \right) \pm \sqrt{\left(2\frac{QX}{E^2} -1 \right)^2-
+4 \left( \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} \right)^2 \right)}  }{2}   \\
+\Rightarrow & \frac{V^2}{E^2}  =  \frac{1}{2}- \frac{QX}{E^2}  \pm \sqrt{\left(\frac{QX}{E^2} -\frac{1}{2} \right)^2-
+  \left( \frac{PX}{E^2} \right)^2 - \left( \frac{QX}{E^2} \right)^2 }    \\
+\Rightarrow & \frac{V^2}{E^2}  =  \frac{1}{2}- \frac{QX}{E^2}  \pm \sqrt{ \frac{1}{4} -
+  \left( \frac{PX}{E^2} \right)^2 + \frac{QX}{E^2}  }    \\
+\Rightarrow & \frac{V}{E}  = \pm \sqrt{  \frac{1}{2}- \frac{QX}{E^2}  \pm \sqrt{ \frac{1}{4} -
+  \left( \frac{PX}{E^2} \right)^2 - \frac{QX}{E^2}  } }  \\
+\end{aligned}
+\label{eq:PV2}
+\]
+
+We can also express this in per-unit values, using the following base values:
+\[
+\begin{aligned}
+V_{base} =E, \quad S_{base} = \frac{E^2}{X}
+\end{aligned}
+\label{eq:PV3}
+\]
+\[
+\begin{aligned}
+v_{pu}  &= \sqrt{  \frac{1}{2}- q_{pu}  \pm \sqrt{ \frac{1}{4} -
+  p_{pu}^2 - q_{pu}  } }   \\
+\end{aligned}
+\label{eq:PV4}
+\]
+In order to make a P-V diagram for constant power-factor, q will be expressed as:
+\[
+q = p  \tan \varphi 
+\label{eq:PV5}
+\]
+\[
+\begin{aligned}
+v_{pu}  &= \sqrt{  \frac{1}{2}- p_{pu} \tan \varphi  \pm \sqrt{ \frac{1}{4} -
+  p_{pu}^2 - p_{pu} \tan \varphi  } }   \\
+\end{aligned}
+\label{eq:PV6}
+\]
+This expression can by used to plot the p-v curves on the figure below.
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/voltage-stability/PV-diagram} \caption{P-V diagram.}\label{fig:unnamed-chunk-2}
+\end{figure}
 
 \bibliography{book.bib,packages.bib}
 

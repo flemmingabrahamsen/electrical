@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Transformations | Power-Electronic Control Handbook</title>
+  <title>Chapter 7 Power Systems Voltage Stability | Power-Electronic Control Handbook</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::bs4_book,
 set in the _output.yml file." />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Transformations | Power-Electronic Control Handbook" />
+  <meta property="og:title" content="Chapter 7 Power Systems Voltage Stability | Power-Electronic Control Handbook" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Transformations | Power-Electronic Control Handbook" />
+  <meta name="twitter:title" content="Chapter 7 Power Systems Voltage Stability | Power-Electronic Control Handbook" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::bs4_book,
@@ -36,8 +36,8 @@ set in the _output.yml file." />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="modulation.html"/>
+<link rel="prev" href="pm-machine.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -164,224 +164,101 @@ set in the _output.yml file." />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="transformations" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 2</span> Transformations<a href="transformations.html#transformations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="power-systems-voltage-stability" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 7</span> Power Systems Voltage Stability<a href="power-systems-voltage-stability.html#power-systems-voltage-stability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This section shows P-V and Q-V curves for a simple ideal reactive transmissions system.</p>
+<div id="nomenclature-3" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.1</span> Nomenclature<a href="power-systems-voltage-stability.html#nomenclature-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(\underline{E}\)</span>: Supply Voltage.<br />
+<span class="math inline">\(\underline{V}\)</span>: Consumer Voltage.<br />
+<span class="math inline">\(\delta\)</span>: load angle, from <span class="math inline">\(\underline{V}\)</span> to <span class="math inline">\(\underline{E}\)</span>.</p>
+</div>
+<div id="transmissions-system" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.2</span> Transmissions system<a href="power-systems-voltage-stability.html#transmissions-system" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <!--
-AB is used here to denote alpha-beta.
+<div class="figure">
+<img src="images/modulation/hexagon.png" alt="Simple reactive transmissions system." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Simple reactive transmissions system.</p>
+</div>
 -->
-<div id="vector-definition" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.1</span> Vector definition<a href="transformations.html#vector-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display" id="eq:trans1">\[
+<p>The power to the load can be calculated as</p>
+<p><span class="math display" id="eq:PV1">\[
 \begin{aligned}
-\underline{v} 
-&amp; = \frac{2}{3} \left( v_a + v_b e^{j \frac{2 \pi}{3}}+ v_c e^{j \frac{4 \pi}{3}} \right)\\
-&amp; = \frac{2}{3} \left( v_a + v_b (- \frac{1}{2}+j\frac{\sqrt{3}}{2}) + v_c (- \frac{1}{2}-j\frac{\sqrt{3}}{2}) \right)\\
-&amp; = \left(\frac{2}{3} v_a - \frac{1}{3}  (v_b+v_c) \right) + j \left( \frac{1}{\sqrt{3}} (v_b-v_c) \right)   \\
-&amp; = \frac{2}{3} \left( v_a - \frac{1}{2}  (v_b+v_c) \right) + j \frac{2}{3} \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)   \\
-&amp; = v_\alpha + j v_\beta   \\
+S &amp;= P +j Q = \underline{V} \underline{I}^* = V \underline{I}^* \\
+&amp;= V \left( \frac{E \angle\delta-V}{jX} \right)^*  \\
+&amp;= V \left( \frac{ E \cos \delta - V + jE \sin  \delta }{jX} \right)^*  \\
+&amp;= V \left( \frac{  E \sin  \delta }{X} -j \frac{ E \cos \delta - V  \delta }{X} \right)^*  \\
+&amp;=  \frac{  VE \sin  \delta }{X} +j \frac{ VE \cos \delta - V^2  }{X}   \\
 \end{aligned}
-\tag{2.1}
-\]</span></p>
-</div>
-<div id="vector-amplitude" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.2</span> Vector Amplitude<a href="transformations.html#vector-amplitude" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="vector-amplitude-from-alpha-beta" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.2.1</span> Vector amplitude from alpha-beta<a href="transformations.html#vector-amplitude-from-alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display" id="eq:amplAB">\[
-|\underline{v}| = \sqrt{v_\alpha^2 +  v_\beta^2}
-\tag{2.2}
-\]</span></p>
-</div>
-<div id="vector-amplitude-from-abc" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.2.2</span> Vector amplitude from abc<a href="transformations.html#vector-amplitude-from-abc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display" id="eq:amplAbc">\[
-\begin{aligned}
-|\underline{v}| &amp;= \sqrt{v_\alpha^2 +  v_\beta^2}  \\
-&amp; =  \sqrt{\left(\frac{2}{3}( v_a - \frac{1}{2}  (v_b+v_c)) \right)^2 + \left(\frac{2}{3} (\frac{\sqrt{3}}{2} (v_b-v_c) )\right)^2 }  \\
-&amp; = \frac{2}{3} \sqrt{\left( v_a - \frac{1}{2}  (v_b+v_c) \right)^2 + \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)^2 }  \\
-&amp; = \frac{2}{3} \sqrt{ v_a^2 + \frac{1}{4}(v_b^2+v_c^2+2v_b v_c)-v_a(v_b+v_c)  + \frac{3}{4} (v_b^2+v_c^2-2v_bv_c)  } \\
-&amp; = \frac{2}{3} \sqrt{ v_a^2 + v_b^2 + v_c^2 -v_a v_b -v_b v_c  -v_c v_a } \\
-\end{aligned}
-\tag{2.3}
-\]</span></p>
-</div>
-</div>
-<div id="abc---alpha-beta" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.3</span> abc &lt;-&gt; alpha-beta<a href="transformations.html#abc---alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="abc-with-zero-to-alpha-beta" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.3.1</span> abc with zero to alpha-beta<a href="transformations.html#abc-with-zero-to-alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The abc to alpha-beta transformation where the abc-system may contain a zero-component is:</p>
-<p><span class="math display" id="eq:abcAB1">\[
-\begin{aligned}
-v_\alpha &amp;= \frac{2}{3} \left( v_a - \frac{1}{2}  (v_b+v_c) \right) = \frac{2}{3}  v_a - \frac{1}{3}  (v_b+v_c) = \frac{1}{3} ( 2 v_a - v_b-v_c)  \\
-v_\beta &amp;= \frac{2}{3} \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)=  \frac{1}{\sqrt{3}} (v_b-v_c) \\
-\end{aligned}
-\tag{2.4}
-\]</span></p>
-<p>Matrix form:</p>
-<p><span class="math display" id="eq:abcAB2">\[
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-= \frac{2}{3} \begin{bmatrix} 1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \\ 0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2} \end{bmatrix}  
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} \frac{2}{3} &amp; -\frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{3}} \end{bmatrix}
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\tag{2.5}
-\]</span></p>
-</div>
-<div id="abc-without-zero-to-ab" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.3.2</span> abc without zero to AB<a href="transformations.html#abc-without-zero-to-ab" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If the abc-system has no zero-component, so <span class="math inline">\(v_a=-(v_b+v_c)\)</span>, we can simplify:</p>
-<p><span class="math display" id="eq:abcAB2">\[
-\begin{aligned}
-v_\alpha &amp;=   v_a\\
-v_\beta &amp;=  \frac{1}{\sqrt{3}} (v_b-v_c) \\
-\end{aligned}
-\tag{2.5}
-\]</span></p>
-<p>Written in matrix form:</p>
-<p><span class="math display" id="eq:abcABmat2">\[
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-= \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; \frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{3}} \end{bmatrix}
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\tag{2.6}
-\]</span></p>
-</div>
-<div id="ab-to-abc" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.3.3</span> AB to abc<a href="transformations.html#ab-to-abc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This transformation will give an abc-system without a zero-component, as the alpha-beta system does not contain a zero-component.</p>
-<p><span class="math display" id="eq:transABabc1">\[
-\begin{aligned}
-v_a &amp;= v_\alpha \\
-v_b &amp;=  - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta) \\
-v_c &amp;=  - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) \\
-\end{aligned}
-\tag{2.7}
-\]</span></p>
-<p>In matrix form:</p>
-<p><span class="math display" id="eq:transABabc2">\[
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} 1 &amp; 0 \\ -\frac{1}{2} &amp; \frac{\sqrt{3}}{2} \\ -\frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \end{bmatrix}
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-\tag{2.8}
-\]</span></p>
-</div>
-</div>
-<div id="abc---ab0" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.4</span> abc &lt;-&gt; AB0<a href="transformations.html#abc---ab0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The two-component alpha-beta system does not contain a zero-component, so if the zero-component of the abc-system must be preserved in the alpha-beta system, a third zero component must be included.</p>
-<div id="abc---ab0-1" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.4.1</span> abc -&gt; AB0<a href="transformations.html#abc---ab0-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display" id="eq:transabcAB01">\[
-\begin{aligned}
-v_\alpha &amp;= \frac{2}{3}(v_a - \frac{1}{2}(v_b+v_c)) = \frac{2}{3}v_a - \frac{1}{3}(v_b+v_c) = \frac{1}{3} ( 2 v_a - v_b-v_c)\\
-v_\beta &amp;= \frac{1}{\sqrt{3}}(v_b-v_c)  \\
-v_0 &amp;= \frac{1}{3}(v_a+v_b+v_c)
-\end{aligned}
-\tag{2.9}
-\]</span></p>
-<p>Written in matrix form:</p>
-<p><span class="math display" id="eq:transabcAB02">\[
-\begin{bmatrix} \alpha \\ \beta \\ 0 \end{bmatrix}
-= \frac{2}{3} \begin{bmatrix} 1 &amp; -\frac{1}{2} &amp; -\frac{1}{2} \\ 0 &amp; \frac{\sqrt{3}}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{1}{2} &amp; \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} \frac{2}{3} &amp; -\frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{3}} \\ \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \end{bmatrix}
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\tag{2.10}
-\]</span></p>
-</div>
-<div id="ab0---abc" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.4.2</span> AB0 -&gt; abc<a href="transformations.html#ab0---abc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display" id="eq:transABabc1">\[
-\begin{aligned}
-v_a &amp;= v_0 + v_\alpha \\
-v_b &amp;= v_0 - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) \\
-v_c &amp;= v_0 - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta) \\
-\end{aligned}
-\tag{2.7}
-\]</span></p>
-<p><span class="math display" id="eq:transABabc1">\[
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ -\frac{1}{2} &amp; \frac{\sqrt{3}}{2} &amp; 1 \\ -\frac{1}{2} &amp; -\frac{\sqrt{3}}{2} &amp; 1 \end{bmatrix}
-\begin{bmatrix} \alpha\\ \beta \\ 0 \end{bmatrix}
-\tag{2.7}
-\]</span></p>
-</div>
-</div>
-<div id="line-line---ab" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.5</span> Line-Line &lt;-&gt; AB<a href="transformations.html#line-line---ab" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The line-line voltage are between phases: a-b, b-c, c-a.</p>
-<div id="line-line---ab-1" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.5.1</span> Line-Line -&gt; AB<a href="transformations.html#line-line---ab-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>From above we have the formula:</p>
-<p><span class="math display" id="eq:abcAB1">\[
-\begin{aligned}
-v_\alpha &amp;=  \frac{1}{3} ( 2 v_a - v_b-v_c) = \frac{1}{3} ( (v_a - v_b)-(v_c-v_a))= \frac{1}{3} ( v_{ab} - v_{ca})   \\
-v_\beta &amp;=   \frac{1}{\sqrt{3}} (v_b-v_c) = \frac{1}{\sqrt{3}} v_{bc}   \\
-\end{aligned}
-\tag{2.4}
-\]</span></p>
-<p>Written in matrix form:</p>
-<p><span class="math display" id="eq:abcABmat2">\[
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-= \begin{bmatrix} \frac{1}{3} &amp; 0 &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{3} &amp; -\frac{1}{3} \end{bmatrix}
-\begin{bmatrix} ab\\ bc \\ ca \end{bmatrix}
-\tag{2.6}
-\]</span></p>
-</div>
-<div id="ab---line-line" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.5.2</span> AB -&gt; Line-Line<a href="transformations.html#ab---line-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display" id="eq:abcAB1">\[
-\begin{aligned}
-v_{ab} &amp;=  v_a - v_b =v_\alpha + \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta)
-=\frac{3}{2}v_\alpha - \frac{\sqrt{3}}{2}v_\beta 
-=\frac{3}{2} (v_\alpha - \frac{1}{\sqrt{3}}v_\beta  )  \\
-v_{bc} &amp;=  v_b - v_c =  - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta)+ \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) = \sqrt{3}v_\beta  \\
-v_{bc} &amp;=  v_c - v_a =  - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) - v_\alpha 
-= -\frac{3}{2}v_\alpha - \frac{\sqrt{3}}{2}v_\beta =\frac{3}{2} (-v_\alpha - \frac{1}{\sqrt{3}}v_\beta  )  \\
-\end{aligned}
-\tag{2.4}
+\tag{7.1}
 \]</span>
-In matrix form:</p>
-<p><span class="math display" id="eq:abcABmat2">\[
-\begin{bmatrix} ab\\ bc \\ ca \end{bmatrix}
-= \begin{bmatrix} \frac{3}{2} &amp; -\frac{\sqrt{3}}{2} \\  0 &amp; \sqrt{3} \\ 
--\frac{3}{2} &amp; -\frac{\sqrt{3}}{2} \end{bmatrix}
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-= \frac{3}{2} \begin{bmatrix} 1 &amp; -\frac{1}{\sqrt{3}} \\  0 &amp; \frac{2}{\sqrt{3}} \\ 
--1 &amp; -\frac{1}{\sqrt{3}} \end{bmatrix}
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-\tag{2.6}
+So the active and reactive powers are calculated given by:</p>
+<p><span class="math display" id="eq:PV2">\[
+\begin{aligned}
+P &amp;=  \frac{  VE \sin  \delta }{X}   \\
+Q &amp;=  \frac{ VE \cos \delta  }{X} - \frac{V^2  }{X}   \\
+\end{aligned}
+\tag{7.2}
 \]</span></p>
+<p>We can now eliminate the power angle, and find the correlation between powers and voltages:</p>
+<p><span class="math display" id="eq:PV2">\[
+\begin{aligned}
+&amp;  \sin^2\delta + \cos^2\delta = 1 \\
+\Rightarrow &amp;   \left( \frac{PX}{VE} \right)^2 + \left( \frac{QX+V^2}{VE} \right)^2 = 1 \\
+\Rightarrow &amp;   \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} + \frac{V^2}{E^2} \right)^2 = \frac{V^2}{E^2} \\
+\Rightarrow &amp; \left( \frac{V^2}{E^2} \right)^2+ \left(2\frac{QX}{E^2} -1 \right) \left(  \frac{V^2}{E^2} \right) + \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} \right)^2 = 0 \\
+\end{aligned}
+\tag{7.2}
+\]</span>
+This can be solved as 2nd order equation:
+<span class="math display" id="eq:PV2">\[
+\begin{aligned}
+\Rightarrow &amp; \left( \frac{V^2}{E^2} \right)^2+ \left(2\frac{QX}{E^2} -1 \right) \left(  \frac{V^2}{E^2} \right) + \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} \right)^2 = 0 \\
+\Rightarrow &amp; \frac{V^2}{E^2}  = \frac{-\left(2\frac{QX}{E^2} -1 \right) \pm \sqrt{\left(2\frac{QX}{E^2} -1 \right)^2-
+4 \left( \left( \frac{PX}{E^2} \right)^2 + \left( \frac{QX}{E^2} \right)^2 \right)}  }{2}   \\
+\Rightarrow &amp; \frac{V^2}{E^2}  =  \frac{1}{2}- \frac{QX}{E^2}  \pm \sqrt{\left(\frac{QX}{E^2} -\frac{1}{2} \right)^2-
+  \left( \frac{PX}{E^2} \right)^2 - \left( \frac{QX}{E^2} \right)^2 }    \\
+\Rightarrow &amp; \frac{V^2}{E^2}  =  \frac{1}{2}- \frac{QX}{E^2}  \pm \sqrt{ \frac{1}{4} -
+  \left( \frac{PX}{E^2} \right)^2 + \frac{QX}{E^2}  }    \\
+\Rightarrow &amp; \frac{V}{E}  = \pm \sqrt{  \frac{1}{2}- \frac{QX}{E^2}  \pm \sqrt{ \frac{1}{4} -
+  \left( \frac{PX}{E^2} \right)^2 - \frac{QX}{E^2}  } }  \\
+\end{aligned}
+\tag{7.2}
+\]</span></p>
+<p>We can also express this in per-unit values, using the following base values:
+<span class="math display" id="eq:PV3">\[
+\begin{aligned}
+V_{base} =E, \quad S_{base} = \frac{E^2}{X}
+\end{aligned}
+\tag{7.3}
+\]</span>
+<span class="math display" id="eq:PV4">\[
+\begin{aligned}
+v_{pu}  &amp;= \sqrt{  \frac{1}{2}- q_{pu}  \pm \sqrt{ \frac{1}{4} -
+  p_{pu}^2 - q_{pu}  } }   \\
+\end{aligned}
+\tag{7.4}
+\]</span>
+In order to make a P-V diagram for constant power-factor, q will be expressed as:
+<span class="math display" id="eq:PV5">\[
+q = p  \tan \varphi 
+\tag{7.5}
+\]</span>
+<span class="math display" id="eq:PV6">\[
+\begin{aligned}
+v_{pu}  &amp;= \sqrt{  \frac{1}{2}- p_{pu} \tan \varphi  \pm \sqrt{ \frac{1}{4} -
+  p_{pu}^2 - p_{pu} \tan \varphi  } }   \\
+\end{aligned}
+\tag{7.6}
+\]</span>
+This expression can by used to plot the p-v curves on the figure below.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/voltage-stability/PV-diagram.png" alt="P-V diagram." width="100%" />
+<p class="caption">
+Figure 3.2: P-V diagram.
+</p>
 </div>
-</div>
-<div id="rotation" class="section level2 hasAnchor">
-<h2><span class="header-section-number">2.6</span> Rotation<a href="transformations.html#rotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is the general matrix for rotation, which rotates a vector in positive direction with angle <span class="math inline">\(\theta\)</span>.</p>
-<p><span class="math display" id="eq:transRot">\[
-\begin{bmatrix} \cos\theta &amp; -\sin\theta \\  \sin\theta &amp; \cos\theta  \end{bmatrix}
-\tag{2.11}
-\]</span></p>
-<div id="dq---alpha-beta" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.6.1</span> dq -&gt; alpha-beta<a href="transformations.html#dq---alpha-beta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Dq to alpha-beta is a forward rotation, so it is:</p>
-<p><span class="math display" id="eq:transAbDq">\[
-\begin{bmatrix} \alpha \\  \beta  \end{bmatrix} =
-\begin{bmatrix} \cos\theta &amp; -\sin\theta \\  \sin\theta &amp; \cos\theta  \end{bmatrix}
-\begin{bmatrix} d \\  q  \end{bmatrix}
-\tag{2.12}
-\]</span></p>
-</div>
-<div id="alpha-beta---dq" class="section level3 hasAnchor">
-<h3><span class="header-section-number">2.6.2</span> alpha-beta -&gt; dq<a href="transformations.html#alpha-beta---dq" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Alpha-beta to Dq is a backward rotation, so it is:</p>
-<p><span class="math display" id="eq:transDqAb">\[
-\begin{bmatrix} d \\  q  \end{bmatrix}=
-\begin{bmatrix} \cos\theta &amp; \sin\theta \\  -\sin\theta &amp; \cos\theta  \end{bmatrix}
-\begin{bmatrix} \alpha \\ \beta  \end{bmatrix} 
-\tag{2.13}
-\]</span></p>
 
-</div>
 </div>
 </div>
             </section>
@@ -389,8 +266,8 @@ In matrix form:</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pm-machine.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

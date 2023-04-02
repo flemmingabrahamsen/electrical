@@ -5,7 +5,7 @@ This chapter gives an overview of the most used basic filters, such as low-pass,
 ## Nomenclature
 s: Laplace operator.  
 $\tau$: time-constant.  
-$\omega_c$: Filter cut-off frequency (rad/s).  
+$\omega_0$: Filter cut-off frequency (rad/s).  
 
 
 ## Analog Filters
@@ -14,7 +14,7 @@ $\omega_c$: Filter cut-off frequency (rad/s).
 
 The transfer function of a 1st order low-pass filter is:
 $$
-G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_c}{s + \omega_c}
+G(s) =  \frac{1}{\tau s + 1} = \frac{\omega_0}{s + \omega_0}
 (\#eq:lpf1)
 $$
 \begin{figure}
@@ -26,7 +26,7 @@ $$
 
 The transfer function of a 1st order high-pass filter is:
 $$
-G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_c}
+G(s) =  \frac{\tau s}{\tau s + 1} = \frac{s}{s + \omega_0}
 (\#eq:hpf1)
 $$
 \begin{figure}
@@ -39,7 +39,7 @@ $$
 
 The transfer function of a 2nd order low-pass filter is:
 $$
-G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_c^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+G(s) =  \frac{1}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{\omega_0^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 (\#eq:lpf2)
 $$
 
@@ -53,7 +53,7 @@ $$
 
 The transfer function of a 2nd order high-pass filter is:
 $$
-G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+G(s) =  \frac{(\tau s)^2}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{s^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 (\#eq:hpf2)
 $$
 
@@ -67,7 +67,7 @@ $$
 
 The transfer function of a band-pass filter is:
 $$
-G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_c s}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+G_{bpf}(s) =  \frac{2\zeta \tau s}{(\tau s)^2 + 2\zeta \tau s + 1} = \frac{2\zeta \omega_0 s}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 (\#eq:bpf)
 $$
 
@@ -81,20 +81,20 @@ $$
 The transfer function of a band-stop filter (notch filter) is:
 $$
 G_{bsf}(s) = \frac{(\tau s)^2 + 2\zeta_n \tau s + 1}{(\tau s)^2 + 2\zeta_d \tau s + 1} 
-=\frac{s^2 + 2\zeta_n \omega_c s + \omega_c^2}{s^2 + 2\zeta_d \omega_c s + \omega_c^2}
+=\frac{s^2 + 2\zeta_n \omega_0 s + \omega_0^2}{s^2 + 2\zeta_d \omega_0 s + \omega_0^2}
 (\#eq:bsf1)
 $$
 where $\zeta_n$ and $\zeta_d$ denote the nominator and denominator damping-factors.
 
 The gain at the notch-frequency is:
 $$
-G_{bsf}(j\omega_c) = \frac{\zeta_n }{\zeta_d }
+G_{bsf}(j\omega_0) = \frac{\zeta_n }{\zeta_d }
 (\#eq:bsf2)
 $$
 We can choose to reformulate the transfer-function as:
 $$
 G_{bsf}(s) = \frac{(\tau s)^2 + 2K_{damp}\zeta \tau s + 1}{(\tau s)^2 + 2\zeta \tau s + 1} 
-=\frac{s^2 + 2K_{damp}\zeta \omega_c s + \omega_c^2}{s^2 + 2\zeta \omega_c s + \omega_c^2}
+=\frac{s^2 + 2K_{damp}\zeta \omega_0 s + \omega_0^2}{s^2 + 2\zeta \omega_0 s + \omega_0^2}
 (\#eq:bsf1)
 $$
 where $K_{damp}$ is a damping factor. For example, if we want 100 times (40 dB) damping  at the notch-frequency, we set $K_{damp} = 0.01$.
@@ -131,10 +131,10 @@ Using the forward Euler discretization:
 
 $$
 \begin{aligned}
-G(s) &=  \frac{\omega_c}{s + \omega_c}, s=\frac{z-1}{T} \\
-G(z) &=  \frac{\omega_c}{\frac{z-1}{T} + \omega_c} = \frac{\omega_c T}{z- (1 - \omega_c T)} 
-= \frac{\omega_c T z^{-1}}{1- (1 - \omega_c T)z^{-1}} \\
-y(k) &=   (1 - \omega_c T)y(k-1)   + \omega_c T u(k-1) \\
+G(s) &=  \frac{\omega_0}{s + \omega_0}, s=\frac{z-1}{T} \\
+G(z) &=  \frac{\omega_0}{\frac{z-1}{T} + \omega_0} = \frac{\omega_0 T}{z- (1 - \omega_0 T)} 
+= \frac{\omega_0 T z^{-1}}{1- (1 - \omega_0 T)z^{-1}} \\
+y(k) &=   (1 - \omega_0 T)y(k-1)   + \omega_0 T u(k-1) \\
 \end{aligned}
 (\#eq:dlpf1)
 $$
@@ -143,8 +143,8 @@ An practical alternative to this is to the newest input sample, instead of using
 
 $$
 \begin{aligned}
-y(k) &= (1 - \omega_c T)y(k-1)   + \omega_c T u(k) \\
-G(z) &=  \frac{\omega_c T z}{z- (1 - \omega_c T)} = \frac{\omega_c T }{1- (1 - \omega_c T)z^{-1}} \\
+y(k) &= (1 - \omega_0 T)y(k-1)   + \omega_0 T u(k) \\
+G(z) &=  \frac{\omega_0 T z}{z- (1 - \omega_0 T)} = \frac{\omega_0 T }{1- (1 - \omega_0 T)z^{-1}} \\
 \end{aligned}
 (\#eq:dlpf2)
 $$
@@ -154,13 +154,13 @@ Bilinear transformation:
 
 $$
 \begin{aligned}
-G(s) &=  \frac{\omega_c}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1} \\
-G(z) &=  \frac{\omega_c}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
-= \frac{ \frac{\omega_cT}{2}(z+1)}{ (z-1)+ \frac{\omega_cT}{2} (z+1)} 
-= \frac{ \frac{\omega_cT}{2}(z+1)}{  (1+\frac{\omega_cT}{2}) z - (1-\frac{\omega_cT}{2})}  \\
- &=   \frac{ \omega_cT(z+1)}{  (2+\omega_cT) z - (2-\omega_cT)} 
- =  \frac{ \frac{\omega_cT}{2+\omega_cT}(z+1)}{   z - \frac{2-\omega_cT}{2+\omega_cT}}  \\
-y(k) &=   \left( \frac{2-\omega_cT}{2+\omega_cT} \right) y(k-1)   + \left( \frac{\omega_cT}{2+\omega_cT} \right)  (u(k)+u(k-1)) \\
+G(s) &=  \frac{\omega_0}{s + \omega_0}, s=\frac{2}{T} \frac{z-1}{z+1} \\
+G(z) &=  \frac{\omega_0}{\frac{2}{T} \frac{z-1}{z+1} + \omega_0}
+= \frac{ \frac{\omega_0T}{2}(z+1)}{ (z-1)+ \frac{\omega_0T}{2} (z+1)} 
+= \frac{ \frac{\omega_0T}{2}(z+1)}{  (1+\frac{\omega_0T}{2}) z - (1-\frac{\omega_0T}{2})}  \\
+ &=   \frac{ \omega_0T(z+1)}{  (2+\omega_0T) z - (2-\omega_0T)} 
+ =  \frac{ \frac{\omega_0T}{2+\omega_0T}(z+1)}{   z - \frac{2-\omega_0T}{2+\omega_0T}}  \\
+y(k) &=   \left( \frac{2-\omega_0T}{2+\omega_0T} \right) y(k-1)   + \left( \frac{\omega_0T}{2+\omega_0T} \right)  (u(k)+u(k-1)) \\
 \end{aligned}
 (\#eq:dlpf3)
 $$
@@ -179,10 +179,10 @@ We see that only the bilinear discretization yields the correct phase at high-fr
 The 1st order high-pass filter is discretized by forward Euler is:
 $$
 \begin{aligned}
-G(s) &=  \frac{s}{s + \omega_c}, s=\frac{z-1}{T}  \\
-&=  \frac{\frac{z-1}{T}}{\frac{z-1}{T} + \omega_c} =\frac{z-1}{z-(1- \omega_c T)} 
-=\frac{1-z^{-1}}{1-(1- \omega_c T)z^{-1}}  \\
-y(k) &=   (1 - \omega_c T)y(k-1)   +  u(k)-u(k-1) \\
+G(s) &=  \frac{s}{s + \omega_0}, s=\frac{z-1}{T}  \\
+&=  \frac{\frac{z-1}{T}}{\frac{z-1}{T} + \omega_0} =\frac{z-1}{z-(1- \omega_0 T)} 
+=\frac{1-z^{-1}}{1-(1- \omega_0 T)z^{-1}}  \\
+y(k) &=   (1 - \omega_0 T)y(k-1)   +  u(k)-u(k-1) \\
 \end{aligned}
 (\#eq:dhpf1)
 $$
@@ -190,14 +190,14 @@ $$
 The 1st order high-pass filter is discretized by bilinear methos is:
 $$
 \begin{aligned}
-G(s) &=  \frac{s}{s + \omega_c}, s=\frac{2}{T} \frac{z-1}{z+1}  \\
-&=  \frac{\frac{2}{T} \frac{z-1}{z+1}}{\frac{2}{T} \frac{z-1}{z+1} + \omega_c}
-=\frac{z-1}{z-1 + \frac{\omega_c T}{2}(z+1) } \\
-&=\frac{z-1}{(1+\frac{\omega_c T}{2}) z - (1-\frac{\omega_c T}{2}) }
-= \frac{2(z-1)}{(2+\omega_c T) z - (2-\omega_c T) }   \\
-&= \frac{ \frac{2}{2+\omega_c T} (z-1)}{ z - \frac{2-\omega_c T}{2+\omega_c T} }  
-= \frac{ \frac{2}{2+\omega_c T} (1-z^{-1})}{ 1 - \frac{2-\omega_c T}{2+\omega_c T}z^{-1} }  \\
-y(k) &=   \frac{2-\omega_c T}{2+\omega_c T}y(k-1)   + \frac{2}{2+\omega_c T}  (u(k)-u(k-1)) \\
+G(s) &=  \frac{s}{s + \omega_0}, s=\frac{2}{T} \frac{z-1}{z+1}  \\
+&=  \frac{\frac{2}{T} \frac{z-1}{z+1}}{\frac{2}{T} \frac{z-1}{z+1} + \omega_0}
+=\frac{z-1}{z-1 + \frac{\omega_0 T}{2}(z+1) } \\
+&=\frac{z-1}{(1+\frac{\omega_0 T}{2}) z - (1-\frac{\omega_0 T}{2}) }
+= \frac{2(z-1)}{(2+\omega_0 T) z - (2-\omega_0 T) }   \\
+&= \frac{ \frac{2}{2+\omega_0 T} (z-1)}{ z - \frac{2-\omega_0 T}{2+\omega_0 T} }  
+= \frac{ \frac{2}{2+\omega_0 T} (1-z^{-1})}{ 1 - \frac{2-\omega_0 T}{2+\omega_0 T}z^{-1} }  \\
+y(k) &=   \frac{2-\omega_0 T}{2+\omega_0 T}y(k-1)   + \frac{2}{2+\omega_0 T}  (u(k)-u(k-1)) \\
 \end{aligned}
 (\#eq:dhpf2)
 $$
