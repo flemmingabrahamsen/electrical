@@ -71,7 +71,7 @@
 
 \title{Power-Electronic Control Handbook}
 \author{Flemming Abrahamsen}
-\date{2023-04-02}
+\date{2023-12-09}
 
 \begin{document}
 \maketitle
@@ -131,8 +131,8 @@ This is a collection of technical notes centered around control of power electro
 \hypertarget{abc---alpha-beta}{%
 \section{abc \textless{}-\textgreater{} alpha-beta}\label{abc---alpha-beta}}
 
-\hypertarget{abc-with-zero-to-alpha-beta}{%
-\subsection{abc with zero to alpha-beta}\label{abc-with-zero-to-alpha-beta}}
+\hypertarget{abc-ab0}{%
+\subsection{abc-\textgreater{}AB0}\label{abc-ab0}}
 
 The abc to alpha-beta transformation where the abc-system may contain a zero-component is:
 
@@ -140,23 +140,26 @@ The abc to alpha-beta transformation where the abc-system may contain a zero-com
 \begin{aligned}
 v_\alpha &= \frac{2}{3} \left( v_a - \frac{1}{2}  (v_b+v_c) \right) = \frac{2}{3}  v_a - \frac{1}{3}  (v_b+v_c) = \frac{1}{3} ( 2 v_a - v_b-v_c)  \\
 v_\beta &= \frac{2}{3} \left( \frac{\sqrt{3}}{2} (v_b-v_c) \right)=  \frac{1}{\sqrt{3}} (v_b-v_c) \\
+v_0 &= \frac{1}{3} \left( v_a+v_b+v_c \right) \\
 \end{aligned}
-\label{eq:abcAB1}
+\label{eq:abcABZ1}
 \]
 
 Matrix form:
 
 \[
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-= \frac{2}{3} \begin{bmatrix} 1 & -\frac{1}{2} & -\frac{1}{2} \\ 0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \end{bmatrix}  
+\begin{bmatrix} \alpha\\ \beta \\ 0 \end{bmatrix}
+= \frac{2}{3} \begin{bmatrix} 1 & -\frac{1}{2} & -\frac{1}{2} \\ 0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2}
+\\ \frac{1}{2} & \frac{1}{2} & \frac{1}{2}  \end{bmatrix}  
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} \\ 0 & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} \end{bmatrix}
+= \begin{bmatrix} \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} \\ 0 & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}}
+\\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\end{bmatrix}
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\label{eq:abcAB2}
+\label{eq:abcABZ2}
 \]
 
-\hypertarget{abc-without-zero-to-ab}{%
-\subsection{abc without zero to AB}\label{abc-without-zero-to-ab}}
+\hypertarget{abc-ab}{%
+\subsection{abc-\textgreater{}AB}\label{abc-ab}}
 
 If the abc-system has no zero-component, so \(v_a=-(v_b+v_c)\), we can simplify:
 
@@ -165,7 +168,7 @@ If the abc-system has no zero-component, so \(v_a=-(v_b+v_c)\), we can simplify:
 v_\alpha &=   v_a\\
 v_\beta &=  \frac{1}{\sqrt{3}} (v_b-v_c) \\
 \end{aligned}
-\label{eq:abcAB2}
+\label{eq:abcAB1}
 \]
 
 Written in matrix form:
@@ -174,77 +177,98 @@ Written in matrix form:
 \begin{bmatrix} \alpha\\ \beta \end{bmatrix}
 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} \end{bmatrix}
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\label{eq:abcABmat2}
+\label{eq:abcABmat1}
 \]
 
-\hypertarget{ab-to-abc}{%
-\subsection{AB to abc}\label{ab-to-abc}}
+\hypertarget{ab0-abc}{%
+\subsection{AB0-\textgreater{}abc}\label{ab0-abc}}
 
-This transformation will give an abc-system without a zero-component, as the alpha-beta system does not contain a zero-component.
+In equation:
 
 \[
 \begin{aligned}
-v_a &= v_\alpha \\
-v_b &=  - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta) \\
-v_c &=  - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) \\
+v_a &= v_0+v_\alpha  \\
+v_b &=  v_0+- \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta)\\
+v_c &=  v_0+- \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta)\\
 \end{aligned}
-\label{eq:transABabc1}
+\label{eq:transAB0abc1}
 \]
 
 In matrix form:
 
 \[
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} 1 & 0 \\ -\frac{1}{2} & \frac{\sqrt{3}}{2} \\ -\frac{1}{2} & -\frac{\sqrt{3}}{2} \end{bmatrix}
-\begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-\label{eq:transABabc2}
+= \begin{bmatrix} 1 & 0 & 1 \\ -\frac{1}{2} & \frac{\sqrt{3}}{2} & 1 \\ -\frac{1}{2} & -\frac{\sqrt{3}}{2} & 1 \end{bmatrix}
+\begin{bmatrix} \alpha\\ \beta \\ 0\end{bmatrix}
+\label{eq:transAB0abc2}
 \]
 
-\hypertarget{abc---ab0}{%
-\section{abc \textless{}-\textgreater{} AB0}\label{abc---ab0}}
+\hypertarget{ab---abc}{%
+\subsection{AB -\textgreater{} abc}\label{ab---abc}}
 
-The two-component alpha-beta system does not contain a zero-component, so if the zero-component of the abc-system must be preserved in the alpha-beta system, a third zero component must be included.
-
-\hypertarget{abc---ab0-1}{%
-\subsection{abc -\textgreater{} AB0}\label{abc---ab0-1}}
+If the alpha-beta system has no zero-component, we can simplify info:
 
 \[
 \begin{aligned}
-v_\alpha &= \frac{2}{3}(v_a - \frac{1}{2}(v_b+v_c)) = \frac{2}{3}v_a - \frac{1}{3}(v_b+v_c) = \frac{1}{3} ( 2 v_a - v_b-v_c)\\
-v_\beta &= \frac{1}{\sqrt{3}}(v_b-v_c)  \\
-v_0 &= \frac{1}{3}(v_a+v_b+v_c)
-\end{aligned}
-\label{eq:transabcAB01}
-\]
-
-Written in matrix form:
-
-\[
-\begin{bmatrix} \alpha \\ \beta \\ 0 \end{bmatrix}
-= \frac{2}{3} \begin{bmatrix} 1 & -\frac{1}{2} & -\frac{1}{2} \\ 0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \\ \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \end{bmatrix}
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} \\ 0 & \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} \\ \frac{1}{3} & \frac{1}{3} & \frac{1}{3} \end{bmatrix}
-\begin{bmatrix} a\\ b \\ c \end{bmatrix}
-\label{eq:transabcAB02}
-\]
-
-\hypertarget{ab0---abc}{%
-\subsection{AB0 -\textgreater{} abc}\label{ab0---abc}}
-
-\[
-\begin{aligned}
-v_a &= v_0 + v_\alpha \\
-v_b &= v_0 - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) \\
-v_c &= v_0 - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta) \\
+v_a &=  v_\alpha \\
+v_b &= - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) \\
+v_c &= - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta) \\
 \end{aligned}
 \label{eq:transABabc1}
 \]
 
 \[
 \begin{bmatrix} a\\ b \\ c \end{bmatrix}
-= \begin{bmatrix} 1 & 0 & 1 \\ -\frac{1}{2} & \frac{\sqrt{3}}{2} & 1 \\ -\frac{1}{2} & -\frac{\sqrt{3}}{2} & 1 \end{bmatrix}
+= \begin{bmatrix} 1 & 0  \\ -\frac{1}{2} & \frac{\sqrt{3}}{2}  \\ -\frac{1}{2} & -\frac{\sqrt{3}}{2}  \end{bmatrix}
 \begin{bmatrix} \alpha\\ \beta \\ 0 \end{bmatrix}
 \label{eq:transABabc1}
+\]
+
+\hypertarget{line-line---abc}{%
+\section{Line-Line \textless{}-\textgreater{} abc}\label{line-line---abc}}
+
+\hypertarget{abc-ll}{%
+\subsection{abc-\textgreater{}LL}\label{abc-ll}}
+
+By definition of line-line voltages:
+\[
+\begin{aligned}
+v_{ab} &=  v_a - v_b \\
+v_{bc} &=  v_b - v_c  \\
+v_{ca} &=  v_c - v_a \\
+\end{aligned}
+\label{eq:abc2LL}
+\]
+
+In matrix form:
+
+\[
+\begin{bmatrix} ab\\ bc \\ ca \end{bmatrix}
+= \begin{bmatrix} 1 & -1 & 0 \\  0 & 1&-1 \\ 
+-1&0&1 \end{bmatrix}
+\begin{bmatrix} a\\ b \\c \end{bmatrix}
+\label{eq:abc2LLmat}
+\]
+
+\hypertarget{ll-abc}{%
+\subsection{LL-\textgreater{}abc}\label{ll-abc}}
+
+\[
+\begin{aligned}
+v_{a} &=  \frac{1}{3}\left( v_{ab} - v_{ca} \right)\\
+v_{b} &=  \frac{1}{3}\left( v_{bc} - v_{ab} \right)  \\
+v_{c} &=  \frac{1}{3}\left( v_{ca} - v_{bc} \right) \\
+\end{aligned}
+\label{eq:LL2abc}
+\]
+In matrix form:
+
+\[
+\begin{bmatrix} a\\ b \\c \end{bmatrix}
+= \frac{1}{3} \begin{bmatrix} 1 & 0 & -1 \\  -1 & 1&0 \\ 
+0&-1&1 \end{bmatrix}
+\begin{bmatrix} ab\\ bc \\ ca \end{bmatrix}
+\label{eq:abc2LLmat}
 \]
 
 \hypertarget{line-line---ab}{%
@@ -252,8 +276,8 @@ v_c &= v_0 - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta) \\
 
 The line-line voltage are between phases: a-b, b-c, c-a.
 
-\hypertarget{line-line---ab-1}{%
-\subsection{Line-Line -\textgreater{} AB}\label{line-line---ab-1}}
+\hypertarget{ll-ab}{%
+\subsection{LL-\textgreater{}AB}\label{ll-ab}}
 
 From above we have the formula:
 
@@ -269,13 +293,13 @@ Written in matrix form:
 
 \[
 \begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-= \begin{bmatrix} \frac{1}{3} & 0 & -\frac{1}{3} \\ 0 & \frac{1}{3} & -\frac{1}{3} \end{bmatrix}
+= \begin{bmatrix} \frac{1}{3} & 0 & -\frac{1}{3} \\ 0  & -\frac{1}{\sqrt{3}} & 0 \end{bmatrix}
 \begin{bmatrix} ab\\ bc \\ ca \end{bmatrix}
 \label{eq:abcABmat2}
 \]
 
-\hypertarget{ab---line-line}{%
-\subsection{AB -\textgreater{} Line-Line}\label{ab---line-line}}
+\hypertarget{ab-ll}{%
+\subsection{AB-\textgreater{}LL}\label{ab-ll}}
 
 \[
 \begin{aligned}
@@ -286,7 +310,7 @@ v_{bc} &=  v_b - v_c =  - \frac{1}{2}(v_\alpha -\sqrt{3}v_\beta)+ \frac{1}{2}(v_
 v_{bc} &=  v_c - v_a =  - \frac{1}{2}(v_\alpha +\sqrt{3}v_\beta) - v_\alpha 
 = -\frac{3}{2}v_\alpha - \frac{\sqrt{3}}{2}v_\beta =\frac{3}{2} (-v_\alpha - \frac{1}{\sqrt{3}}v_\beta  )  \\
 \end{aligned}
-\label{eq:abcAB1}
+\label{eq:AB2LL}
 \]
 In matrix form:
 
@@ -298,7 +322,7 @@ In matrix form:
 = \frac{3}{2} \begin{bmatrix} 1 & -\frac{1}{\sqrt{3}} \\  0 & \frac{2}{\sqrt{3}} \\ 
 -1 & -\frac{1}{\sqrt{3}} \end{bmatrix}
 \begin{bmatrix} \alpha\\ \beta \end{bmatrix}
-\label{eq:abcABmat2}
+\label{eq:AB2LLmat}
 \]
 
 \hypertarget{rotation}{%
